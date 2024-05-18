@@ -15,6 +15,8 @@ namespace Management_System.PAL
     {
         private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
 
+
+
         public static class SharedData
         {
             public static string ValueToPass { get; set; }
@@ -23,7 +25,6 @@ namespace Management_System.PAL
         {
             public static string ValueToPass1 { get; set; }
         }
-        // Set the value somewhere in Form1
 
 
         public FormLogIn()
