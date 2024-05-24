@@ -40,12 +40,13 @@ namespace Management_System.PAL
                 }
                 
                 
+                /*
                 using (SqlCommand command1 = new SqlCommand("SELECT SUM(Grand_Total) FROM Orders", connection))
                 {
                     label7.Text = ((int)command1.ExecuteScalar() + 1).ToString("N0",
                     System.Globalization.CultureInfo.GetCultureInfo("de"));
                 }
-                
+                */
                 
                 
             }
