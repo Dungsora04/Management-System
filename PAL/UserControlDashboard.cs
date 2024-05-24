@@ -13,7 +13,7 @@ namespace Management_System.PAL
 {
     public partial class UserControlDashboard : UserControl
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
+        private string connectionString = "Data Source=Thinkpad-E14\\SQLEXPRESS02;Initial Catalog=CSMS;Integrated Security=True;";
         public UserControlDashboard()
         {
             InitializeComponent();
@@ -40,12 +40,13 @@ namespace Management_System.PAL
                 }
                 
                 
+                /*
                 using (SqlCommand command1 = new SqlCommand("SELECT SUM(Grand_Total) FROM Orders", connection))
                 {
                     label7.Text = ((int)command1.ExecuteScalar() + 1).ToString("N0",
                     System.Globalization.CultureInfo.GetCultureInfo("de"));
                 }
-                
+                */
                 
                 
             }

@@ -35,7 +35,7 @@ namespace Management_System.PAL
         string warranty = "";
         string warranty_days = "";
         string product_detail = "";
-        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
+        private string connectionString = "Data Source=Thinkpad-E14\\SQLEXPRESS02;Initial Catalog=CSMS;Integrated Security=True;";
         private string Id = "";
         public string name;
         private Int32 userId = 0;
@@ -1131,6 +1131,8 @@ namespace Management_System.PAL
             }
 
         }
+
+        
     }
 }
 
