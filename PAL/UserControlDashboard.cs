@@ -13,7 +13,7 @@ namespace Management_System.PAL
 {
     public partial class UserControlDashboard : UserControl
     {
-        private string connectionString = "Data Source=Thinkpad-E14\\SQLEXPRESS02;Initial Catalog=CSMS;Integrated Security=True;";
+        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;MultipleActiveResultSets=True;";
         public UserControlDashboard()
         {
             InitializeComponent();

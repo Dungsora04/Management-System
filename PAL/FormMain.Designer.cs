@@ -34,13 +34,6 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.lblTimeAndDate = new System.Windows.Forms.Label();
             this.pnlCenter = new System.Windows.Forms.Panel();
-            this.userControlUser1 = new Management_System.PAL.UserControlUser();
-            this.userControlReport1 = new Management_System.PAL.UserControlReport();
-            this.userControlOrder1 = new Management_System.PAL.UserControlOrder();
-            this.userControlProduct1 = new Management_System.PAL.UserControlProduct();
-            this.userControlCategory1 = new Management_System.PAL.UserControlCategory();
-            this.userControlBrand1 = new Management_System.PAL.UserControlBrand();
-            this.userControlDashboard1 = new Management_System.PAL.UserControlDashboard();
             this.timerDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDashboard = new System.Windows.Forms.Button();
@@ -61,6 +54,15 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.userControlUser1 = new Management_System.PAL.UserControlUser();
+            this.userControlReport1 = new Management_System.PAL.UserControlReport();
+            this.userControlOrder1 = new Management_System.PAL.UserControlOrder();
+            this.userControlProduct1 = new Management_System.PAL.UserControlProduct();
+            this.userControlCategory1 = new Management_System.PAL.UserControlCategory();
+            this.userControlBrand1 = new Management_System.PAL.UserControlBrand();
+            this.userControlDashboard1 = new Management_System.PAL.UserControlDashboard();
             this.pnlCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -71,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMove
@@ -110,81 +113,6 @@
             this.pnlCenter.Name = "pnlCenter";
             this.pnlCenter.Size = new System.Drawing.Size(741, 560);
             this.pnlCenter.TabIndex = 0;
-            // 
-            // userControlUser1
-            // 
-            this.userControlUser1.BackColor = System.Drawing.Color.White;
-            this.userControlUser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlUser1.Location = new System.Drawing.Point(0, 0);
-            this.userControlUser1.Name = "userControlUser1";
-            this.userControlUser1.Size = new System.Drawing.Size(741, 560);
-            this.userControlUser1.TabIndex = 0;
-            this.userControlUser1.Visible = false;
-            // 
-            // userControlReport1
-            // 
-            this.userControlReport1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReport1.BackColor = System.Drawing.Color.White;
-            this.userControlReport1.Location = new System.Drawing.Point(0, 0);
-            this.userControlReport1.Name = "userControlReport1";
-            this.userControlReport1.Size = new System.Drawing.Size(741, 560);
-            this.userControlReport1.TabIndex = 0;
-            this.userControlReport1.Visible = false;
-            // 
-            // userControlOrder1
-            // 
-            this.userControlOrder1.BackColor = System.Drawing.Color.White;
-            this.userControlOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlOrder1.Location = new System.Drawing.Point(0, 0);
-            this.userControlOrder1.Name = "userControlOrder1";
-            this.userControlOrder1.Size = new System.Drawing.Size(741, 560);
-            this.userControlOrder1.TabIndex = 0;
-            this.userControlOrder1.Visible = false;
-            // 
-            // userControlProduct1
-            // 
-            this.userControlProduct1.BackColor = System.Drawing.Color.White;
-            this.userControlProduct1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlProduct1.Location = new System.Drawing.Point(0, 0);
-            this.userControlProduct1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.userControlProduct1.Name = "userControlProduct1";
-            this.userControlProduct1.Size = new System.Drawing.Size(741, 560);
-            this.userControlProduct1.TabIndex = 0;
-            this.userControlProduct1.Visible = false;
-            // 
-            // userControlCategory1
-            // 
-            this.userControlCategory1.BackColor = System.Drawing.Color.White;
-            this.userControlCategory1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCategory1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCategory1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.userControlCategory1.Name = "userControlCategory1";
-            this.userControlCategory1.Size = new System.Drawing.Size(741, 560);
-            this.userControlCategory1.TabIndex = 0;
-            this.userControlCategory1.Visible = false;
-            // 
-            // userControlBrand1
-            // 
-            this.userControlBrand1.BackColor = System.Drawing.Color.White;
-            this.userControlBrand1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlBrand1.Location = new System.Drawing.Point(0, 0);
-            this.userControlBrand1.Margin = new System.Windows.Forms.Padding(10);
-            this.userControlBrand1.Name = "userControlBrand1";
-            this.userControlBrand1.Size = new System.Drawing.Size(741, 560);
-            this.userControlBrand1.TabIndex = 0;
-            this.userControlBrand1.Visible = false;
-            // 
-            // userControlDashboard1
-            // 
-            this.userControlDashboard1.BackColor = System.Drawing.Color.White;
-            this.userControlDashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlDashboard1.Location = new System.Drawing.Point(0, 0);
-            this.userControlDashboard1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.userControlDashboard1.Name = "userControlDashboard1";
-            this.userControlDashboard1.Size = new System.Drawing.Size(741, 560);
-            this.userControlDashboard1.TabIndex = 0;
             // 
             // timerDateAndTime
             // 
@@ -347,6 +275,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.lblUsername);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblTimeAndDate);
@@ -443,6 +373,106 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(29, 485);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
+            // btnReports
+            // 
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.ForeColor = System.Drawing.Color.White;
+            this.btnReports.Location = new System.Drawing.Point(75, 485);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(139, 40);
+            this.btnReports.TabIndex = 9;
+            this.btnReports.Text = "Reports";
+            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReport_Click);
+            // 
+            // userControlUser1
+            // 
+            this.userControlUser1.BackColor = System.Drawing.Color.White;
+            this.userControlUser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlUser1.Location = new System.Drawing.Point(0, 0);
+            this.userControlUser1.Name = "userControlUser1";
+            this.userControlUser1.Size = new System.Drawing.Size(741, 560);
+            this.userControlUser1.TabIndex = 0;
+            this.userControlUser1.Visible = false;
+            // 
+            // userControlReport1
+            // 
+            this.userControlReport1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReport1.BackColor = System.Drawing.Color.White;
+            this.userControlReport1.Location = new System.Drawing.Point(0, 0);
+            this.userControlReport1.Name = "userControlReport1";
+            this.userControlReport1.Size = new System.Drawing.Size(741, 560);
+            this.userControlReport1.TabIndex = 0;
+            this.userControlReport1.Visible = false;
+            // 
+            // userControlOrder1
+            // 
+            this.userControlOrder1.BackColor = System.Drawing.Color.White;
+            this.userControlOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlOrder1.Location = new System.Drawing.Point(0, 0);
+            this.userControlOrder1.Name = "userControlOrder1";
+            this.userControlOrder1.Size = new System.Drawing.Size(741, 560);
+            this.userControlOrder1.TabIndex = 0;
+            this.userControlOrder1.Visible = false;
+            // 
+            // userControlProduct1
+            // 
+            this.userControlProduct1.BackColor = System.Drawing.Color.White;
+            this.userControlProduct1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlProduct1.Location = new System.Drawing.Point(0, 0);
+            this.userControlProduct1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userControlProduct1.Name = "userControlProduct1";
+            this.userControlProduct1.Size = new System.Drawing.Size(741, 560);
+            this.userControlProduct1.TabIndex = 0;
+            this.userControlProduct1.Visible = false;
+            // 
+            // userControlCategory1
+            // 
+            this.userControlCategory1.BackColor = System.Drawing.Color.White;
+            this.userControlCategory1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCategory1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCategory1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userControlCategory1.Name = "userControlCategory1";
+            this.userControlCategory1.Size = new System.Drawing.Size(741, 560);
+            this.userControlCategory1.TabIndex = 0;
+            this.userControlCategory1.Visible = false;
+            // 
+            // userControlBrand1
+            // 
+            this.userControlBrand1.BackColor = System.Drawing.Color.White;
+            this.userControlBrand1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlBrand1.Location = new System.Drawing.Point(0, 0);
+            this.userControlBrand1.Margin = new System.Windows.Forms.Padding(10);
+            this.userControlBrand1.Name = "userControlBrand1";
+            this.userControlBrand1.Size = new System.Drawing.Size(741, 560);
+            this.userControlBrand1.TabIndex = 0;
+            this.userControlBrand1.Visible = false;
+            // 
+            // userControlDashboard1
+            // 
+            this.userControlDashboard1.BackColor = System.Drawing.Color.White;
+            this.userControlDashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlDashboard1.Location = new System.Drawing.Point(0, 0);
+            this.userControlDashboard1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.userControlDashboard1.Name = "userControlDashboard1";
+            this.userControlDashboard1.Size = new System.Drawing.Size(741, 560);
+            this.userControlDashboard1.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -470,6 +500,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -506,5 +537,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btnReports;
     }
 }
