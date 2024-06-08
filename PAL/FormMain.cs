@@ -8,10 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BusinessLogicLayer;
+using DTO;
+
 namespace Management_System.PAL
 {
     public partial class FormMain : Form
     {
+        
+
         public string name = "{?}";
         private string roleId = "";
         public FormMain()
@@ -115,7 +120,7 @@ namespace Management_System.PAL
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            Move_Panel(btnReport);
+            Move_Panel(btnReports);
             userControlDashboard1.Visible = false;
             userControlBrand1.Visible = false;
             userControlCategory1.Visible = false;
