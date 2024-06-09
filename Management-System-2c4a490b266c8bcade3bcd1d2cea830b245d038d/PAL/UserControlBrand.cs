@@ -8,15 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-<<<<<<< HEAD
-using BusinessLogicLayer;
-using DTO;
-=======
-
 using BusinessLogicLayer;
 using DTO;
 
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
 namespace Management_System.PAL
 {
 
@@ -67,28 +61,18 @@ namespace Management_System.PAL
             {
                 brand.BrandName = txtBrandName.Text;
                 brand.BrandStatus = cmbStatus.SelectedItem.ToString();
-<<<<<<< HEAD
                 
                 try
                 {
                     brandbus.Insert(brand);
                     MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-=======
-                try
-                {
-                    brandbus.Insert(brand);
-                    MessageBox.Show("Adding Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
                     EmptyBox();
                 }
                 catch
                 {
                     MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-<<<<<<< HEAD
                 
-=======
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
                 //using (SqlConnection connection = new SqlConnection(connectionString))
                 //{
                 //    connection.Open();

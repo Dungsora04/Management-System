@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
     </Reference>
@@ -40,10 +39,6 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
-=======
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,10 +49,7 @@
   <ItemGroup>
     <Compile Include="BrandBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="UserBUS.cs" />
-=======
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
@@ -69,11 +61,8 @@
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-=======
->>>>>>> 6038dbf80388913a19cb03764eb20378c799f27e
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
