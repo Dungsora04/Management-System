@@ -38,8 +38,8 @@ namespace DataAccessLayer
         public int Insert(Category obj)
         {
             SqlParameter[] para = {
-                        new SqlParameter("Category_Name", obj.CategoryName),
-                        new SqlParameter("Category_Status", obj.CategoryStatus)
+                        new SqlParameter("Category_Name", obj.Category_Name),
+                        new SqlParameter("Category_Status", obj.Category_Status)
                     };
             return data.ExecuteSQL("Category_Insert", para);
         }
@@ -47,9 +47,9 @@ namespace DataAccessLayer
         public int Update(Category obj)
         {
             SqlParameter[] para = {
-                new SqlParameter("Category_Id", obj.CategoryId),
-                        new SqlParameter("Category_Name", obj.CategoryName),
-                        new SqlParameter("Category_Status", obj.CategoryStatus)
+                new SqlParameter("Category_Id", obj.Category_Id),
+                        new SqlParameter("Category_Name", obj.Category_Name),
+                        new SqlParameter("Category_Status", obj.Category_Status)
             };
             return data.ExecuteSQL("Category_Update", para);
         }
