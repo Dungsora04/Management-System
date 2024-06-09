@@ -1,4 +1,6 @@
-﻿using Guna.UI2.WinForms.Suite;
+﻿using BusinessLogicLayer;
+using DTO;
+using Guna.UI2.WinForms.Suite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +29,8 @@ namespace Management_System.PAL
         private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string id = "";
         private string id_role = "";
+        User user = new User();
+        UserBUS userBUS = new UserBUS();
         public UserControlUser()
         {
             InitializeComponent();
@@ -126,6 +130,7 @@ namespace Management_System.PAL
             }
             else
             {
+                /*
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -142,6 +147,21 @@ namespace Management_System.PAL
                         EmptyBox();
                     }
                 }
+                */
+                user.UserName = txtUserName.Text;
+                user.Email = txtEmail.Text;
+                user.Password = txtPassword.Text;
+                user.RoleId = cmbRole.SelectedIndex;
+                try
+                {
+                    userBUS.Insert(user);
+                    MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EmptyBox();
+                }
+                catch
+                {
+                    MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -155,6 +175,7 @@ namespace Management_System.PAL
             EmptyBox1();
             txtSearchUserName.Clear();
             dgvUser.Columns[0].Visible = false;
+            /*
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -169,10 +190,21 @@ namespace Management_System.PAL
                     lblTotal.Text = dgvUser.Rows.Count.ToString();
                 }
             }
+            */
+            try
+            {
+                dgvUser.DataSource = userBUS.GetData();
+                lblTotal.Text = dgvUser.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("View User is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void txtSearchUserName_TextChanged(object sender, EventArgs e)
         {
+            /*
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -187,6 +219,16 @@ namespace Management_System.PAL
                     }
                     lblTotal.Text = dgvUser.Rows.Count.ToString();
                 }
+            }
+            */
+            try
+            {
+                dgvUser.DataSource = userBUS.GetDataByName(txtSearchUserName.Text);
+                lblTotal.Text = dgvUser.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -239,6 +281,12 @@ namespace Management_System.PAL
             }
             else
             {
+                user.UserName = txtUserName1.Text;
+                user.Email = txtEmail1.Text;
+                user.Password = txtPassword1.Text;     
+                user.UserId = Convert.ToInt32(id);
+                user.RoleId = Convert.ToInt32((cmbRole1.SelectedItem as Item).Id.ToString());
+                /*
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -265,6 +313,18 @@ namespace Management_System.PAL
                         EmptyBox1();
                         tcUser.SelectedTab = tpManagerUser;
                     }
+                }
+                */
+                try
+                {
+                    userBUS.Update(user);
+                    MessageBox.Show("Update Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EmptyBox1();
+                    tcUser.SelectedTab = tpManagerUser;
+                }
+                catch
+                {
+                    MessageBox.Show("Update Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -296,6 +356,7 @@ namespace Management_System.PAL
                 DialogResult dialogResult = MessageBox.Show("Are You want to delete this user ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    /*
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
@@ -313,7 +374,19 @@ namespace Management_System.PAL
                             tcUser.SelectedTab = tpManagerUser;
                         }
                     }
+                    */
+                    try
+                    {
+                        userBUS.Delete(id);
+                        Console.WriteLine($"Row with ID {id} deleted successfully.");
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"No rows found with ID {id}.");
+                    }
+                    EmptyBox1();
                 }
+                tcUser.SelectedTab = tpManagerUser;
             }
         }
 
