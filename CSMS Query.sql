@@ -94,3 +94,122 @@ drop table OrdersInfo
 INSERT INTO Roles (Roles_Name, Descriptions)
 VALUES ('Admin', 'Administrator role with full access');
 select * from Product
+
+
+CREATE PROC Brand_Insert
+@Brand_Name NVARCHAR(150), 
+@Brand_Status NVARCHAR(15)
+AS
+BEGIN
+INSERT INTO Brand (Brand_Name, Brand_Status) OUTPUT inserted.Brand_Id VALUES (@Brand_Name, @Brand_Status)
+END
+
+
+GO
+CREATE PROC Brand_Update
+@Brand_Id INT, 
+@Brand_Name NVARCHAR(150), 
+@Brand_Status NVARCHAR(15)
+AS
+BEGIN
+UPDATE Brand SET Brand_Name = @Brand_Name, Brand_Status = @Brand_Status where Brand_Id = CAST(@Brand_Id AS int)
+--and not exists(select * from Brand where Brand_Name = @Brand_Name)
+END
+
+GO
+CREATE PROC Brand_Delete
+@Brand_Id INT
+AS
+BEGIN
+DELETE FROM Brand WHERE Brand_Id = @Brand_Id
+END
+
+GO
+CREATE PROC Brand_Select_All
+AS
+BEGIN
+	SELECT * FROM Brand
+END
+
+GO
+CREATE PROC Brand_Select_ByID
+@Brand_Id INT
+AS
+BEGIN
+SELECT * FROM Brand WHERE Brand_Id = @Brand_Id
+END
+
+CREATE PROC Brand_Select_ByName
+@Brand_Name NVARCHAR(150)
+AS
+BEGIN
+SELECT * FROM Brand WHERE Brand_Name LIKE CONCAT('%', @Brand_Name, '%');
+END
+
+UPDATE Brand SET Brand_Name = '123', Brand_Status = 'all' where Brand_Id = CAST(16 AS int)
+--and not exists(select * from Brand where Brand_Name = '12313')
+
+
+
+
+
+
+--User--
+SELECT u.Users_Id, u.Users_Name, u.Users_Email, u.Users_Password, r.Roles_Name FROM Users u
+Left JOIN Roles r
+ON u.Roles_Id = r.Roles_Id
+GO
+CREATE PROC User_Select_All
+AS
+BEGIN
+ SELECT u.Users_Id, u.Users_Name, u.Users_Email, u.Users_Password, r.Roles_Name FROM Users u
+Left JOIN Roles r
+ON u.Roles_Id = r.Roles_Id
+END
+Drop proc User_Select_All
+
+
+CREATE PROC User_Insert
+@Users_Name NVARCHAR(150), 
+@Users_Email NVARCHAR(150),
+@Users_Password NVarchar(150),
+@Roles_Id int
+AS
+BEGIN
+INSERT INTO Users(Users_Name,Users_Email, Users_Password, Roles_Id) OUTPUT inserted.Users_Id VALUES (@Users_Name,@Users_Email, @Users_Password, @Roles_Id)
+END
+
+GO
+CREATE PROC User_Delete
+@Users_Id INT
+AS
+BEGIN
+DELETE FROM Users WHERE Users_Id = @Users_Id
+END
+
+GO
+CREATE PROC User_Select_ByID
+@Users_Id INT
+AS
+BEGIN
+SELECT * FROM Users WHERE Users_Id = @Users_Id
+END
+
+CREATE PROC User_Select_ByName
+@Users_Name NVARCHAR(150)
+AS
+BEGIN
+SELECT * FROM Users WHERE Users_Name LIKE CONCAT('%', @Users_Name, '%');
+END
+
+GO
+CREATE PROC User_Update
+@Users_Name NVARCHAR(150), 
+@Users_Email NVARCHAR(150),
+@Users_Password NVarchar(150),
+@Roles_Id int,
+@Users_Id int
+AS
+BEGIN
+UPDATE Users SET Users_Name = @Users_Name, Users_Email = @Users_Email, Users_Password = @Users_Password, Roles_Id = @Roles_Id where Users_Id = CAST(@Users_Id AS int)
+END

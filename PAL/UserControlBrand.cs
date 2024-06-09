@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using BusinessLogicLayer;
 using DTO;
 
@@ -62,16 +61,18 @@ namespace Management_System.PAL
             {
                 brand.BrandName = txtBrandName.Text;
                 brand.BrandStatus = cmbStatus.SelectedItem.ToString();
+                
                 try
                 {
                     brandbus.Insert(brand);
-                    MessageBox.Show("Adding Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     EmptyBox();
                 }
                 catch
                 {
                     MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
                 //using (SqlConnection connection = new SqlConnection(connectionString))
                 //{
                 //    connection.Open();
@@ -287,6 +288,11 @@ namespace Management_System.PAL
         private void tpOptions_Leave(object sender, EventArgs e)
         {
             EmptyBox1();
+        }
+
+        private void txtBrandName1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
