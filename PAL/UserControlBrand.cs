@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer;
 using DTO;
-
 namespace Management_System.PAL
 {
 
