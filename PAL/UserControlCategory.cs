@@ -69,7 +69,6 @@ namespace Management_System.PAL
                         }
                     }
                 }
-            
         }
 
         private void tpAddCategory_Enter(object sender, EventArgs e)
