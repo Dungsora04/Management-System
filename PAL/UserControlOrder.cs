@@ -1089,6 +1089,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.05);
                 txtDueAmount.Text = "-" + txtGrandTotal.Text;
+                nudPaidAmount_ValueChanged(sender, e);
                 oTotal = a;
             }
             else if(cmbDiscount.SelectedItem == "10%")
@@ -1097,6 +1098,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.1);
                 txtDueAmount.Text = "-" + txtGrandTotal.Text;
+                nudPaidAmount_ValueChanged(sender, e);
                 oTotal = a;
             }
             else if(cmbDiscount.SelectedItem == "15%")
@@ -1105,6 +1107,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.15);
                 txtDueAmount.Text = "-"+txtGrandTotal.Text;
+                nudPaidAmount_ValueChanged(sender, e);
                 oTotal = a;
             }
             else if(cmbDiscount.SelectedItem == "20%")
@@ -1113,6 +1116,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.2);
                 txtDueAmount.Text = "-" + txtGrandTotal.Text;
+                nudPaidAmount_ValueChanged(sender, e);
                 oTotal = a;
             }
             else if(cmbDiscount.SelectedItem == "25%")
@@ -1121,6 +1125,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.25);
                 txtDueAmount.Text = "-" + txtGrandTotal.Text;
+                nudPaidAmount_ValueChanged(sender, e);
                 oTotal = a;
             }
             else
@@ -1128,6 +1133,7 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = a.ToString();
                 txtGrandTotal.Text = a.ToString();
                txtDueAmount.Text = "-"+a.ToString();
+                nudPaidAmount_ValueChanged(sender, e);
             }
 
         }
