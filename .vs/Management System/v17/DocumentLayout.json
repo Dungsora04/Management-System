@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 110,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,27 +62,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserControlOrder.cs [Design]",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
-              "RelativeDocumentMoniker": "PAL\\UserControlOrder.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs [Design]",
-              "RelativeToolTip": "PAL\\UserControlOrder.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T11:16:15.309Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserControlOrder.cs",
               "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
               "RelativeDocumentMoniker": "PAL\\UserControlOrder.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
-              "RelativeToolTip": "PAL\\UserControlOrder.cs",
-              "ViewState": "AQIAAE8EAAAAAAAAAAAAAEUEAAANAAAA",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs*",
+              "RelativeToolTip": "PAL\\UserControlOrder.cs*",
+              "ViewState": "AQIAAGsBAAAAAAAAAAA1wHQBAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-10T11:11:40.645Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserControlOrder.cs [Design]",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlOrder.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs [Design]*",
+              "RelativeToolTip": "PAL\\UserControlOrder.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T11:16:15.309Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",

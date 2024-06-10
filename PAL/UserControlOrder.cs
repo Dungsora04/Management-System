@@ -369,16 +369,28 @@ namespace Management_System.PAL
                 dgvProductList.Rows.RemoveAt(rowIndex);
                 if (dgvProductList.Rows.Count != 0)
                 {
+                    cmbDiscount.SelectedIndex = 1;
+                    nudDiscount.Value = 0;
                     foreach (DataGridViewRow rows in dgvProductList.Rows)
                     {
                         oTotal += Convert.ToInt32(rows.Cells[5].Value.ToString());
+                        a=oTotal;
                         MessageBox.Show(oTotal.ToString(), "a", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtTotalAmount.Text = oTotal.ToString();
+                        txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                     }
                 }
                 else
+                {
+                  
                     txtTotalAmount.Text = "0";
+                    txtDueAmount.Text = "0";
+                    nudPaidAmount.Value = 0;
+                    cmbDiscount.Text="";
+                    nudDiscount.Value = 0;
+                    a = 0;
+                }
                 oTotal = 0;
 
             }
@@ -1088,53 +1100,61 @@ namespace Management_System.PAL
                 oTotal = Convert.ToInt32(oTotal * 0.95);
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.05);
-                txtDueAmount.Text = "-" + txtGrandTotal.Text;
-                nudPaidAmount_ValueChanged(sender, e);
-                oTotal = a;
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
+
+                oTotal = 0;
+                
             }
             else if(cmbDiscount.SelectedItem == "10%")
             {
                 oTotal = Convert.ToInt32(oTotal * 0.9);
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.1);
-                txtDueAmount.Text = "-" + txtGrandTotal.Text;
-                nudPaidAmount_ValueChanged(sender, e);
-                oTotal = a;
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
+
+                oTotal = 0;
+                
             }
             else if(cmbDiscount.SelectedItem == "15%")
             {
                 oTotal = Convert.ToInt32(oTotal * 0.85);
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.15);
-                txtDueAmount.Text = "-"+txtGrandTotal.Text;
-                nudPaidAmount_ValueChanged(sender, e);
-                oTotal = a;
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
+
+                oTotal = 0;
+                
             }
             else if(cmbDiscount.SelectedItem == "20%")
             {
                 oTotal = Convert.ToInt32(oTotal * 0.8);
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.2);
-                txtDueAmount.Text = "-" + txtGrandTotal.Text;
-                nudPaidAmount_ValueChanged(sender, e);
-                oTotal = a;
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
+
+                oTotal = 0;
+                
             }
             else if(cmbDiscount.SelectedItem == "25%")
             {
                 oTotal = Convert.ToInt32(oTotal * 0.75);
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.25);
-                txtDueAmount.Text = "-" + txtGrandTotal.Text;
-                nudPaidAmount_ValueChanged(sender, e);
-                oTotal = a;
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
+
+                oTotal = 0;
+                
             }
             else
             {
                 txtTotalAmount.Text = a.ToString();
                 txtGrandTotal.Text = a.ToString();
-               txtDueAmount.Text = "-"+a.ToString();
-                nudPaidAmount_ValueChanged(sender, e);
+                txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text)).ToString();
+                oTotal = 0;
+
+
             }
+
 
         }
     }
