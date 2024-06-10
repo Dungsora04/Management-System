@@ -9,11 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BusinessLogicLayer;
+using DTO;
 namespace Management_System.PAL
 {
     public partial class UserControlCategory : UserControl
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
+        Category category = new Category();
+        CategoryBUS categorybus = new CategoryBUS();
+        //private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string id = "";
         public UserControlCategory()
         {
@@ -40,36 +44,49 @@ namespace Management_System.PAL
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
-                if (txtCategoryName.Text.Trim() == string.Empty)
+
+            if (txtCategoryName.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter category name", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (cmbStatus.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please select status", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                category.Category_Name = txtCategoryName.Text;
+                category.Category_Status = cmbStatus.SelectedItem.ToString();
+                try
                 {
-                    MessageBox.Show("Please enter category name", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    categorybus.Insert(category);
+                    MessageBox.Show("Adding Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EmptyBox();
                 }
-                else if (cmbStatus.SelectedIndex == 0)
+                catch
                 {
-                    MessageBox.Show("Please select status", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
+                /*
+                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                   connection.Open();
+                
+                    using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Category;", connection))
+                    using (SqlCommand command1 = new SqlCommand("INSERT INTO Category  (Category_Name,Category_Status)" +
+                        "OUTPUT inserted.Category_Id VALUES (@Category_Name,@Category_Status);", connection))
                     {
-                        connection.Open();
+                        command1.Parameters.AddWithValue("@Category_Name", txtCategoryName.Text.Trim());
+                        command1.Parameters.AddWithValue("@Category_Status", cmbStatus.SelectedItem.ToString());
 
-                        using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Category;", connection))
-                        using (SqlCommand command1 = new SqlCommand("INSERT INTO Category  (Category_Name,Category_Status)" +
-                            "OUTPUT inserted.Category_Id VALUES (@Category_Name,@Category_Status);", connection))
-                        {
-                            command1.Parameters.AddWithValue("@Category_Name", txtCategoryName.Text.Trim());
-                            command1.Parameters.AddWithValue("@Category_Status", cmbStatus.SelectedItem.ToString());
-
-                            command1.ExecuteNonQuery();
-                            EmptyBox();
-                        }
+                       command1.ExecuteNonQuery();
+                        EmptyBox();
                     }
                 }
-            
+                */
+            }
         }
 
         private void tpAddCategory_Enter(object sender, EventArgs e)
@@ -80,6 +97,19 @@ namespace Management_System.PAL
         private void tpManageCategory_Enter(object sender, EventArgs e)
         {
             txtSearchCategoryName.Clear();
+            dgvCategory.Columns[0].Visible = false;
+
+            try
+            {
+                dgvCategory.DataSource = categorybus.GetData();
+                lblTotal.Text = dgvCategory.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("View Category is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            /*
+             txtSearchCategoryName.Clear();
             dgvCategory.Columns[0].Visible = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -95,10 +125,21 @@ namespace Management_System.PAL
                     lblTotal.Text = dgvCategory.Rows.Count.ToString();
                 }
             }
+            */
         }
 
         private void txtSearchCategoryName_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                dgvCategory.DataSource = categorybus.GetDataByName(txtSearchCategoryName.Text);
+                lblTotal.Text = dgvCategory.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            /*
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -114,6 +155,7 @@ namespace Management_System.PAL
                     lblTotal.Text = dgvCategory.Rows.Count.ToString();
                 }
             }
+        */
         }
 
         private void dgvCategory_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -147,25 +189,42 @@ namespace Management_System.PAL
             }
             else
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                category.Category_Id = Convert.ToInt32(id);
+                category.Category_Name = txtCategoryName1.Text;
+                category.Category_Status = cmbStatus1.SelectedItem.ToString();
+                //MessageBox.Show(category.CategoryName, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
                 {
-                    connection.Open();
-
-                    using (SqlCommand command1 = new SqlCommand("UPDATE Category SET Category_Name = @Category_Name where Category_Id = @Category_Id and not exists (select * from Category where Category_Name = @Category_Name)", connection))
-                    using (SqlCommand command2 = new SqlCommand("UPDATE Category SET Category_Status = @Category_Status where Category_Id = @Category_Id", connection))
-                    {
-
-                        command1.Parameters.AddWithValue("@Category_Name", txtCategoryName1.Text.Trim());
-                        command1.Parameters.AddWithValue("@Category_Id", id);
-                        command2.Parameters.AddWithValue("@Category_Status", cmbStatus1.SelectedItem.ToString());
-                        command2.Parameters.AddWithValue("@Category_Id", id);
-
-                        command1.ExecuteNonQuery();
-                        command2.ExecuteNonQuery();
-                        EmptyBox1();
-                        tcCategory.SelectedTab = tpManageCategory;
-                    }
+                    categorybus.Update(category);
+                    MessageBox.Show("Update Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EmptyBox1();
+                    tcCategory.SelectedTab = tpManageCategory;
                 }
+                catch
+                {
+                    MessageBox.Show("Update Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                /*
+                                using (SqlConnection connection = new SqlConnection(connectionString))
+                                {
+                                    connection.Open();
+
+                                    using (SqlCommand command1 = new SqlCommand("UPDATE Category SET Category_Name = @Category_Name where Category_Id = @Category_Id and not exists (select * from Category where Category_Name = @Category_Name)", connection))
+                                    using (SqlCommand command2 = new SqlCommand("UPDATE Category SET Category_Status = @Category_Status where Category_Id = @Category_Id", connection))
+                                    {
+
+                                        command1.Parameters.AddWithValue("@Category_Name", txtCategoryName1.Text.Trim());
+                                        command1.Parameters.AddWithValue("@Category_Id", id);
+                                        command2.Parameters.AddWithValue("@Category_Status", cmbStatus1.SelectedItem.ToString());
+                                        command2.Parameters.AddWithValue("@Category_Id", id);
+
+                                        command1.ExecuteNonQuery();
+                                        command2.ExecuteNonQuery();
+                                        EmptyBox1();
+                                        tcCategory.SelectedTab = tpManageCategory;
+                                    }
+                                }
+                */
             }
 
         }
@@ -192,6 +251,17 @@ namespace Management_System.PAL
                 DialogResult dialogResult = MessageBox.Show("Are You want to delete this category ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    try
+                    {
+                        categorybus.Delete(id);
+                        Console.WriteLine($"Row with ID {id} deleted successfully.");
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"No rows found with ID {id}.");
+                    }
+                    EmptyBox1();
+                    /*
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
@@ -209,7 +279,9 @@ namespace Management_System.PAL
                             tcCategory.SelectedTab = tpManageCategory;
                         }
                     }
+                */
                 }
+                tcCategory.SelectedTab = tpManageCategory;
             }
         }
 
@@ -224,16 +296,6 @@ namespace Management_System.PAL
         private void tpOptions_Leave(object sender, EventArgs e)
         {
             EmptyBox1();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }

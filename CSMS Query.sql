@@ -93,7 +93,16 @@ drop table OrdersInfo
 
 INSERT INTO Roles (Roles_Name, Descriptions)
 VALUES ('Admin', 'Administrator role with full access');
+
+
 select * from Product
+select * from Brand
+select * from Category
+select * from Customer
+select * from Orders
+select * from OrdersInfor
+select * from Roles
+select * from Users
 
 
 CREATE PROC Brand_Insert
@@ -150,6 +159,51 @@ UPDATE Brand SET Brand_Name = '123', Brand_Status = 'all' where Brand_Id = CAST(
 --and not exists(select * from Brand where Brand_Name = '12313')
 
 
+CREATE PROC Category_Insert
+@Category_Name NVARCHAR(150), 
+@Category_Status NVARCHAR(15)
+AS
+BEGIN
+INSERT INTO Category (Category_Name, Category_Status) OUTPUT inserted.Category_Id VALUES (@Category_Name, @Category_Status)
+END
+GO
+CREATE PROC Category_Update
+@Category_Id INT, 
+@Category_Name NVARCHAR(150), 
+@Category_Status NVARCHAR(15)
+AS
+BEGIN
+UPDATE Category SET Category_Name = @Category_Name, Category_Status = @Category_Status where Category_Id = CAST(@Category_Id AS int)
+--and not exists(select * from Category where Category_Name = @Category_Name)
+END
+GO
+CREATE PROC Category_Delete
+@Category_Id INT
+AS
+BEGIN
+DELETE FROM Category WHERE Category_Id = @Category_Id
+END
+
+GO
+CREATE PROC Category_Select_All
+AS
+BEGIN
+	SELECT * FROM Category
+END
+GO
+CREATE PROC Category_Select_ByID
+@Category_Id INT
+AS
+BEGIN
+SELECT * FROM Category WHERE Category_Id = @Category_Id
+END
+
+CREATE PROC Category_Select_ByName
+@Category_Name NVARCHAR(150)
+AS
+BEGIN
+SELECT * FROM Category WHERE Category_Name LIKE CONCAT('%', @Category_Name, '%');
+END
 
 
 
@@ -166,7 +220,7 @@ BEGIN
 Left JOIN Roles r
 ON u.Roles_Id = r.Roles_Id
 END
-Drop proc User_Select_All
+--Drop proc User_Select_All
 
 
 CREATE PROC User_Insert

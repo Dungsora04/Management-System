@@ -26,7 +26,7 @@ namespace Management_System.PAL
                 return Text;
             }
         }
-        private string connectionString = "Data Source=Thinkpad-E14\\SQLEXPRESS02;Initial Catalog=CSMS;Integrated Security=True;";
+        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string id = "";
         private string id_role = "";
         User user = new User();
