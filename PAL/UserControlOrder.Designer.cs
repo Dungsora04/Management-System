@@ -205,7 +205,7 @@
             this.tpAddOrder.Location = new System.Drawing.Point(4, 4);
             this.tpAddOrder.Name = "tpAddOrder";
             this.tpAddOrder.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddOrder.Size = new System.Drawing.Size(810, 602);
+            this.tpAddOrder.Size = new System.Drawing.Size(1347, 602);
             this.tpAddOrder.TabIndex = 0;
             this.tpAddOrder.Text = "Add Order";
             this.tpAddOrder.UseVisualStyleBackColor = true;
@@ -236,11 +236,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
-<<<<<<< HEAD
             this.label29.Location = new System.Drawing.Point(229, 418);
-=======
-            this.label29.Location = new System.Drawing.Point(331, 417);
->>>>>>> 1f90d5ed7e401e99c28ad2aface2a008355eaf23
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(137, 25);
             this.label29.TabIndex = 21;
@@ -288,7 +284,6 @@
             this.btnReceipt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReceipt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReceipt.UseVisualStyleBackColor = false;
-            this.btnReceipt.Visible = false;
             this.btnReceipt.Click += new System.EventHandler(this.btnReceipt_Click);
             // 
             // btnSave
@@ -742,7 +737,7 @@
             this.tpManageOrders.Location = new System.Drawing.Point(4, 4);
             this.tpManageOrders.Name = "tpManageOrders";
             this.tpManageOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.tpManageOrders.Size = new System.Drawing.Size(810, 602);
+            this.tpManageOrders.Size = new System.Drawing.Size(1347, 602);
             this.tpManageOrders.TabIndex = 1;
             this.tpManageOrders.Text = "Manage Orders";
             this.tpManageOrders.UseVisualStyleBackColor = true;
