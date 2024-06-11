@@ -50,6 +50,7 @@
     <Compile Include="BrandDAO.cs" />
     <Compile Include="CategoryDAO.cs" />
     <Compile Include="DataConnect.cs" />
+    <Compile Include="OrderDAO.cs" />
     <Compile Include="ProductDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDAO.cs" />
