@@ -116,6 +116,9 @@ namespace Management_System.PAL
             Id = "";
 
         }
+
+
+
         RichTextBox richTextBox = new RichTextBox();
 
 
@@ -982,6 +985,11 @@ namespace Management_System.PAL
 
                             }
                         }
+                        //foreach (DataGridViewRow row in dgvBrand.Rows)
+                        //{
+                        //    txtCustomerName1.Text  = row.Cells["qty"].Value.ToString();
+                        //    //More code here
+                        //}
                         reader.Close();
                     }
 
