@@ -87,6 +87,8 @@ namespace Management_System.PAL
             txtRate.Clear();
             nudQuantity.Value = 0;
             txtTotal.Clear();
+            nudDiscount.Value = 0;
+            cmbDiscount.SelectedIndex = 1;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -1158,6 +1160,7 @@ namespace Management_System.PAL
             {
                 txtTotalAmount.Text = a.ToString();
                 txtGrandTotal.Text = a.ToString();
+                nudDiscount.Value = 0;
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text)).ToString();
                 oTotal = 0;
 

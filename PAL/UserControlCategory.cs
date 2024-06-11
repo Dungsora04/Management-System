@@ -57,8 +57,8 @@ namespace Management_System.PAL
             }
             else
             {
-                category.Category_Name = txtCategoryName.Text;
-                category.Category_Status = cmbStatus.SelectedItem.ToString();
+                category.CategoryName = txtCategoryName.Text;
+                category.CategoryStatus = cmbStatus.SelectedItem.ToString();
                 try
                 {
                     categorybus.Insert(category);
@@ -109,8 +109,6 @@ namespace Management_System.PAL
                 MessageBox.Show("View Category is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             /*
-             txtSearchCategoryName.Clear();
-            dgvCategory.Columns[0].Visible = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -189,9 +187,9 @@ namespace Management_System.PAL
             }
             else
             {
-                category.Category_Id = Convert.ToInt32(id);
-                category.Category_Name = txtCategoryName1.Text;
-                category.Category_Status = cmbStatus1.SelectedItem.ToString();
+                category.CategoryId = Convert.ToInt32(id);
+                category.CategoryName = txtCategoryName1.Text;
+                category.CategoryStatus = cmbStatus1.SelectedItem.ToString();
                 //MessageBox.Show(category.CategoryName, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 try
                 {

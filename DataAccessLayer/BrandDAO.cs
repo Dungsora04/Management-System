@@ -60,5 +60,6 @@ namespace DataAccessLayer
             };
             return data.ExecuteSQL("Brand_Delete", para);
          }
-}
+
+    }
 }
