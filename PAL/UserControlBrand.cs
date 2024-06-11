@@ -38,8 +38,6 @@ namespace Management_System.PAL
             cmbStatus1.SelectedIndex = 0;
             Id = "";
         }
-
-
         private void picSearch_MouseHover(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(picSearch, "Search");

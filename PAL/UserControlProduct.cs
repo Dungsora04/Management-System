@@ -13,92 +13,144 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+using BusinessLogicLayer;
+using DTO;
+using System.Drawing.Imaging;
+using ComboBox = System.Windows.Forms.ComboBox;
+using System.Diagnostics;
+using DataAccessLayer;
+using System.Reflection;
 // Sap xep dua ra danh sach hang phu hop(gia, pho bien... -> Dashboard)
 // 
 namespace Management_System.PAL
 {
     /*
-     * 
-     * gợi ý sđt khi đã mua
-     * khóa -> sđt
-     * discount -> có mức cố định cho nhiều th
-     * 
-     * */
+        * gợi ý sđt khi đã mua
+        * khóa -> sđt
+        * discount -> có mức cố định cho nhiều th
+    */
 
     public partial class UserControlProduct : UserControl
     {
+
+        Product product = new Product();
+        ProductBUS productbus = new ProductBUS();
         private List<ProductDto> products;
         private List<BrandDto> brands;
         private List<CategoryDto> categories;
 
+
+        private byte[] GetImageBytes(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
         public void LoadData()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            ProductDAO productDAO = new ProductDAO();
+            CategoryDAO categoryDAO = new CategoryDAO();
+            BrandDAO brandDAO = new BrandDAO();
+            try
             {
-                connection.Open();
+                products = ConvertDataTableToList<ProductDto>(productDAO.GetData());
+                categories = ConvertDataTableToList<CategoryDto>(categoryDAO.GetData());
+                brands = ConvertDataTableToList<BrandDto>(brandDAO.GetData());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                // Load Products
-                using (SqlCommand command = new SqlCommand("SELECT p.Product_Id, p.Product_Name, p.Product_Image, p.Product_Price, p.Product_Quantity, b.Brand_Name, c.Category_Name, p.Product_Warranty, p.Product_Status " +
-                                                           "FROM Product p INNER JOIN Brand b ON b.Brand_Id = p.Brand_Id INNER JOIN Category c ON c.Category_Id = p.Category_Id", connection))
+        private List<T> ConvertDataTableToList<T>(DataTable dt) where T : new()
+        {
+            List<T> data = new List<T>();
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = new T();
+                foreach (DataColumn column in dt.Columns)
                 {
-                    using (var reader = command.ExecuteReader())
+                    PropertyInfo property = item.GetType().GetProperty(column.ColumnName);
+                    if (property != null && row[column] != DBNull.Value)
                     {
-                        products = new List<ProductDto>();
-                        while (reader.Read())
-                        {
-                            products.Add(new ProductDto
-                            {
-                                Product_Id = reader.GetInt32(0),
-                                Product_Name = reader.GetString(1),
-                                Product_Image = (byte[])reader[2],
-                                Product_Price = reader.GetInt32(3),
-                                Product_Quantity = reader.GetInt32(4),
-                                Brand_Name = reader.GetString(5),
-                                Category_Name = reader.GetString(6),
-                                Product_Warranty = reader.GetInt32(7),
-                                Product_Status = reader.GetString(8)
-                    });
-                        }
+                        property.SetValue(item, row[column], null);
                     }
                 }
+                data.Add(item);
+            }
+            return data;
+        
 
-                // Load Brands
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Brand", connection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        brands = new List<BrandDto>();
-                        while (reader.Read())
-                        {
-                            brands.Add(new BrandDto
-                            {
-                                Brand_Id = reader.GetInt32(0),
-                                Brand_Name = reader.GetString(1),
-                                Brand_Status = reader.GetString(2)
-                            });
-                        }
-                    }
-                }
+        /*using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
 
-                // Load Categories
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Category", connection))
+            // Load Products
+            using (SqlCommand command = new SqlCommand("SELECT p.Product_Id, p.Product_Name, p.Product_Image, p.Product_Price, p.Product_Quantity, b.Brand_Name, c.Category_Name, p.Product_Warranty, p.Product_Status " +
+                                                       "FROM Product p INNER JOIN Brand b ON b.Brand_Id = p.Brand_Id INNER JOIN Category c ON c.Category_Id = p.Category_Id", connection))
+            {
+                using (var reader = command.ExecuteReader())
                 {
-                    using (var reader = command.ExecuteReader())
+                    products = new List<ProductDto>();
+                    while (reader.Read())
                     {
-                        categories = new List<CategoryDto>();
-                        while (reader.Read())
+                        products.Add(new ProductDto
                         {
-                            categories.Add(new CategoryDto
-                            {
-                                Category_Id = reader.GetInt32(0),
-                                Category_Name = reader.GetString(1),
-                                Category_Status = reader.GetString(2)
-                            });
-                        }
+                            Product_Id = reader.GetInt32(0),
+                            Product_Name = reader.GetString(1),
+                            Product_Image = (byte[])reader[2],
+                            Product_Price = reader.GetInt32(3),
+                            Product_Quantity = reader.GetInt32(4),
+                            Brand_Name = reader.GetString(5),
+                            Category_Name = reader.GetString(6),
+                            Product_Warranty = reader.GetInt32(7),
+                            Product_Status = reader.GetString(8)
+                });
                     }
                 }
             }
-        }
+
+            // Load Brands
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Brand", connection))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    brands = new List<BrandDto>();
+                    while (reader.Read())
+                    {
+                        brands.Add(new BrandDto
+                        {
+                            Brand_Id = reader.GetInt32(0),
+                            Brand_Name = reader.GetString(1),
+                            Brand_Status = reader.GetString(2)
+                        });
+                    }
+                }
+            }
+
+            // Load Categories
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Category", connection))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    categories = new List<CategoryDto>();
+                    while (reader.Read())
+                    {
+                        categories.Add(new CategoryDto
+                        {
+                            Category_Id = reader.GetInt32(0),
+                            Category_Name = reader.GetString(1),
+                            Category_Status = reader.GetString(2)
+                        });
+                    }
+                }
+            }
+        }*/
+    }
 
         private class Item
         {
@@ -140,9 +192,14 @@ namespace Management_System.PAL
             nudQuantity.Value = 0;
             nudWarranty.Value = 0;
             txtDetails.Clear();
+            cmbStatus.SelectedIndex = 0;
+
+
+            
             cmbBrand.DataSource = null;
             cmbBrand.Items.Clear();
             cmbBrand.Items.Add("--SELECT--");
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -163,6 +220,7 @@ namespace Management_System.PAL
                 }
 
             }
+            
             if (cmbBrand.Items.Count > 0)
             {
                 cmbBrand.SelectedIndex = 0;
@@ -170,6 +228,7 @@ namespace Management_System.PAL
             cmbCategory.DataSource = null;
             cmbCategory.Items.Clear();
             cmbCategory.Items.Add("--SELECT--");
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -190,11 +249,13 @@ namespace Management_System.PAL
                 }
 
             }
+            
             if (cmbCategory.Items.Count > 0)
             {
                 cmbCategory.SelectedIndex = 0;
             }
             cmbStatus.SelectedIndex = 0;
+            
         }
 
         private void EmptyBox1()
@@ -213,8 +274,9 @@ namespace Management_System.PAL
         private void ComboBoxAutoFill()
         {
             cmbBrand1.Items.Clear();
-            cmbBrand1.Items.Add("--SELECT--");
-            using (SqlConnection connection = new SqlConnection(connectionString))
+             cmbBrand1.Items.Add("--SELECT--");
+            
+             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
@@ -236,9 +298,10 @@ namespace Management_System.PAL
                 }
 
             }
-
+            
             cmbCategory1.Items.Clear();
             cmbCategory1.Items.Add("--SELECT--");
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -261,11 +324,13 @@ namespace Management_System.PAL
                 }
 
             }
+            
         }
         private void ComboBoxAutoFill1()
         {
             cmbBrand2.Items.Clear();
             cmbBrand2.Items.Add("All Brands");
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -287,11 +352,13 @@ namespace Management_System.PAL
                     }
                     cmbBrand2.SelectedIndex = 0;
                 }
-
+            
             }
+            
 
             cmbCategory2.Items.Clear();
             cmbCategory2.Items.Add("All Categories");
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -314,6 +381,7 @@ namespace Management_System.PAL
                 }
 
             }
+            
         }
         private void picSearch_MouseHover(object sender, EventArgs e)
         {
@@ -379,35 +447,58 @@ namespace Management_System.PAL
             }
             else
             {
-                //MessageBox.Show(cmbBrand.SelectedValue.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                product.ProductName = txtProductName.Text.Trim();
+                product.ProductImage = GetImageBytes(picPhoto.Image);
+                product.ProductQuantity = Convert.ToInt32(nudQuantity.Value);
+                product.BrandId = Convert.ToInt32((cmbBrand.SelectedItem as Item).Id.ToString());
+                product.CategoryId = Convert.ToInt32((cmbCategory.SelectedItem as Item).Id.ToString());
+                product.ProductWarranty = Convert.ToInt32(nudWarranty.Value);
+                product.ProductStatus = cmbStatus.SelectedItem.ToString();
+                product.ProductDetails = txtDetails.Text.Trim();
+
+                try
                 {
-                    connection.Open();
-                    using (MemoryStream picStream = new MemoryStream())
+                    productbus.Insert(product);
+                    MessageBox.Show("Adding Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EmptyBox();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Adding Fail! {ex.Message}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            
+
+            //MessageBox.Show(cmbBrand.SelectedValue.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            /*
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (MemoryStream picStream = new MemoryStream())
+                {
+                    picPhoto.Image.Save(picStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] bytePic = picStream.ToArray();
+                    using (SqlCommand command1 = new SqlCommand("INSERT INTO Product  (Product_Name,Product_Image,Product_Price,Product_Quantity,Brand_Id,Category_Id ,Product_Warranty,Product_Status,Product_Details) " +
+                        " OUTPUT inserted.Product_Id VALUES (@Product_Name,@Product_Image,@Product_Price,@Product_Quantity,@Brand_Id,@Category_Id,@Product_Warranty,@Product_Status,@Product_Details);", connection))
                     {
-                        picPhoto.Image.Save(picStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        byte[] bytePic = picStream.ToArray();
-                        using (SqlCommand command1 = new SqlCommand("INSERT INTO Product  (Product_Name,Product_Image,Product_Price,Product_Quantity,Brand_Id,Category_Id ,Product_Warranty,Product_Status,Product_Details) " +
-                            " OUTPUT inserted.Product_Id VALUES (@Product_Name,@Product_Image,@Product_Price,@Product_Quantity,@Brand_Id,@Category_Id,@Product_Warranty,@Product_Status,@Product_Details);", connection))
-                        {
-                            //command1.Parameters.AddWithValue("@Product_Id", (int)command.ExecuteScalar() + i++);
-                            command1.Parameters.AddWithValue("@Product_Name", txtProductName.Text.Trim());
-                            command1.Parameters.AddWithValue("@Product_Image", bytePic);
-                            command1.Parameters.AddWithValue("@Product_Price", Convert.ToInt32(nudRate.Value));
-                            command1.Parameters.AddWithValue("@Product_Quantity", Convert.ToInt32(nudQuantity.Value));
+                        //command1.Parameters.AddWithValue("@Product_Id", (int)command.ExecuteScalar() + i++);
+                        command1.Parameters.AddWithValue("@Product_Name", txtProductName.Text.Trim());
+                        command1.Parameters.AddWithValue("@Product_Image", bytePic);
+                        command1.Parameters.AddWithValue("@Product_Price", Convert.ToInt32(nudRate.Value));
+                        command1.Parameters.AddWithValue("@Product_Quantity", Convert.ToInt32(nudQuantity.Value));
 
-                            command1.Parameters.AddWithValue("@Brand_Id", Convert.ToInt32((cmbBrand.SelectedItem as Item).Id.ToString()));
-                            command1.Parameters.AddWithValue("@Category_Id", Convert.ToInt32((cmbCategory.SelectedItem as Item).Id.ToString()));
-                            command1.Parameters.AddWithValue("@Product_Warranty", Convert.ToInt32(nudWarranty.Value));
-                            command1.Parameters.AddWithValue("@Product_Status", cmbStatus.SelectedItem.ToString());
-                            command1.Parameters.AddWithValue("@Product_Details", txtDetails.Text.Trim());
+                        command1.Parameters.AddWithValue("@Brand_Id", Convert.ToInt32((cmbBrand.SelectedItem as Item).Id.ToString()));
+                        command1.Parameters.AddWithValue("@Category_Id", Convert.ToInt32((cmbCategory.SelectedItem as Item).Id.ToString()));
+                        command1.Parameters.AddWithValue("@Product_Warranty", Convert.ToInt32(nudWarranty.Value));
+                        command1.Parameters.AddWithValue("@Product_Status", cmbStatus.SelectedItem.ToString());
+                        command1.Parameters.AddWithValue("@Product_Details", txtDetails.Text.Trim());
 
-                            command1.ExecuteNonQuery();
-                            EmptyBox();
-                        }
+                        command1.ExecuteNonQuery();
+                        EmptyBox();
                     }
                 }
             }
+            */
+        }
         }
 
         private void tpAddProduct_Enter(object sender, EventArgs e)
@@ -421,7 +512,17 @@ namespace Management_System.PAL
             LoadData();
             txtSearchProductName.Clear();
             dgvProduct.Columns[0].Visible = false;
+            try
+            {
+                dgvProduct.DataSource = productbus.GetData();
+                lblTotal.Text = dgvProduct.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("View Product is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             //dgvProduct.Columns[1].Visible = false;
+            /*
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -436,14 +537,24 @@ namespace Management_System.PAL
                     lblTotal.Text = dgvProduct.Rows.Count.ToString();
                 }
             }
+            */
             dgvProduct.Columns[10].Visible = false;
             dgvProduct.Columns[11].Visible = false;
-
         }
 
         private void txtSearchProductName_TextChanged(object sender, EventArgs e)
         {
             ComboBoxAutoFill1();
+
+            try
+            {
+                dgvProduct.DataSource = productbus.GetDataByName(txtSearchProductName.Text);
+                lblTotal.Text = dgvProduct.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             //using (SqlConnection connection = new SqlConnection(connectionString))
             //{
             //    connection.Open();
@@ -459,12 +570,12 @@ namespace Management_System.PAL
             //        lblTotal.Text = dgvProduct.Rows.Count.ToString();
             //    }
             //}
-            var searchText = txtSearchProductName.Text.ToLower();
+            /*var searchText = txtSearchProductName.Text.ToLower();
             var filteredProducts = products.Where(p => p.Product_Name.ToLower().Contains(searchText)).ToList();
 
             dgvProduct.DataSource = filteredProducts;
 
-            lblTotal.Text = dgvProduct.Rows.Count.ToString();
+            lblTotal.Text = dgvProduct.Rows.Count.ToString();*/
         }
 
         private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -563,7 +674,31 @@ namespace Management_System.PAL
             }
             else
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+
+                product.ProductId = Convert.ToInt32(Id);
+                product.ProductName = txtProductName1.Text.Trim();
+                product.ProductImage = GetImageBytes(picPhoto1.Image);
+                product.ProductPrice = Convert.ToInt32(nudRate1.Value);
+                product.ProductQuantity = Convert.ToInt32(nudQuantity1.Value);
+                product.BrandId = Convert.ToInt32((cmbBrand1.SelectedItem as Item).Id.ToString());
+                product.CategoryId = Convert.ToInt32((cmbCategory1.SelectedItem as Item).Id.ToString());
+                product.ProductWarranty = Convert.ToInt32(nudWarranty1.Value);
+                product.ProductStatus = cmbStatus1.SelectedItem.ToString();
+                product.ProductDetails = txtDetails1.Text.Trim();
+
+                try
+                {
+                    productbus.Update(product);
+                    MessageBox.Show("Update Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tcProduct.SelectedTab = tpManageProduct;
+                    EmptyBox1();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Update Fail! {ex.Message}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                /*
+                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
                     using (MemoryStream picStream = new MemoryStream())
@@ -616,6 +751,7 @@ namespace Management_System.PAL
                         }
                     }
                 }
+            */
             }
         }
 
@@ -677,23 +813,34 @@ namespace Management_System.PAL
                 if (dialogResult == DialogResult.Yes)
                 {
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    try
                     {
-                        connection.Open();
-                        using (SqlCommand command1 = new SqlCommand("DELETE FROM Product WHERE Product_Id = @productid", connection))
-                        {
-
-                            command1.Parameters.AddWithValue("@productid", Id);
-                            int rowsAffected = command1.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                                Console.WriteLine($"Row with ID {Id} deleted successfully.");
-                            else
-                                Console.WriteLine($"No rows found with ID {Id}.");
-                            EmptyBox1();
-                            tcProduct.SelectedTab = tpManageProduct;
-                        }
+                        productbus.Delete(Id);
+                        Console.WriteLine($"Row with ID {Id} deleted successfully.");
                     }
+                    catch
+                    {
+                        Console.WriteLine($"No rows found with ID {Id}.");
+                    }
+                    EmptyBox1();
+                    /*
+                                        using (SqlConnection connection = new SqlConnection(connectionString))
+                                        {
+                                            connection.Open();
+                                            using (SqlCommand command1 = new SqlCommand("DELETE FROM Product WHERE Product_Id = @productid", connection))
+                                            {
+
+                                                command1.Parameters.AddWithValue("@productid", Id);
+                                                int rowsAffected = command1.ExecuteNonQuery();
+
+                                                if (rowsAffected > 0)
+                                                    Console.WriteLine($"Row with ID {Id} deleted successfully.");
+                                                else
+                                                    Console.WriteLine($"No rows found with ID {Id}.");
+                                                EmptyBox1();
+                                                tcProduct.SelectedTab = tpManageProduct;
+                                            }
+                                        }*/
                 }
 
             }
@@ -714,7 +861,6 @@ namespace Management_System.PAL
 
         private void picSearchPrice_Click(object sender, EventArgs e)
         {
-            // Lấy giá trị từ NumericUpDown controls
             decimal lowPrice = nudLowPrice.Value * 1000000;
             decimal highPrice = nudHighPrice.Value * 1000000;
             if (highPrice < lowPrice)
@@ -722,7 +868,19 @@ namespace Management_System.PAL
                 MessageBox.Show("Error Value !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            try
+            {
+                DataTable dt = productbus.GetProductsByPriceRange(lowPrice, highPrice);
+
+                dgvProduct.DataSource = dt;
+                lblTotal.Text = dgvProduct.Rows.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            /*using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
@@ -743,6 +901,7 @@ namespace Management_System.PAL
                     lblTotal.Text = dgvProduct.Rows.Count.ToString();
                 }
             }
+        */
         }
 
         private void cmbBrand2_SelectedIndexChanged(object sender, EventArgs e)
@@ -934,22 +1093,35 @@ namespace Management_System.PAL
             nudLowPrice.Value = 0;
             nudHighPrice.Value = 0;
             dgvProduct.Columns[0].Visible = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //dgvProduct.Columns[10].Visible = false;
+            //dgvProduct.Columns[11].Visible = false;
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT p.Product_Id, p.Product_Name, p.Product_Image,p.Product_Price,b.Brand_Name, c.Category_Name,p.Product_Quantity,p.Product_Warranty,p.Product_Status, p.Product_Details\r\nFROM Product p\r\nINNER JOIN Brand b\r\nON b.Brand_Id = p.Brand_Id\r\nINNER JOIN Category c\r\nON c.Category_Id = p.Category_Id", connection))
-                {
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvProduct.DataSource = dataTable;
-                    }
-                    lblTotal.Text = dgvProduct.Rows.Count.ToString();
-                }
+                dgvProduct.DataSource = productbus.GetData();
+                lblTotal.Text = dgvProduct.Rows.Count.ToString();
             }
+            catch
+            {
+                MessageBox.Show("View Product is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            /*
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            connection.Open();
+                            using (SqlCommand command1 = new SqlCommand("SELECT p.Product_Id, p.Product_Name, p.Product_Image,p.Product_Price,b.Brand_Name, c.Category_Name,p.Product_Quantity,p.Product_Warranty,p.Product_Status, p.Product_Details\r\nFROM Product p\r\nINNER JOIN Brand b\r\nON b.Brand_Id = p.Brand_Id\r\nINNER JOIN Category c\r\nON c.Category_Id = p.Category_Id", connection))
+                            {
+                                using (var reader = command1.ExecuteReader())
+                                {
+                                    var dataTable = new DataTable();
+                                    dataTable.Load(reader);
+                                    dgvProduct.DataSource = dataTable;
+                                }
+                                lblTotal.Text = dgvProduct.Rows.Count.ToString();
+                            }
+                        }
+            */
+            dgvProduct.Columns[10].Visible = false;
+            dgvProduct.Columns[11].Visible = false;
         }
-
-        
     }
 }

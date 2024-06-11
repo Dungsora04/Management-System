@@ -63,5 +63,29 @@ namespace DataAccessLayer
             };
             return data.ExecuteSQL("User_Delete", para);
         }
+
+
+
+
+
+        //----------------------------phan nay danh cho log in va forgot pass-------------------------------------------------------------------------------
+        public DataTable check_Password(string username, string password)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("username", username),
+                new SqlParameter("password", password)
+            };
+            return data.GetData("User_Check_Password", para);
+        }
+
+        public DataTable check_Email(string username, string email)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("username", username),
+                new SqlParameter("email", email)
+            };
+            return data.GetData("User_Check_Email", para);
+        }
+
     }
 }
