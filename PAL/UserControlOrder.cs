@@ -1,22 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.ReportingServices.Diagnostics.Internal;
-using Microsoft.Reporting.Map.WebForms.BingMaps;
-using System.Management;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static TheArtOfDevHtmlRenderer.Adapters.RGraphicsPath;
-using System.Security.Cryptography;
+
+using BusinessLogicLayer;
+using DTO;
+
+//using Microsoft.ReportingServices.Diagnostics.Internal;
+//using Microsoft.Reporting.Map.WebForms.BingMaps;
+//using System.Management;
+//using static System.ComponentModel.Design.ObjectSelectorEditor;
+//using static TheArtOfDevHtmlRenderer.Adapters.RGraphicsPath;
+//using System.Security.Cryptography;
+//using System.Diagnostics.Eventing.Reader;
+//using System.IO;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using System.Drawing.Printing;
+//using System.Collections.Generic;
+//using System.ComponentModel;
 
 namespace Management_System.PAL
 {
@@ -32,8 +36,10 @@ namespace Management_System.PAL
                 return Text;
             }
         }
+        Order order = new Order();
+        OrderBUS orderbus = new OrderBUS();
         string warranty = "";
-        string warranty_days = "";
+        //string warranty_days = "";
         string product_detail = "";
         private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string Id = "";
@@ -41,6 +47,7 @@ namespace Management_System.PAL
         private Int32 userId = 0;
         private string RoleId = "";
         int a;
+        int oTotal = 0;
 
         public UserControlOrder()
         {
@@ -136,7 +143,7 @@ namespace Management_System.PAL
         {
             toolTip1.SetToolTip(picSearch, "Search");
         }
-        int oTotal = 0;
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //int check = 0;
@@ -290,31 +297,6 @@ namespace Management_System.PAL
 
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT Product_Name From Product Where Product_Status = 'Available' order By Product_Name;", connection))
-                {
-
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvProductList.DataSource = dataTable;
-                    }
-                    cmbProduct.SelectedIndex = 0;
-                    txtRate.Clear();
-                    nudQuantity.Value = 0;
-                    txtTotal.Clear();
-
-                }
-            }
-            */
-
-            /*
-            
-            */
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -356,12 +338,9 @@ namespace Management_System.PAL
 
         private void nudQuantity_ValueChanged(object sender, EventArgs e)
         {
-
             int rate;
             Int32.TryParse(txtRate.Text, out rate);
             txtTotal.Text = (rate * Convert.ToInt32(nudQuantity.Value)).ToString();
-
-
         }
 
         private void dgvProduct(object sender, DataGridViewCellEventArgs e)
@@ -378,18 +357,15 @@ namespace Management_System.PAL
 
                     foreach (DataGridViewRow rows in dgvProductList.Rows)
                     {
-                      
                         oTotal += Convert.ToInt32(rows.Cells[5].Value.ToString());
                         a=oTotal;
-                        MessageBox.Show(oTotal.ToString(), "a", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show(oTotal.ToString(), "a", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtTotalAmount.Text = oTotal.ToString();
                         txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
-
                     }
                 }
                 else
-                {
-                  
+                { 
                     txtTotalAmount.Text = "0";
                     txtDueAmount.Text = "0";
                     nudPaidAmount.Value = 0;
@@ -421,50 +397,7 @@ namespace Management_System.PAL
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            /*
-            SqlConnection cnt = new SqlConnection(connectionString);
-            string query = "SELECT * FROM Product WHERE Product_Name = '@Product_Name'";
-            SqlCommand cmd = new SqlCommand(query, cnt);
-            cmd.Parameters.AddWithValue("@Product_Name", cmbProduct.SelectedItem.ToString());
-            cnt.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                string Product_War = reader["Product_Warranty"].ToString();
-                warranty = Product_War;
-
-            }
-
-            reader.Close();
-            cnt.Close();
-          */
-
-
-            for (int i = 0; i < dgvProductList.Rows.Count; i++)
-            {
-                //  product_detail += "{";
-                for (int j = 0; j < dgvProductList.Columns.Count - 2; j++)
-                {
-                    product_detail += dgvProductList.Rows[i].Cells[j].Value.ToString() + ",";
-                }
-                product_detail += "/ ";
-                //  product_detail += "}";
-            }
-            product_detail.Trim();
-            if (!string.IsNullOrEmpty(product_detail))
-            {
-                product_detail = product_detail.Substring(0, product_detail.Length - 2);
-            }
-
-            product_detail = product_detail.Replace(" / ", "/");
-
-
-
-
-          
-       
+        {  
             if(cmbDiscount.SelectedItem == "-- SELECT -- " ||cmbDiscount.SelectedItem == "")
             {
                 MessageBox.Show("Please choose your discount offer.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -478,6 +411,7 @@ namespace Management_System.PAL
 
             else
             {
+                
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -513,47 +447,66 @@ namespace Management_System.PAL
                         reader.Close();
                     }
 
-
-                    using (SqlCommand command1 = new SqlCommand("INSERT INTO Orders (Orders_Date, Customer_Id, Users_Id, Total_Amount, Paid_Amount, Due_Amount, Discount, Grand_Total) " +
-                                            "OUTPUT inserted.Orders_Id Values (@OrdersDate, @Customer_Id, @Users_Id, @TotalAmount, @PaidAmount, @DueAmount, @Discount, @GrandTotal);", connection))
+                    // proc done
+                    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "before", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    order.Orders_Date = dtpDate.Value.Date;
+                    order.Customer_Id = Convert.ToInt32(txtCustomerName.Text);
+                    order.Users_Id = userId;
+                    order.Total_Amount = Convert.ToInt32(txtTotalAmount.Text);
+                    order.Paid_Amount = Convert.ToInt32(nudPaidAmount.Value);
+                    order.Due_Amount = Convert.ToInt32(txtDueAmount.Text);
+                    order.Discount = Convert.ToInt32(nudDiscount.Value);
+                    order.Grand_Total = Convert.ToInt32(txtGrandTotal.Text);
+                    try
                     {
-                        //MessageBox.Show(name, userId.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        command1.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
-                        command1.Parameters.AddWithValue("@OrdersDate", dtpDate.Value.Date);
-                        command1.Parameters.AddWithValue("@Users_Id", userId);
-                        command1.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount.Text));
-                        command1.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount.Value));
-                        command1.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount.Text));
-                        command1.Parameters.AddWithValue("@Discount", nudDiscount.Value);
-                        command1.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
-                        command1.ExecuteNonQuery();
-                        //command1.Parameters.AddWithValue("@Customer_Id", txtCustomerName.Text.Trim());
-
+                        orderbus.Insert(order);
+                        MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    using (SqlCommand command2 = new SqlCommand("SELECT Customer_Id,Orders_Id FROM Orders", connection))
+                    catch
                     {
-                        SqlDataReader reader = command2.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (Convert.ToInt32(txtCustomerName.Text.Trim()) == reader.GetInt32(0))
-                            {
-                                int intValue = reader.GetInt32(1);
-                                txtCustomerName.Text = intValue.ToString();
-                            }
-                        }
-                        reader.Close();
+                        MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "after", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //using (SqlCommand command1 = new SqlCommand("INSERT INTO Orders (Orders_Date, Customer_Id, Users_Id, Total_Amount, Paid_Amount, Due_Amount, Discount, Grand_Total) " +
+                    //                        "OUTPUT inserted.Orders_Id Values (@OrdersDate, @Customer_Id, @Users_Id, @TotalAmount, @PaidAmount, @DueAmount, @Discount, @GrandTotal);", connection))
+                    //{
+                    //    //MessageBox.Show(name, userId.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //    command1.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
+                    //    command1.Parameters.AddWithValue("@OrdersDate", dtpDate.Value.Date);
+                    //    command1.Parameters.AddWithValue("@Users_Id", userId);
+                    //    command1.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount.Text));
+                    //    command1.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount.Value));
+                    //    command1.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount.Text));
+                    //    command1.Parameters.AddWithValue("@Discount", nudDiscount.Value);
+                    //    command1.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
+                    //    command1.ExecuteNonQuery();
+                    //    //command1.Parameters.AddWithValue("@Customer_Id", txtCustomerName.Text.Trim());
+                    //}
+                    // done proc
 
+
+                    DataTable a;
+                    a = orderbus.GetData_MaxOrderId();
+                    txtCustomerName.Text = a.Rows[0][0].ToString();
+                    //MessageBox.Show(a.Rows[0][0].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //using (SqlCommand command2 = new SqlCommand("SELECT Orders_Id\r\nFROM Orders\r\nWHERE Orders_Id = (SELECT MAX(Orders_Id) FROM Orders);", connection))
+                    //{
+                    //    SqlDataReader reader = command2.ExecuteReader();
+                    //    while (reader.Read())
+                    //    {
+                    //            int intValue = reader.GetInt32(0);
+                    //            txtCustomerName.Text = intValue.ToString();
+                    //    }
+                    //    reader.Close();
+                    //}
 
                     for (int i = 0; i < dgvProductList.Rows.Count; i++)
                     {
-                        using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity, Warranty)" +
-                                                "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity, @Warranty);", connection))
+                        using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity)" +
+                                                "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity);", connection))
                         {
                             command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
                             command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
-                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
                             command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
                             command1.ExecuteNonQuery();
                             tpManageOrders_Enter(sender, e);
@@ -641,28 +594,41 @@ namespace Management_System.PAL
             txtSearchCustomerName.Clear();
             dgvOrders.Columns[0].Visible = false;
 
+            // proc done
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id", connection))
-                {
+                dgvOrders.DataSource = orderbus.GetDataDGV();
+                lblTotal.Text = dgvOrders.Rows.Count.ToString();
 
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvOrders.DataSource = dataTable;
-
-
-                    }
-
-                    //   txtSearchCustomerName.Clear();
-                    //dgvOrders.Columns[0].Visible = false;
-                    lblTotal.Text = dgvOrders.Rows.Count.ToString();
-
-                }
             }
+            catch
+            {
+                MessageBox.Show("View Order is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id", connection))
+            //    {
+
+            //        using (var reader = command1.ExecuteReader())
+            //        {
+            //            var dataTable = new DataTable();
+            //            dataTable.Load(reader);
+            //            dgvOrders.DataSource = dataTable;
+
+
+            //        }
+
+            //        //   txtSearchCustomerName.Clear();
+            //        //dgvOrders.Columns[0].Visible = false;
+            //        lblTotal.Text = dgvOrders.Rows.Count.ToString();
+
+            //    }
+            //}
 
 
 
@@ -671,25 +637,34 @@ namespace Management_System.PAL
 
         private void txtSearchCustomerName_TextChanged(object sender, EventArgs e)
         {
+            // done proc
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id WHERE Customer_Name LIKE '%" + txtSearchCustomerName.Text + "%';", connection))
-                {
-
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvOrders.DataSource = dataTable;
-                        //command1.ExecuteNonQuery();
-                    }
-                    lblTotal.Text = dgvOrders.Rows.Count.ToString();
-
-                }
-
+                dgvOrders.DataSource = orderbus.GetDataByName(txtSearchCustomerName.Text);
+                lblTotal.Text = dgvOrders.Rows.Count.ToString();
             }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id WHERE Customer_Name LIKE '%" + txtSearchCustomerName.Text + "%';", connection))
+            //    {
+
+            //        using (var reader = command1.ExecuteReader())
+            //        {
+            //            var dataTable = new DataTable();
+            //            dataTable.Load(reader);
+            //            dgvOrders.DataSource = dataTable;
+            //            //command1.ExecuteNonQuery();
+            //        }
+            //        lblTotal.Text = dgvOrders.Rows.Count.ToString();
+            //    }
+            //}
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -710,23 +685,36 @@ namespace Management_System.PAL
                 txtGrandTotal1.Text = row.Cells[8].Value.ToString();
                 txtUserName1.Text = row.Cells[9].Value.ToString();
 
+                // proc done
                 //dgvDetails.Columns[0].Visible = false;
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command1 = new SqlCommand("SELECT p.Product_Name, Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total\r\nFROM OrdersInfo i\r\nINNER JOIN Product p\r\nON i.Product_Id = p.Product_Id\r\nwhere i.Orders_Id = @orderId ", connection)) //"+p_detals+"
-                    {
-                        command1.Parameters.AddWithValue("@orderId", Convert.ToInt32(row.Cells[0].Value.ToString()));
 
-                        using (var reader = command1.ExecuteReader())
-                        {
-                            var dataTable = new DataTable();
-                            dataTable.Load(reader);
-                            dgvDetails.DataSource = dataTable;
-                        }
-                        lblTotal.Text = dgvDetails.Rows.Count.ToString();
-                    }
+                try
+                {
+                    dgvDetails.DataSource = orderbus.GetDataByCustomerProduct(Convert.ToInt32(Id));
+                    lblTotal.Text = dgvDetails.Rows.Count.ToString();
                 }
+                catch
+                {
+                    MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //{
+                //    connection.Open();
+                //    using (SqlCommand command1 = new SqlCommand("SELECT p.Product_Name, p.Product_Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total\r\nFROM OrdersInfo i\r\nINNER JOIN Product p\r\nON i.Product_Id = p.Product_Id\r\nwhere i.Orders_Id = @orderId ", connection)) //"+p_detals+"
+                //    {
+                //        command1.Parameters.AddWithValue("@orderId", Convert.ToInt32(row.Cells[0].Value.ToString()));
+
+                //        using (var reader = command1.ExecuteReader())
+                //        {
+                //            var dataTable = new DataTable();
+                //            dataTable.Load(reader);
+                //            dgvDetails.DataSource = dataTable;
+                //        }
+                //        lblTotal.Text = dgvDetails.Rows.Count.ToString();
+                //    }
+                //}
                 //foreach (char c in p_detals)
                 //{
                 //    if (c == '/')
@@ -891,7 +879,7 @@ namespace Management_System.PAL
                 DialogResult dialogResult = MessageBox.Show("Are you want to delete this product", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-
+                    // done order proc
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
@@ -936,23 +924,35 @@ namespace Management_System.PAL
 
         private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // proc DGV
+
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id;", connection))
-                {
+                dgvOrders.DataSource = orderbus.GetDataDGV();
+                lblTotal.Text = dgvOrders.Rows.Count.ToString();
 
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvOrders.DataSource = dataTable;
-                        command1.ExecuteNonQuery();
-                    }
-
-
-                }
             }
+            catch
+            {
+                MessageBox.Show("View Order is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id;", connection))
+            //    {
+
+            //        using (var reader = command1.ExecuteReader())
+            //        {
+            //            var dataTable = new DataTable();
+            //            dataTable.Load(reader);
+            //            dgvOrders.DataSource = dataTable;
+            //            command1.ExecuteNonQuery();
+            //        }
+
+
+            //    }
+            //}
 
         }
 
@@ -1008,33 +1008,20 @@ namespace Management_System.PAL
                         reader.Close();
                     }
 
-
+                    // done proc 
                     //      using (SqlCommand cmd = new SqlCommand("update Orders set Orders_Date = @OrdersDate, Customer_Name = @CustomerName, Customer_Number= @CustomerNumber, Total_Amount = @TotalAmount, Paid_Amount = @PaidAmount, Due_Amount = @DueAmount, Discount = @Discount, Grand_Total = @GrandTotal, Payment_Status = @PaymentStatus\r\nwhere Orders_Id = " + Id+ ";", connection))
                     using (SqlCommand command1 = new SqlCommand("UPDATE Orders SET Orders_Date = @OrdersDate where Orders_Id= @Orders_Id", connection))
-                    //      using (SqlCommand command1 = new SqlCommand("UPDATE Orders SET Orders_Date = @OrdersDate", connection))
                     using (SqlCommand command2 = new SqlCommand("UPDATE Orders SET Customer_Id = @Customer_Id where Orders_Id= @Orders_Id", connection))
-                    //   using (SqlCommand command3 = new SqlCommand("UPDATE Orders SET Customer_Number = @CustomerNumber WHERE Customer_Number = @OldValue", connection))
-                   // using (SqlCommand command3 = new SqlCommand("UPDATE Orders SET Users_Id = @Users_Id where Orders_Id = @Orders_Id;", connection))
                     using (SqlCommand command4 = new SqlCommand("UPDATE Orders SET Total_Amount = @TotalAmount where Orders_Id= @Orders_Id", connection))
                     using (SqlCommand command5 = new SqlCommand("UPDATE Orders SET Paid_Amount = @PaidAmount where Orders_Id= @Orders_Id", connection))
                     using (SqlCommand command6 = new SqlCommand("UPDATE Orders SET Due_Amount = @DueAmount where Orders_Id= @Orders_Id", connection))
                     using (SqlCommand command7 = new SqlCommand("UPDATE Orders SET Discount = @Discount where Orders_Id= @Orders_Id", connection))
                     using (SqlCommand command8 = new SqlCommand("UPDATE Orders SET Grand_Total = @GrandTotal where Orders_Id= @Orders_Id", connection))
-
-
-
-                    // using (SqlCommand command1 = new SqlCommand("INSERT INTO Brand  (Orders_Id, Orders_Date, Customer_Name, Customer_Number, Total_Amount, Paid_Amount, Due_Amount, Discount, Grand_Total, Payment_Status) VALUES (@OrdersID,@OrdersDate,@CustomerName, @CustomerNumber, @TotalAmount, @PaidAmount, @DueAmount, @Discount, @GrandTotal, @PaymentStatus);", connection))
                     {
-
-
-
-
                         command1.Parameters.AddWithValue("@OrdersDate", dtpDate1.Value.Date);
                         command1.Parameters.AddWithValue("@Orders_Id", Id);
                         command2.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName1.Text.Trim()));
                         command2.Parameters.AddWithValue("@Orders_Id", Id);
-                     //   command3.Parameters.AddWithValue("@Users_Id", Convert.ToInt32("3"));
-                    //    command3.Parameters.AddWithValue("@Orders_Id", Id);
                         command4.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount1.Text.Trim()));
                         command4.Parameters.AddWithValue("@Orders_Id", Id);
                         command5.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount1.Value));
@@ -1074,25 +1061,36 @@ namespace Management_System.PAL
 
         private void txtSearchCustomerNumber_TextChanged(object sender, EventArgs e)
         {
+            // done proc
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id WHERE Customer_Number LIKE '%" + txtSearchCustomerNumber.Text + "%';", connection))
-                {
-
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvOrders.DataSource = dataTable;
-                        //command1.ExecuteNonQuery();
-                    }
-                    lblTotal.Text = dgvOrders.Rows.Count.ToString();
-
-                }
-
+                dgvOrders.DataSource = orderbus.GetDataByNumber(txtSearchCustomerNumber.Text);
+                lblTotal.Text = dgvOrders.Rows.Count.ToString();
             }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Id, o.Orders_Date, c.Customer_Name, c.Customer_Number, o.Total_Amount, o.Paid_Amount, o.Due_Amount, o.Discount, o.Grand_Total, u.Users_Name\r\nFROM Orders o\r\nINNER JOIN Customer c\r\nON o.Customer_Id = c.Customer_Id\r\nINNER JOIN Users u\r\nON o.Users_Id = u.Users_Id WHERE Customer_Number LIKE '%" + txtSearchCustomerNumber.Text + "%';", connection))
+            //    {
+
+            //        using (var reader = command1.ExecuteReader())
+            //        {
+            //            var dataTable = new DataTable();
+            //            dataTable.Load(reader);
+            //            dgvOrders.DataSource = dataTable;
+            //            //command1.ExecuteNonQuery();
+            //        }
+            //        lblTotal.Text = dgvOrders.Rows.Count.ToString();
+
+            //    }
+
+            //}
         }
 
         private void UserControlOrder_Load(object sender, EventArgs e)
