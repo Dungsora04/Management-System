@@ -101,7 +101,11 @@ namespace Management_System.PAL
             try
             {
                 dgvBrand.DataSource = brandbus.GetData();
+                DataTable a;
+                a = brandbus.GetData();
+                MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblTotal.Text = dgvBrand.Rows.Count.ToString();
+                
             }
             catch
             {
