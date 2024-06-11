@@ -267,3 +267,132 @@ AS
 BEGIN
 UPDATE Users SET Users_Name = @Users_Name, Users_Email = @Users_Email, Users_Password = @Users_Password, Roles_Id = @Roles_Id where Users_Id = CAST(@Users_Id AS int)
 END
+
+
+-- Product
+
+
+
+
+
+CREATE PROCEDURE Product_Select_All
+AS
+BEGIN
+    SELECT 
+        p.Product_Id, 
+        p.Product_Name, 
+        p.Product_Image, -- Retrieve the image as a binary stream
+        p.Product_Price,
+        b.Brand_Name, 
+        c.Category_Name, 
+        p.Product_Quantity, 
+        p.Product_Warranty, 
+        p.Product_Status, 
+        p.Product_Details,
+        p.Brand_Id, 
+        p.Category_Id
+    FROM 
+        Product p
+    INNER JOIN 
+        Brand b ON b.Brand_Id = p.Brand_Id
+    INNER JOIN 
+        Category c ON c.Category_Id = p.Category_Id;
+END;
+
+CREATE PROC Product_Select_ByName
+@Product_Name NVARCHAR(150)
+AS
+BEGIN
+SELECT * FROM Product WHERE Product_Name LIKE CONCAT('%', @Product_Name, '%');
+END
+
+CREATE PROC Product_Insert
+    @Product_Name NVARCHAR(150),
+    @Product_Image IMAGE,
+    @Product_Price INT,
+    @Product_Quantity INT,
+    @Brand_Id INT,
+    @Category_Id INT,
+    @Product_Warranty INT,
+    @Product_Status VARCHAR(50),
+    @Product_Details VARCHAR(150)
+AS
+BEGIN
+    INSERT INTO Product (
+        Product_Name,
+        Product_Image,
+        Product_Price,
+        Product_Quantity,
+        Brand_Id,
+        Category_Id,
+        Product_Warranty,
+        Product_Status,
+        Product_Details
+    )
+    OUTPUT inserted.Product_Id
+    VALUES (
+        @Product_Name,
+        @Product_Image,
+        @Product_Price,
+        @Product_Quantity,
+        @Brand_Id,
+        @Category_Id,
+        @Product_Warranty,
+        @Product_Status,
+        @Product_Details
+    );
+END;
+
+CREATE PROC Product_Update
+    @Product_Id INT,
+    @Product_Name NVARCHAR(150),
+    @Product_Image IMAGE,
+    @Product_Price INT,
+    @Product_Quantity INT,
+    @Brand_Id INT,
+    @Category_Id INT,
+    @Product_Warranty INT,
+    @Product_Status VARCHAR(50),
+    @Product_Details VARCHAR(150)
+AS
+BEGIN
+    UPDATE Product SET
+        Product_Name = @Product_Name,
+        Product_Image = @Product_Image,
+        Product_Price = @Product_Price,
+        Product_Quantity = @Product_Quantity,
+        Brand_Id = @Brand_Id,
+        Category_Id = @Category_Id,
+        Product_Warranty = @Product_Warranty,
+        Product_Status = @Product_Status,
+        Product_Details = @Product_Details
+    WHERE Product_Id = @Product_Id; 
+END;
+CREATE PROC Product_GetByPriceRange
+    @lowPrice DECIMAL,
+    @highPrice DECIMAL
+AS
+BEGIN
+    SELECT *
+    FROM Product
+    WHERE Product_Price BETWEEN @lowPrice AND @highPrice;
+END;
+
+CREATE PROCEDURE Brand_GetAvailableForComboBox
+AS
+BEGIN
+    SELECT Brand_Id, Brand_Name
+    FROM Brand
+    WHERE Brand_Status = 'Available'
+    ORDER BY Brand_Name;
+END;
+
+
+CREATE PROCEDURE Category_GetAvailableForComboBox
+AS
+BEGIN
+    SELECT Category_Id, Category_Name
+    FROM Category
+    WHERE Category_Status = 'Available'
+    ORDER BY Category_Name;
+END;
