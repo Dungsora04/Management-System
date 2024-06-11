@@ -98,7 +98,6 @@ namespace Management_System.PAL
                     }
                 }
             }
-        }
 
         private class Item
         {
