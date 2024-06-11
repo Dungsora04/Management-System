@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,8 @@ namespace Management_System.PAL
 {
     public partial class FormLogIn : Form
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;MultipleActiveResultSets=True;";
-
+        //private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;MultipleActiveResultSets=True;";
+        UserBUS userBUS = new UserBUS();
 
         public static class SharedData
         {
@@ -82,46 +83,66 @@ namespace Management_System.PAL
             }
             else
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))  
+                try
                 {
-                    connection.Open(); 
-                    using (SqlCommand command = new SqlCommand("SELECT Count(*) FROM Users WHERE Users_Name = @username AND Users_Password = @password", connection))
-                    using (SqlCommand command1 = new SqlCommand("SELECT * FROM Users WHERE Users_Name = @username AND Users_Password = @password", connection))
+                    DataTable check = userBUS.check_Password(txtUsername1.Text.Trim(), txtPassword1.Text.Trim());
+                    if (check.Rows.Count > 0)
                     {
-                        command.Parameters.AddWithValue("@username", txtUsername1.Text.Trim());
-                        command.Parameters.AddWithValue("@password", txtPassword1.Text.Trim());
-                        command1.Parameters.AddWithValue("@username", txtUsername1.Text.Trim());
-                        command1.Parameters.AddWithValue("@password", txtPassword1.Text.Trim());
-
-                        int userCount = (int)command.ExecuteScalar();
-
-                        if (userCount > 0)
-                        {
-                            SharedData.ValueToPass = txtUsername1.Text;
-                            
-                            using (SqlDataReader reader = command1.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    Int32 roleId = reader.GetInt32(4);
-                                    SharedData1.ValueToPass1 = roleId.ToString();
-                                    //MessageBox.Show(roleId.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                }
-                            }
-                            command1.ExecuteNonQuery();
-                            FormMain formMain = new FormMain();
-                            formMain.name = txtUsername1.Text;
-                            formMain.ShowDialog();
-                            EmptyBox();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Username or password is incorrect.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //MessageBox.Show("Sai username hoặc mật khẩu, vui lòng thử lại.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        FormMain formMain = new FormMain();
+                        formMain.name = txtUsername1.Text;
+                        formMain.ShowDialog();
+                        EmptyBox();
                     }
-
+                    else
+                    {
+                        MessageBox.Show("Username or password is incorrect.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Fail", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                //using (SqlConnection connection = new SqlConnection(connectionString))  
+                //{
+                //    connection.Open(); 
+                //    using (SqlCommand command = new SqlCommand("SELECT Count(*) FROM Users WHERE Users_Name = @username AND Users_Password = @password", connection))
+                //    using (SqlCommand command1 = new SqlCommand("SELECT * FROM Users WHERE Users_Name = @username AND Users_Password = @password", connection))
+                //    {
+                //        command.Parameters.AddWithValue("@username", txtUsername1.Text.Trim());
+                //        command.Parameters.AddWithValue("@password", txtPassword1.Text.Trim());
+                //        command1.Parameters.AddWithValue("@username", txtUsername1.Text.Trim());
+                //        command1.Parameters.AddWithValue("@password", txtPassword1.Text.Trim());
+
+                //        int userCount = (int)command.ExecuteScalar();
+
+                //        if (userCount > 0)
+                //        {
+                //            SharedData.ValueToPass = txtUsername1.Text;
+                            
+                //            using (SqlDataReader reader = command1.ExecuteReader())
+                //            {
+                //                while (reader.Read())
+                //                {
+                //                    Int32 roleId = reader.GetInt32(4);
+                //                    SharedData1.ValueToPass1 = roleId.ToString();
+                //                    //MessageBox.Show(roleId.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //                }
+                //            }
+                //            command1.ExecuteNonQuery();
+                //            FormMain formMain = new FormMain();
+                //            formMain.name = txtUsername1.Text;
+                //            formMain.ShowDialog();
+                //            EmptyBox();
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Username or password is incorrect.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            //MessageBox.Show("Sai username hoặc mật khẩu, vui lòng thử lại.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        }
+                //    }
+
+                //}
             }
         }
 

@@ -43,5 +43,22 @@ namespace BusinessLogicLayer
         {
             return dao.Delete(ID);
         }
+
+
+
+
+
+        //----------------------------phan nay danh cho log in va forgot pass-------------------------------------------------------------------------------
+
+        public DataTable check_Password(string username, string password)
+        {
+            return dao.check_Password(username, password);
+        }
+
+        public DataTable check_Email(string username, string email)
+        {
+            return dao.check_Email(username, email);
+        }
+
     }
 }
