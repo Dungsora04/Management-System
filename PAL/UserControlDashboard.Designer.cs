@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTotalRevenue = new System.Windows.Forms.Label();
+            this.userControlStats1 = new Management_System.PAL.UserControlStats();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,22 +74,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(47, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 33);
+            this.label2.Size = new System.Drawing.Size(48, 32);
             this.label2.TabIndex = 0;
             this.label2.Text = "{?}";
             // 
             // lblTotalProduct
             // 
             this.lblTotalProduct.AutoSize = true;
-            this.lblTotalProduct.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalProduct.ForeColor = System.Drawing.Color.White;
             this.lblTotalProduct.Location = new System.Drawing.Point(47, 26);
             this.lblTotalProduct.Name = "lblTotalProduct";
-            this.lblTotalProduct.Size = new System.Drawing.Size(180, 33);
+            this.lblTotalProduct.Size = new System.Drawing.Size(183, 32);
             this.lblTotalProduct.TabIndex = 0;
             this.lblTotalProduct.Text = "Total Product";
             // 
@@ -118,22 +119,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(47, 59);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 33);
+            this.label3.Size = new System.Drawing.Size(48, 32);
             this.label3.TabIndex = 0;
             this.label3.Text = "{?}";
             // 
             // lblTotalOrder
             // 
             this.lblTotalOrder.AutoSize = true;
-            this.lblTotalOrder.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalOrder.ForeColor = System.Drawing.Color.White;
             this.lblTotalOrder.Location = new System.Drawing.Point(47, 26);
             this.lblTotalOrder.Name = "lblTotalOrder";
-            this.lblTotalOrder.Size = new System.Drawing.Size(168, 33);
+            this.lblTotalOrder.Size = new System.Drawing.Size(171, 32);
             this.lblTotalOrder.TabIndex = 0;
             this.lblTotalOrder.Text = "Total Orders";
             // 
@@ -159,22 +160,22 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(47, 59);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 33);
+            this.label5.Size = new System.Drawing.Size(48, 32);
             this.label5.TabIndex = 0;
             this.label5.Text = "{?}";
             // 
             // lblLowStock
             // 
             this.lblLowStock.AutoSize = true;
-            this.lblLowStock.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLowStock.ForeColor = System.Drawing.Color.White;
             this.lblLowStock.Location = new System.Drawing.Point(47, 26);
             this.lblLowStock.Name = "lblLowStock";
-            this.lblLowStock.Size = new System.Drawing.Size(146, 33);
+            this.lblLowStock.Size = new System.Drawing.Size(144, 32);
             this.lblLowStock.TabIndex = 0;
             this.lblLowStock.Text = "Low Stock";
             // 
@@ -201,42 +202,51 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(235, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 33);
+            this.label1.Size = new System.Drawing.Size(73, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "VND";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(47, 59);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(49, 33);
+            this.label7.Size = new System.Drawing.Size(48, 32);
             this.label7.TabIndex = 0;
             this.label7.Text = "{?}";
             // 
             // lblTotalRevenue
             // 
             this.lblTotalRevenue.AutoSize = true;
-            this.lblTotalRevenue.Font = new System.Drawing.Font("Arial Nova", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalRevenue.ForeColor = System.Drawing.Color.White;
             this.lblTotalRevenue.Location = new System.Drawing.Point(47, 26);
             this.lblTotalRevenue.Name = "lblTotalRevenue";
-            this.lblTotalRevenue.Size = new System.Drawing.Size(193, 33);
+            this.lblTotalRevenue.Size = new System.Drawing.Size(199, 32);
             this.lblTotalRevenue.TabIndex = 0;
-            this.lblTotalRevenue.Text = "Total Nevenue";
+            this.lblTotalRevenue.Text = "Total Revenue";
+            // 
+            // userControlStats1
+            // 
+            this.userControlStats1.BackColor = System.Drawing.Color.White;
+            this.userControlStats1.Location = new System.Drawing.Point(20, 32);
+            this.userControlStats1.Name = "userControlStats1";
+            this.userControlStats1.Size = new System.Drawing.Size(1672, 632);
+            this.userControlStats1.TabIndex = 1;
             // 
             // UserControlDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.userControlStats1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
@@ -275,5 +285,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblTotalRevenue;
         private System.Windows.Forms.Label label1;
+        private UserControlStats userControlStats1;
     }
 }

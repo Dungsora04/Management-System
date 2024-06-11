@@ -236,7 +236,11 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
+<<<<<<< HEAD
             this.label29.Location = new System.Drawing.Point(229, 418);
+=======
+            this.label29.Location = new System.Drawing.Point(331, 417);
+>>>>>>> 1f90d5ed7e401e99c28ad2aface2a008355eaf23
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(137, 25);
             this.label29.TabIndex = 21;
@@ -311,9 +315,9 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Location = new System.Drawing.Point(294, 478);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 25);
+            this.label15.Size = new System.Drawing.Size(94, 25);
             this.label15.TabIndex = 0;
-            this.label15.Text = "Discout:";
+            this.label15.Text = "Discount:";
             // 
             // nudDiscount
             // 

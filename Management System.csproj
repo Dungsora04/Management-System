@@ -263,6 +263,12 @@
     <Compile Include="PAL\UserControlReport.Designer.cs">
       <DependentUpon>UserControlReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAL\UserControlStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PAL\UserControlStats.Designer.cs">
+      <DependentUpon>UserControlStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAL\UserControlUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -305,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlReport.resx">
       <DependentUpon>UserControlReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAL\UserControlStats.resx">
+      <DependentUpon>UserControlStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlUser.resx">
       <DependentUpon>UserControlUser.cs</DependentUpon>
