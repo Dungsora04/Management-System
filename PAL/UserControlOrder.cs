@@ -80,6 +80,8 @@ namespace Management_System.PAL
             txtRate.Clear();
             nudQuantity.Value = 0;
             txtTotal.Clear();
+            nudDiscount.Value = 0;
+            cmbDiscount.SelectedIndex = 1;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
