@@ -8,15 +8,15 @@ namespace DTO
 {
     public class Product
     {
-        public int Product_Id { get; set; }
-        public string Product_Name { get; set; }
-        public byte[] Product_Image { get; set; }
-        public int Product_Price { get; set; }
-        public int Product_Quantity { get; set; }
-        public int Brand_Id { get; set; }
-        public int Category_Id { get; set;}
-        public int Product_Warranty { get; set; }
-        public string Product_Status { get; set; }
-        public string Product_Details { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public byte[] ProductImage { get; set; }
+        public int ProductPrice { get; set; }
+        public int ProductQuantity { get; set; }
+        public int BrandId { get; set; }
+        public int CategoryId { get; set;}
+        public int ProductWarranty { get; set; }
+        public string ProductStatus { get; set; }
+        public string ProductDetails { get; set; }
     }
 }

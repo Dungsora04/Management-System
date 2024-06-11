@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Management-System-2c4a490b266c8bcade3bcd1d2cea830b245d038d",
+    "\\a",
+    "\\DataAccessLayer",
     "\\PAL"
   ],
-  "SelectedNode": "\\Management-System-2c4a490b266c8bcade3bcd1d2cea830b245d038d",
+  "SelectedNode": "\\DataAccessLayer\\DataConnect.cs",
   "PreviewInSolutionExplorer": false
 }

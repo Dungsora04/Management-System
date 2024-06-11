@@ -100,7 +100,7 @@ select * from Brand
 select * from Category
 select * from Customer
 select * from Orders
-select * from OrdersInfor
+select * from OrdersInfo
 select * from Roles
 select * from Users
 

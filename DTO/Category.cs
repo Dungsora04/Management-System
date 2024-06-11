@@ -8,9 +8,9 @@ namespace DTO
 {
     public class Category
     {
-        public int Category_Id { get; set; }
-        public string Category_Name { get; set; }
-        public string Category_Status { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryStatus { get; set; }
     }
 }
 
