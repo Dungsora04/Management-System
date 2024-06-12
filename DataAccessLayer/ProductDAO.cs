@@ -27,7 +27,10 @@ namespace DataAccessLayer
         {
             return data.GetData("Product_Select_All", null);
         }
-
+        public DataTable GetDataProduct()
+        {
+            return data.GetData("Product_Select_data", null);
+        }
         public DataTable GetDataByID(string ID)
         {
             SqlParameter[] para ={

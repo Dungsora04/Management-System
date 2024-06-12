@@ -281,7 +281,7 @@ BEGIN
     SELECT 
         p.Product_Id, 
         p.Product_Name, 
-        p.Product_Image, -- Retrieve the image as a binary stream
+        p.Product_Image,
         p.Product_Price,
         b.Brand_Name, 
         c.Category_Name, 
@@ -397,7 +397,6 @@ BEGIN
     ORDER BY Category_Name;
 END;
 
---------------------------log in & forgot password------------------------
 CREATE PROC User_Check_Password
 @username NVARCHAR(150), 
 @password NVARCHAR(15)
@@ -417,19 +416,9 @@ BEGIN
 SELECT Users_Password FROM Users WHERE Users_Name = @username AND Users_Email = @email
 END
 
---SELECT * FROM Users WHERE Users_Name = 'admin' AND Users_Password = '1'	
-
--------------------------------them item vao combobox----------------------
-GO
-CREATE PROC Auto_Fill_Brand
+CREATE PROC Product_Select_data
 AS
 BEGIN
-SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price FROM Product
 END
-
 GO
-CREATE PROC Auto_Fill_Category
-AS
-BEGIN
-SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name
-END
