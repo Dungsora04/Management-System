@@ -1190,5 +1190,25 @@ namespace Management_System.PAL
         {
             cmbDiscount.SelectedIndex = 1;
         }
+
+        private void mtbCustomerNumber_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable a;
+                a = orderbus.GetDataByNumber(mtbCustomerNumber.Text);
+                if(a.Rows.Count == 1) {
+                    txtCustomerName.Text = a.Rows[0][2].ToString();
+                }
+                else
+                {
+                    txtCustomerName.Text = "";
+                }
+            }
+            catch
+            {
+                MessageBox.Show("CustomerNumer is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

@@ -47,6 +47,8 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnReports = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -54,8 +56,9 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnReports = new System.Windows.Forms.Button();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.btnCustomer = new System.Windows.Forms.Button();
+            this.userControlCustomer1 = new Management_System.PAL.UserControlCustomer();
             this.userControlUser1 = new Management_System.PAL.UserControlUser();
             this.userControlReport1 = new Management_System.PAL.UserControlReport();
             this.userControlOrder1 = new Management_System.PAL.UserControlOrder();
@@ -66,6 +69,7 @@
             this.pnlCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -73,7 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMove
@@ -101,6 +105,7 @@
             // 
             // pnlCenter
             // 
+            this.pnlCenter.Controls.Add(this.userControlCustomer1);
             this.pnlCenter.Controls.Add(this.userControlUser1);
             this.pnlCenter.Controls.Add(this.userControlReport1);
             this.pnlCenter.Controls.Add(this.userControlOrder1);
@@ -111,7 +116,7 @@
             this.pnlCenter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCenter.Location = new System.Drawing.Point(240, 0);
             this.pnlCenter.Name = "pnlCenter";
-            this.pnlCenter.Size = new System.Drawing.Size(741, 560);
+            this.pnlCenter.Size = new System.Drawing.Size(741, 638);
             this.pnlCenter.TabIndex = 0;
             // 
             // timerDateAndTime
@@ -252,7 +257,7 @@
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogOut.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.ForeColor = System.Drawing.Color.White;
-            this.btnLogOut.Location = new System.Drawing.Point(77, 507);
+            this.btnLogOut.Location = new System.Drawing.Point(77, 585);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(139, 40);
             this.btnLogOut.TabIndex = 0;
@@ -275,6 +280,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panel1.Controls.Add(this.pictureBox10);
+            this.panel1.Controls.Add(this.btnCustomer);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.lblUsername);
@@ -299,14 +306,39 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(240, 560);
+            this.panel1.Size = new System.Drawing.Size(240, 638);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(29, 531);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
+            // btnReports
+            // 
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.ForeColor = System.Drawing.Color.White;
+            this.btnReports.Location = new System.Drawing.Point(75, 531);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(139, 40);
+            this.btnReports.TabIndex = 9;
+            this.btnReports.Text = "Reports";
+            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // pictureBox9
             // 
             this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(29, 507);
+            this.pictureBox9.Location = new System.Drawing.Point(29, 585);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(40, 40);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -373,30 +405,40 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBox10
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(29, 485);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 10;
-            this.pictureBox3.TabStop = false;
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(29, 485);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 12;
+            this.pictureBox10.TabStop = false;
             // 
-            // btnReports
+            // btnCustomer
             // 
-            this.btnReports.FlatAppearance.BorderSize = 0;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Location = new System.Drawing.Point(75, 485);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(139, 40);
-            this.btnReports.TabIndex = 9;
-            this.btnReports.Text = "Reports";
-            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.UseVisualStyleBackColor = true;
-            this.btnReports.Click += new System.EventHandler(this.btnReport_Click);
+            this.btnCustomer.FlatAppearance.BorderSize = 0;
+            this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomer.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnCustomer.Location = new System.Drawing.Point(75, 485);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(139, 40);
+            this.btnCustomer.TabIndex = 11;
+            this.btnCustomer.Text = "Customer";
+            this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            // 
+            // userControlCustomer1
+            // 
+            this.userControlCustomer1.BackColor = System.Drawing.Color.White;
+            this.userControlCustomer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCustomer1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCustomer1.Name = "userControlCustomer1";
+            this.userControlCustomer1.Size = new System.Drawing.Size(741, 638);
+            this.userControlCustomer1.TabIndex = 0;
+            this.userControlCustomer1.Visible = false;
             // 
             // userControlUser1
             // 
@@ -404,7 +446,7 @@
             this.userControlUser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userControlUser1.Location = new System.Drawing.Point(0, 0);
             this.userControlUser1.Name = "userControlUser1";
-            this.userControlUser1.Size = new System.Drawing.Size(741, 560);
+            this.userControlUser1.Size = new System.Drawing.Size(741, 638);
             this.userControlUser1.TabIndex = 0;
             this.userControlUser1.Visible = false;
             // 
@@ -416,7 +458,7 @@
             this.userControlReport1.BackColor = System.Drawing.Color.White;
             this.userControlReport1.Location = new System.Drawing.Point(0, 0);
             this.userControlReport1.Name = "userControlReport1";
-            this.userControlReport1.Size = new System.Drawing.Size(741, 560);
+            this.userControlReport1.Size = new System.Drawing.Size(741, 638);
             this.userControlReport1.TabIndex = 0;
             this.userControlReport1.Visible = false;
             // 
@@ -426,7 +468,7 @@
             this.userControlOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userControlOrder1.Location = new System.Drawing.Point(0, 0);
             this.userControlOrder1.Name = "userControlOrder1";
-            this.userControlOrder1.Size = new System.Drawing.Size(741, 560);
+            this.userControlOrder1.Size = new System.Drawing.Size(741, 638);
             this.userControlOrder1.TabIndex = 0;
             this.userControlOrder1.Visible = false;
             // 
@@ -437,7 +479,7 @@
             this.userControlProduct1.Location = new System.Drawing.Point(0, 0);
             this.userControlProduct1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.userControlProduct1.Name = "userControlProduct1";
-            this.userControlProduct1.Size = new System.Drawing.Size(741, 560);
+            this.userControlProduct1.Size = new System.Drawing.Size(741, 638);
             this.userControlProduct1.TabIndex = 0;
             this.userControlProduct1.Visible = false;
             // 
@@ -448,7 +490,7 @@
             this.userControlCategory1.Location = new System.Drawing.Point(0, 0);
             this.userControlCategory1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.userControlCategory1.Name = "userControlCategory1";
-            this.userControlCategory1.Size = new System.Drawing.Size(741, 560);
+            this.userControlCategory1.Size = new System.Drawing.Size(741, 638);
             this.userControlCategory1.TabIndex = 0;
             this.userControlCategory1.Visible = false;
             // 
@@ -459,7 +501,7 @@
             this.userControlBrand1.Location = new System.Drawing.Point(0, 0);
             this.userControlBrand1.Margin = new System.Windows.Forms.Padding(10);
             this.userControlBrand1.Name = "userControlBrand1";
-            this.userControlBrand1.Size = new System.Drawing.Size(741, 560);
+            this.userControlBrand1.Size = new System.Drawing.Size(741, 638);
             this.userControlBrand1.TabIndex = 0;
             this.userControlBrand1.Visible = false;
             // 
@@ -470,7 +512,7 @@
             this.userControlDashboard1.Location = new System.Drawing.Point(0, 0);
             this.userControlDashboard1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userControlDashboard1.Name = "userControlDashboard1";
-            this.userControlDashboard1.Size = new System.Drawing.Size(741, 560);
+            this.userControlDashboard1.Size = new System.Drawing.Size(741, 638);
             this.userControlDashboard1.TabIndex = 0;
             // 
             // FormMain
@@ -478,7 +520,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(981, 560);
+            this.ClientSize = new System.Drawing.Size(981, 638);
             this.Controls.Add(this.pnlCenter);
             this.Controls.Add(this.pnlMove);
             this.Controls.Add(this.panel1);
@@ -493,6 +535,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -500,7 +543,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -539,5 +582,8 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnReports;
+        private UserControlCustomer userControlCustomer1;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Button btnCustomer;
     }
 }
