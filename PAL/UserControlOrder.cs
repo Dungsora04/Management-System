@@ -115,6 +115,7 @@ namespace Management_System.PAL
                             item.Id = reader.GetInt32(1);
                             cmbProduct.Items.Add(item);
                         }
+                        reader.Close();
                     }
                     command1.ExecuteNonQuery();
                 }
@@ -534,6 +535,7 @@ namespace Management_System.PAL
                         {
                             command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
                             command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
+                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
                             command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
                             command1.ExecuteNonQuery();
                             tpManageOrders_Enter(sender, e);
@@ -1198,6 +1200,26 @@ namespace Management_System.PAL
         private void Tab_Add_Order_Enter(object sender, EventArgs e)
         {
             cmbDiscount.SelectedIndex = 1;
+        }
+
+        private void mtbCustomerNumber_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable a;
+                a = orderbus.GetDataByNumber(mtbCustomerNumber.Text);
+                if(a.Rows.Count == 1) {
+                    txtCustomerName.Text = a.Rows[0][2].ToString();
+                }
+                else
+                {
+                    txtCustomerName.Text = "";
+                }
+            }
+            catch
+            {
+                MessageBox.Show("CustomerNumer is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void dgvOrder_Product_CellClick(object sender, DataGridViewCellEventArgs e)

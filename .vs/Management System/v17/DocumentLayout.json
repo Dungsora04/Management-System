@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "D:\\DUT\\Hk4\\PBL3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|d:\\dut\\hk4\\pbl3\\pal\\usercontrolorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|d:\\dut\\hk4\\pbl3\\pal\\usercontrolcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\usercontrolorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|d:\\dut\\hk4\\pbl3\\pal\\usercontrolcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\usercontrolproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|d:\\dut\\hk4\\pbl3\\pal\\usercontrolbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\usercontrolbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\usercontrolproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|D:\\DUT\\Hk4\\PBL3\\pal\\usercontrolcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A29D7310-9219-4336-9668-DC1E7C48CBE1}|Management System.csproj|solutionrelative:pal\\usercontrolcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{798D948C-C66A-40F0-8C9F-45261969D070}|DataAccessLayer\\DataAccessLayer.csproj|D:\\DUT\\Hk4\\PBL3\\dataaccesslayer\\productdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{798D948C-C66A-40F0-8C9F-45261969D070}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\productdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 110,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,62 +70,77 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormMain.cs [Design]",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\FormMain.cs",
-              "RelativeDocumentMoniker": "PAL\\FormMain.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\FormMain.cs [Design]",
-              "RelativeToolTip": "PAL\\FormMain.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "UserControlCategory.cs",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCategory.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlCategory.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCategory.cs",
+              "RelativeToolTip": "PAL\\UserControlCategory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAjwA8AAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:48:52.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserControlProduct.cs",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlProduct.cs",
-              "RelativeDocumentMoniker": "PAL\\UserControlProduct.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlProduct.cs",
-              "RelativeToolTip": "PAL\\UserControlProduct.cs",
-              "ViewState": "AQIAAOEBAAAAAAAAAAAQwMwBAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:23:01.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserControlOrder.cs",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
-              "RelativeDocumentMoniker": "PAL\\UserControlOrder.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
-              "RelativeToolTip": "PAL\\UserControlOrder.cs",
-              "ViewState": "AQIAAIAEAAAAAAAAAAAuwJUEAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:22:58.813Z",
+              "WhenOpened": "2024-06-13T04:16:27.511Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserControlOrder.cs [Design]",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs",
-              "RelativeDocumentMoniker": "PAL\\UserControlOrder.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlOrder.cs [Design]",
-              "RelativeToolTip": "PAL\\UserControlOrder.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "UserControlCategory.cs [Design]",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCategory.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlCategory.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCategory.cs [Design]",
+              "RelativeToolTip": "PAL\\UserControlCategory.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:22:56.958Z",
+              "WhenOpened": "2024-06-13T04:15:48.621Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserControlBrand.cs",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlBrand.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlBrand.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlBrand.cs",
+              "RelativeToolTip": "PAL\\UserControlBrand.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABQAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T01:48:04.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserControlBrand.cs [Design]",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlBrand.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlBrand.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlBrand.cs [Design]",
+              "RelativeToolTip": "PAL\\UserControlBrand.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T01:46:46.045Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UserControlProduct.cs [Design]",
-              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlProduct.cs",
-              "RelativeDocumentMoniker": "PAL\\UserControlProduct.cs",
-              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlProduct.cs [Design]",
-              "RelativeToolTip": "PAL\\UserControlProduct.cs [Design]",
+              "Title": "UserControlCustomer.cs",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCustomer.cs",
+              "RelativeDocumentMoniker": "PAL\\UserControlCustomer.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\PAL\\UserControlCustomer.cs",
+              "RelativeToolTip": "PAL\\UserControlCustomer.cs",
+              "ViewState": "AQIAAH0AAAAAAAAAAAAMwIIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:22:29.153Z"
+              "WhenOpened": "2024-06-12T14:03:50.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductDAO.cs",
+              "DocumentMoniker": "D:\\DUT\\Hk4\\PBL3\\DataAccessLayer\\ProductDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessLayer\\ProductDAO.cs",
+              "ToolTip": "D:\\DUT\\Hk4\\PBL3\\DataAccessLayer\\ProductDAO.cs",
+              "RelativeToolTip": "DataAccessLayer\\ProductDAO.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAzwBsAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T13:27:28.097Z"
             }
           ]
         }

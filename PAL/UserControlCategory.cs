@@ -22,6 +22,8 @@ namespace Management_System.PAL
         public UserControlCategory()
         {
             InitializeComponent();
+            dgvCategory.DataSource = categorybus.GetData();
+            lblTotal.Text = dgvCategory.Rows.Count.ToString();
         }
 
         public void EmptyBox()
@@ -59,6 +61,12 @@ namespace Management_System.PAL
             {
                 category.CategoryName = txtCategoryName.Text;
                 category.CategoryStatus = cmbStatus.SelectedItem.ToString();
+                txtSearchCategoryName.Clear();
+                dgvCategory.Columns[0].Visible = false;
+              
+                    dgvCategory.DataSource = categorybus.GetData();
+                    lblTotal.Text = dgvCategory.Rows.Count.ToString();
+              
                 try
                 {
                     categorybus.Insert(category);

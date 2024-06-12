@@ -176,6 +176,7 @@ BEGIN
 UPDATE Category SET Category_Name = @Category_Name, Category_Status = @Category_Status where Category_Id = CAST(@Category_Id AS int)
 --and not exists(select * from Category where Category_Name = @Category_Name)
 END
+
 GO
 CREATE PROC Category_Delete
 @Category_Id INT

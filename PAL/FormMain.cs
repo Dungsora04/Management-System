@@ -61,6 +61,7 @@ namespace Management_System.PAL
             userControlOrder1.Visible = false;
             userControlReport1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
         }
 
         private void btnBrand_Click(object sender, EventArgs e)
@@ -73,6 +74,7 @@ namespace Management_System.PAL
             userControlOrder1.Visible = false;
             userControlReport1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
             userControlBrand1.EmptyBox();
             userControlBrand1.Visible = true;
             
@@ -87,6 +89,7 @@ namespace Management_System.PAL
             userControlOrder1.Visible = false;
             userControlReport1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
             userControlCategory1.EmptyBox();
             userControlCategory1.Visible = true;
             
@@ -101,6 +104,7 @@ namespace Management_System.PAL
             userControlOrder1.Visible = false;
             userControlReport1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
             userControlProduct1.EmptyBox();
             userControlProduct1.Visible = true;
         }
@@ -114,6 +118,7 @@ namespace Management_System.PAL
             userControlProduct1.Visible = false;
             userControlReport1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
             userControlOrder1.EmptyBox();
             userControlOrder1.Visible = true;
         }
@@ -127,6 +132,7 @@ namespace Management_System.PAL
             userControlProduct1.Visible = false;
             userControlOrder1.Visible = false;
             userControlUser1.Visible = false;
+            userControlCustomer1.Visible = false;
             userControlReport1.Visible = true;
         }
 
@@ -142,6 +148,7 @@ namespace Management_System.PAL
                 userControlProduct1.Visible = false;
                 userControlOrder1.Visible = false;
                 userControlReport1.Visible = false;
+                userControlCustomer1.Visible = false;
                 userControlUser1.EmptyBox();
                 userControlUser1.Visible = true;
             }
@@ -152,9 +159,25 @@ namespace Management_System.PAL
             
         }
 
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            Move_Panel(btnCustomer);
+            userControlDashboard1.Visible = false;
+            userControlBrand1.Visible = false;
+            userControlCategory1.Visible = false;
+            userControlProduct1.Visible = false;
+            userControlOrder1.Visible = false;
+            userControlReport1.Visible = false;
+            userControlUser1.Visible = false;
+            userControlCustomer1.EmptyBox();
+            userControlCustomer1.Visible = true;
+        }
+
         private void timerDateAndTime_Tick(object sender, EventArgs e)
         {
             lblTimeAndDate.Text = DateTime.Now.ToString("dd/MM/yyyy  hh:mm:ss  tt");
         }
+
+        
     }
 }
