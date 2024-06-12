@@ -397,7 +397,6 @@ BEGIN
     ORDER BY Category_Name;
 END;
 
---------------------------log in & forgot password------------------------
 CREATE PROC User_Check_Password
 @username NVARCHAR(150), 
 @password NVARCHAR(15)
@@ -416,5 +415,3 @@ AS
 BEGIN
 SELECT Users_Password FROM Users WHERE Users_Name = @username AND Users_Email = @email
 END
-
---SELECT * FROM Users WHERE Users_Name = 'admin' AND Users_Password = '1'	
