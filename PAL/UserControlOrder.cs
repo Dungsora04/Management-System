@@ -156,7 +156,7 @@ namespace Management_System.PAL
         {
             toolTip1.SetToolTip(picSearch, "Search");
         }
-        
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //int check = 0;
@@ -208,7 +208,7 @@ namespace Management_System.PAL
                     }
                     int rate, total;
                     Int32.TryParse(txtRate.Text, out rate);
-                    Int32.TryParse(txtTotal.Text, out total); 
+                    Int32.TryParse(txtTotal.Text, out total);
                     if (dgvProductList.Rows.Count != 0)
                     {
 
@@ -292,20 +292,20 @@ namespace Management_System.PAL
                 txtTotalAmount.Text = oTotal.ToString();
 
             }
-            
-                foreach (DataGridViewRow row in dgvProductList.Rows)
-                {
-                    oTotal += Convert.ToInt32(row.Cells[5].Value.ToString());
 
-                    txtTotalAmount.Text = oTotal.ToString();
-                }
+            foreach (DataGridViewRow row in dgvProductList.Rows)
+            {
+                oTotal += Convert.ToInt32(row.Cells[5].Value.ToString());
 
-             a = oTotal;
+                txtTotalAmount.Text = oTotal.ToString();
+            }
+
+            a = oTotal;
 
             txtDueAmount.Text = "-" + a.ToString();
-                oTotal = 0;
-                lblTotal.Text = dgvOrders.Rows.Count.ToString();
-            
+            oTotal = 0;
+            lblTotal.Text = dgvOrders.Rows.Count.ToString();
+
         }
 
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -364,23 +364,23 @@ namespace Management_System.PAL
                 nudDiscount.Value = 0;
                 if (dgvProductList.Rows.Count != 0)
                 {
-                    
+
 
                     foreach (DataGridViewRow rows in dgvProductList.Rows)
                     {
                         oTotal += Convert.ToInt32(rows.Cells[5].Value.ToString());
-                        a=oTotal;
+                        a = oTotal;
                         //MessageBox.Show(oTotal.ToString(), "a", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtTotalAmount.Text = oTotal.ToString();
                         txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
                     }
                 }
                 else
-                { 
+                {
                     txtTotalAmount.Text = "0";
                     txtDueAmount.Text = "0";
                     nudPaidAmount.Value = 0;
-                    cmbDiscount.Text="";
+                    cmbDiscount.Text = "";
                     nudDiscount.Value = 0;
                     a = 0;
                 }
@@ -408,8 +408,23 @@ namespace Management_System.PAL
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {  
-            if(cmbDiscount.SelectedItem == "-- SELECT -- " ||cmbDiscount.SelectedItem == "")
+        {
+            if (dgvProductList.Rows.Count == 0)
+            {
+                MessageBox.Show("Choose Your Product.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (txtCustomerName.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter your name.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (!mtbCustomerNumber.MaskCompleted)
+            {
+                MessageBox.Show("Please enter your phone number.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (cmbDiscount.SelectedItem == "-- SELECT -- " || cmbDiscount.SelectedItem == "")
             {
                 MessageBox.Show("Please choose your discount offer.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -422,7 +437,7 @@ namespace Management_System.PAL
 
             else
             {
-                
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -470,6 +485,7 @@ namespace Management_System.PAL
                     order.Grand_Total = Convert.ToInt32(txtGrandTotal.Text);
                     try
                     {
+                        //MessageBox.Show(order.Users_Id.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         orderbus.Insert(order);
                         MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -910,22 +926,22 @@ namespace Management_System.PAL
                             tcOrders.SelectedTab = tpManageOrders;
                             EmptyBox1();
                         }
-                 /*
-                        using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
-                        {
+                        /*
+                               using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
+                               {
 
-                            command1.Parameters.AddWithValue("@productid", Id);
-                            int rowsAffected = command1.ExecuteNonQuery();
+                                   command1.Parameters.AddWithValue("@productid", Id);
+                                   int rowsAffected = command1.ExecuteNonQuery();
 
-                            if (rowsAffected > 0)
-                                Console.WriteLine($"Row with ID {Id} deleted successfully.");
-                            else
-                                Console.WriteLine($"No rows found with ID {Id}.");
-                            EmptyBox1();
-                            tcOrders.SelectedTab = tpManageOrders;
-                            tpManageOrders_Enter(sender, e);
-                        }
-                 */
+                                   if (rowsAffected > 0)
+                                       Console.WriteLine($"Row with ID {Id} deleted successfully.");
+                                   else
+                                       Console.WriteLine($"No rows found with ID {Id}.");
+                                   EmptyBox1();
+                                   tcOrders.SelectedTab = tpManageOrders;
+                                   tpManageOrders_Enter(sender, e);
+                               }
+                        */
 
 
                     }
@@ -1048,7 +1064,7 @@ namespace Management_System.PAL
 
                         command1.ExecuteNonQuery();
                         command2.ExecuteNonQuery();
-                      //  command3.ExecuteNonQuery();
+                        //  command3.ExecuteNonQuery();
                         command4.ExecuteNonQuery();
                         command5.ExecuteNonQuery();
                         command6.ExecuteNonQuery();
@@ -1110,12 +1126,12 @@ namespace Management_System.PAL
         }
 
 
-        
+
         private void cmbDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             oTotal = a;
-            if(cmbDiscount.SelectedItem == "5%")
+            if (cmbDiscount.SelectedItem == "5%")
             {
 
                 txtTotalAmount.Text = a.ToString();
@@ -1123,9 +1139,9 @@ namespace Management_System.PAL
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                 oTotal = 0;
-                
+
             }
-            else if(cmbDiscount.SelectedItem == "10%")
+            else if (cmbDiscount.SelectedItem == "10%")
             {
 
                 txtTotalAmount.Text = a.ToString();
@@ -1133,37 +1149,37 @@ namespace Management_System.PAL
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                 oTotal = 0;
-                
+
             }
-            else if(cmbDiscount.SelectedItem == "15%")
+            else if (cmbDiscount.SelectedItem == "15%")
             {
-        
+
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.15);
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                 oTotal = 0;
-                
+
             }
-            else if(cmbDiscount.SelectedItem == "20%")
+            else if (cmbDiscount.SelectedItem == "20%")
             {
-     
+
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.2);
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                 oTotal = 0;
-                
+
             }
-            else if(cmbDiscount.SelectedItem == "25%")
+            else if (cmbDiscount.SelectedItem == "25%")
             {
-   
+
                 txtTotalAmount.Text = a.ToString();
                 nudDiscount.Value = Convert.ToInt32(oTotal * 0.25);
                 txtDueAmount.Text = (Convert.ToInt32(nudPaidAmount.Value) - Convert.ToInt32(txtTotalAmount.Text) + Convert.ToInt32(nudDiscount.Value)).ToString();
 
                 oTotal = 0;
-                
+
             }
             else
             {
@@ -1195,4 +1211,3 @@ namespace Management_System.PAL
         }
     }
 }
-

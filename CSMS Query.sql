@@ -397,6 +397,7 @@ BEGIN
     ORDER BY Category_Name;
 END;
 
+--------------------------log in & forgot password------------------------
 CREATE PROC User_Check_Password
 @username NVARCHAR(150), 
 @password NVARCHAR(15)
@@ -414,4 +415,21 @@ CREATE PROC User_Check_Email
 AS
 BEGIN
 SELECT Users_Password FROM Users WHERE Users_Name = @username AND Users_Email = @email
+END
+
+--SELECT * FROM Users WHERE Users_Name = 'admin' AND Users_Password = '1'	
+
+-------------------------------them item vao combobox----------------------
+GO
+CREATE PROC Auto_Fill_Brand
+AS
+BEGIN
+SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name
+END
+
+GO
+CREATE PROC Auto_Fill_Category
+AS
+BEGIN
+SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name
 END

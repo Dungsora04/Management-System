@@ -162,6 +162,10 @@ namespace Management_System.PAL
                 return Text;
             }
         }
+
+        BrandBUS brandBUS = new BrandBUS();
+        CategoryBUS categoryBUS = new CategoryBUS();
+
         private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string Id = "";
         byte[] image;
@@ -194,62 +198,90 @@ namespace Management_System.PAL
             txtDetails.Clear();
             cmbStatus.SelectedIndex = 0;
 
-
-            
             cmbBrand.DataSource = null;
             cmbBrand.Items.Clear();
             cmbBrand.Items.Add("--SELECT--");
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+                DataTable brandItem = brandBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in brandItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbBrand.Items.Add(item);
-                        }
-                    }
-
+                    Item item = new Item();
+                    item.Text = row["Brand_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Brand_Id"]);
+                    cmbBrand.Items.Add(item);
                 }
-
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbBrand.Items.Add(item);
+            //            }
+            //        }
+
+            //    }
+
+            //}
             if (cmbBrand.Items.Count > 0)
             {
                 cmbBrand.SelectedIndex = 0;
             }
+
+
             cmbCategory.DataSource = null;
             cmbCategory.Items.Clear();
             cmbCategory.Items.Add("--SELECT--");
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+                DataTable categoryItem = categoryBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in categoryItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbCategory.Items.Add(item);
-                        }
-                    }
-
+                    Item item = new Item();
+                    item.Text = row["Category_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Category_Id"]);
+                    cmbCategory.Items.Add(item);
                 }
-
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbCategory.Items.Add(item);
+            //            }
+            //        }
+
+            //    }
+
+            //}
             if (cmbCategory.Items.Count > 0)
             {
                 cmbCategory.SelectedIndex = 0;
@@ -273,115 +305,174 @@ namespace Management_System.PAL
 
         private void ComboBoxAutoFill()
         {
-            cmbBrand1.Items.Clear();
+             cmbBrand1.Items.Clear();
              cmbBrand1.Items.Add("--SELECT--");
-            
-             using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+                DataTable brandItem = brandBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in brandItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
-                            //cmbBrand1.Items.Add(categoryName);
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbBrand1.Items.Add(item);
-                        }
-                    }
-                    cmbBrand1.SelectedIndex = 0;
+                    Item item = new Item();
+                    item.Text = row["Brand_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Brand_Id"]);
+                    cmbBrand1.Items.Add(item);
                 }
-
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            // using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
+            //                //cmbBrand1.Items.Add(categoryName);
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbBrand1.Items.Add(item);
+            //            }
+            //        }
+            //        cmbBrand1.SelectedIndex = 0;
+            //    }
+
+            //}
+            cmbBrand1.SelectedIndex = 0;
+
+
             cmbCategory1.Items.Clear();
             cmbCategory1.Items.Add("--SELECT--");
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+                DataTable categoryItem = categoryBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in categoryItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
-                            //cmbCategory1.Items.Add(categoryName);
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbCategory1.Items.Add(item);
-                        }
-                    }
-                    cmbCategory1.SelectedIndex = 0;
+                    Item item = new Item();
+                    item.Text = row["Category_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Category_Id"]);
+                    cmbCategory1.Items.Add(item);
                 }
-
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
+            //                //cmbCategory1.Items.Add(categoryName);
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbCategory1.Items.Add(item);
+            //            }
+            //        }
+            //    }
+            //}
+            cmbCategory1.SelectedIndex = 0;
         }
+
         private void ComboBoxAutoFill1()
         {
             cmbBrand2.Items.Clear();
             cmbBrand2.Items.Add("All Brands");
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+                DataTable brandItem = brandBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in brandItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
-                            //cmbBrand2.Items.Add(categoryName);
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbBrand2.Items.Add(item);
-
-                        }
-                    }
-                    cmbBrand2.SelectedIndex = 0;
+                    Item item = new Item();
+                    item.Text = row["Brand_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Brand_Id"]);
+                    cmbBrand2.Items.Add(item);
                 }
-            
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Brand_Name,Brand_Id FROM Brand WHERE Brand_Status = 'Available' ORDER BY Brand_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
+            //                //cmbBrand2.Items.Add(categoryName);
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbBrand2.Items.Add(item);
+
+            //            }
+            //        }
+            //        cmbBrand2.SelectedIndex = 0;
+            //    }
+            //}
+            cmbBrand2.SelectedIndex = 0;
+
+
 
             cmbCategory2.Items.Clear();
             cmbCategory2.Items.Add("All Categories");
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+                DataTable categoryItem = categoryBUS.Auto_Fill_Combobox();
+                foreach (DataRow row in categoryItem.Rows)
                 {
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
-                            //cmbCategory2.Items.Add(categoryName);
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbCategory2.Items.Add(item);
-                        }
-                    }
-                    cmbCategory2.SelectedIndex = 0;
+                    Item item = new Item();
+                    item.Text = row["Category_Name"].ToString();
+                    item.Id = Convert.ToInt32(row["Category_Id"]);
+                    cmbCategory2.Items.Add(item);
                 }
-
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Category_Name,Category_Id FROM Category WHERE Category_Status = 'Available' ORDER BY Category_Name;", connection))
+            //    {
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                //string categoryName = reader.GetString(0); // Assuming Brand_Name is the first column
+            //                //cmbCategory2.Items.Add(categoryName);
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbCategory2.Items.Add(item);
+            //            }
+            //        }
+            //        cmbCategory2.SelectedIndex = 0;
+            //    }
+            //}
+            cmbCategory2.SelectedIndex = 0;
+
+
         }
         private void picSearch_MouseHover(object sender, EventArgs e)
         {
