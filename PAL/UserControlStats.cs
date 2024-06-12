@@ -106,6 +106,16 @@ namespace Management_System.PAL
             lblYearSelect.Text = cmbYearSelect.SelectedItem.ToString();
             lblYearSelect1.Text = cmbYearSelect.SelectedItem.ToString();
         }
+
+        private void dgvTopSell_MouseEnter(object sender, EventArgs e)
+        {
+            Fill_Table();
+        }
+
+        private void chartMonthlyProfit_MouseEnter(object sender, EventArgs e)
+        {
+            FillChartProfit();
+        }
     }
 
 }

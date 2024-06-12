@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using System.Web.Security;
 
 namespace Management_System.PAL
 {
@@ -85,9 +87,13 @@ namespace Management_System.PAL
             {
                 try
                 {
+                    //MessageBox.Show("Please enter password1.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DataTable check = userBUS.check_Password(txtUsername1.Text.Trim(), txtPassword1.Text.Trim());
+                    
                     if (check.Rows.Count > 0)
                     {
+                        SharedData.ValueToPass = txtUsername1.Text;
+                        SharedData1.ValueToPass1 = check.Rows[0][0].ToString();
                         FormMain formMain = new FormMain();
                         formMain.name = txtUsername1.Text;
                         formMain.ShowDialog();
