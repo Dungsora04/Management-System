@@ -239,6 +239,12 @@
     <Compile Include="PAL\UserControlCategory.Designer.cs">
       <DependentUpon>UserControlCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAL\UserControlCustomer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PAL\UserControlCustomer.Designer.cs">
+      <DependentUpon>UserControlCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAL\UserControlDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -298,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlCategory.resx">
       <DependentUpon>UserControlCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAL\UserControlCustomer.resx">
+      <DependentUpon>UserControlCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlDashboard.resx">
       <DependentUpon>UserControlDashboard.cs</DependentUpon>

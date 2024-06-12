@@ -33,13 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlBrand));
             this.tcBrand = new System.Windows.Forms.TabControl();
-            this.tpAddBrand = new System.Windows.Forms.TabPage();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtBrandName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tpManageBrand = new System.Windows.Forms.TabPage();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,8 +58,12 @@
             this.guna2Elipse3 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.guna2Elipse4 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBrandName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tcBrand.SuspendLayout();
-            this.tpAddBrand.SuspendLayout();
             this.tpManageBrand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSearch)).BeginInit();
@@ -76,7 +73,6 @@
             // tcBrand
             // 
             this.tcBrand.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tcBrand.Controls.Add(this.tpAddBrand);
             this.tcBrand.Controls.Add(this.tpManageBrand);
             this.tcBrand.Controls.Add(this.tpOptions);
             this.tcBrand.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -87,103 +83,16 @@
             this.tcBrand.Name = "tcBrand";
             this.tcBrand.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tcBrand.SelectedIndex = 0;
-            this.tcBrand.Size = new System.Drawing.Size(747, 464);
+            this.tcBrand.Size = new System.Drawing.Size(1292, 843);
             this.tcBrand.TabIndex = 0;
-            // 
-            // tpAddBrand
-            // 
-            this.tpAddBrand.Controls.Add(this.btnAdd);
-            this.tpAddBrand.Controls.Add(this.cmbStatus);
-            this.tpAddBrand.Controls.Add(this.label3);
-            this.tpAddBrand.Controls.Add(this.txtBrandName);
-            this.tpAddBrand.Controls.Add(this.label2);
-            this.tpAddBrand.Controls.Add(this.label1);
-            this.tpAddBrand.Location = new System.Drawing.Point(4, 4);
-            this.tpAddBrand.Name = "tpAddBrand";
-            this.tpAddBrand.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddBrand.Size = new System.Drawing.Size(739, 426);
-            this.tpAddBrand.TabIndex = 0;
-            this.tpAddBrand.Text = "Add Brand";
-            this.tpAddBrand.UseVisualStyleBackColor = true;
-            this.tpAddBrand.Enter += new System.EventHandler(this.tpAddBrand_Enter);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(56, 177);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 50);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "-- SELECT --",
-            "Available",
-            "Not Available"});
-            this.cmbStatus.Location = new System.Drawing.Point(384, 123);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(291, 37);
-            this.cmbStatus.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(379, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 25);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Status:";
-            // 
-            // txtBrandName
-            // 
-            this.txtBrandName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBrandName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBrandName.Location = new System.Drawing.Point(56, 125);
-            this.txtBrandName.Name = "txtBrandName";
-            this.txtBrandName.Size = new System.Drawing.Size(291, 34);
-            this.txtBrandName.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(51, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 25);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Brand Name: ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Add Brand";
             // 
             // tpManageBrand
             // 
+            this.tpManageBrand.Controls.Add(this.btnAdd);
+            this.tpManageBrand.Controls.Add(this.cmbStatus);
+            this.tpManageBrand.Controls.Add(this.label3);
+            this.tpManageBrand.Controls.Add(this.txtBrandName);
+            this.tpManageBrand.Controls.Add(this.label2);
             this.tpManageBrand.Controls.Add(this.lblTotal);
             this.tpManageBrand.Controls.Add(this.label6);
             this.tpManageBrand.Controls.Add(this.dgvBrand);
@@ -194,7 +103,7 @@
             this.tpManageBrand.Location = new System.Drawing.Point(4, 4);
             this.tpManageBrand.Name = "tpManageBrand";
             this.tpManageBrand.Padding = new System.Windows.Forms.Padding(3);
-            this.tpManageBrand.Size = new System.Drawing.Size(739, 426);
+            this.tpManageBrand.Size = new System.Drawing.Size(1284, 805);
             this.tpManageBrand.TabIndex = 1;
             this.tpManageBrand.Text = "Manage Brand";
             this.tpManageBrand.UseVisualStyleBackColor = true;
@@ -206,7 +115,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(83, 372);
+            this.lblTotal.Location = new System.Drawing.Point(83, 751);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(40, 25);
             this.lblTotal.TabIndex = 0;
@@ -218,7 +127,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(27, 372);
+            this.label6.Location = new System.Drawing.Point(23, 751);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 25);
             this.label6.TabIndex = 0;
@@ -259,7 +168,7 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBrand.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvBrand.EnableHeadersVisualStyles = false;
-            this.dgvBrand.Location = new System.Drawing.Point(17, 152);
+            this.dgvBrand.Location = new System.Drawing.Point(6, 448);
             this.dgvBrand.MultiSelect = false;
             this.dgvBrand.Name = "dgvBrand";
             this.dgvBrand.ReadOnly = true;
@@ -271,7 +180,7 @@
             this.dgvBrand.ShowCellToolTips = false;
             this.dgvBrand.ShowEditingIcon = false;
             this.dgvBrand.ShowRowErrors = false;
-            this.dgvBrand.Size = new System.Drawing.Size(705, 300);
+            this.dgvBrand.Size = new System.Drawing.Size(1250, 300);
             this.dgvBrand.TabIndex = 0;
             this.dgvBrand.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_CellClick);
             // 
@@ -302,7 +211,7 @@
             // txtSearchBrandName
             // 
             this.txtSearchBrandName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSearchBrandName.Location = new System.Drawing.Point(218, 93);
+            this.txtSearchBrandName.Location = new System.Drawing.Point(480, 389);
             this.txtSearchBrandName.Name = "txtSearchBrandName";
             this.txtSearchBrandName.Size = new System.Drawing.Size(268, 30);
             this.txtSearchBrandName.TabIndex = 2;
@@ -313,7 +222,7 @@
             this.picSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearch.Image = ((System.Drawing.Image)(resources.GetObject("picSearch.Image")));
-            this.picSearch.Location = new System.Drawing.Point(492, 93);
+            this.picSearch.Location = new System.Drawing.Point(754, 389);
             this.picSearch.Name = "picSearch";
             this.picSearch.Size = new System.Drawing.Size(32, 32);
             this.picSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -327,7 +236,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(213, 65);
+            this.label5.Location = new System.Drawing.Point(475, 361);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 25);
             this.label5.TabIndex = 0;
@@ -453,10 +362,6 @@
             this.txtBrandName1.TabIndex = 1;
             this.txtBrandName1.TextChanged += new System.EventHandler(this.txtBrandName1_TextChanged);
             // 
-            // guna2Elipse1
-            // 
-            this.guna2Elipse1.TargetControl = this.btnAdd;
-            // 
             // guna2Elipse2
             // 
             this.guna2Elipse2.TargetControl = this.btnChange;
@@ -471,6 +376,70 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(338, 147);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(115, 50);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "-- SELECT --",
+            "Available",
+            "Not Available"});
+            this.cmbStatus.Location = new System.Drawing.Point(678, 107);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(291, 37);
+            this.cmbStatus.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(673, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Status:";
+            // 
+            // txtBrandName
+            // 
+            this.txtBrandName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtBrandName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrandName.Location = new System.Drawing.Point(338, 107);
+            this.txtBrandName.Name = "txtBrandName";
+            this.txtBrandName.Size = new System.Drawing.Size(291, 34);
+            this.txtBrandName.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(333, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 25);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Brand Name: ";
+            // 
             // UserControlBrand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -478,10 +447,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcBrand);
             this.Name = "UserControlBrand";
-            this.Size = new System.Drawing.Size(747, 464);
+            this.Size = new System.Drawing.Size(1292, 843);
             this.tcBrand.ResumeLayout(false);
-            this.tpAddBrand.ResumeLayout(false);
-            this.tpAddBrand.PerformLayout();
             this.tpManageBrand.ResumeLayout(false);
             this.tpManageBrand.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).EndInit();
@@ -495,15 +462,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl tcBrand;
-        private System.Windows.Forms.TabPage tpAddBrand;
         private System.Windows.Forms.TabPage tpManageBrand;
         private System.Windows.Forms.TabPage tpOptions;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtBrandName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Button btnAdd;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
         private System.Windows.Forms.TextBox txtSearchBrandName;
@@ -527,5 +487,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtBrandName;
+        private System.Windows.Forms.Label label2;
     }
 }
