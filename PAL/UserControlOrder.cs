@@ -1209,5 +1209,6 @@ namespace Management_System.PAL
                 txtRate.Text = row.Cells[3].Value.ToString();
             }
         }
+
     }
 }
