@@ -61,5 +61,11 @@ namespace DataAccessLayer
             return data.ExecuteSQL("Brand_Delete", para);
          }
 
+
+        //---------------------------------------autofill phan combobox trong product----------------------------
+        public DataTable Auto_Fill_Combobox()
+        {
+            return data.GetData("Auto_Fill_Brand", null);
+        }
     }
 }

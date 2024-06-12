@@ -17,6 +17,10 @@ namespace BusinessLogicLayer
         {
             return dao.GetProductsByPriceRange(lowPrice, highPrice);
         }
+        public DataTable GetDataProduct()
+        {
+            return dao.GetDataProduct();
+        }
         public DataTable GetData()
         {
             return dao.GetData();

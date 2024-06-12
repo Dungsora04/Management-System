@@ -42,6 +42,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.lblYearSelect1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonthlyProfit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopSell)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.chartMonthlyProfit.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartMonthlyProfit.Legends.Add(legend1);
-            this.chartMonthlyProfit.Location = new System.Drawing.Point(15, 119);
+            this.chartMonthlyProfit.Location = new System.Drawing.Point(12, 150);
             this.chartMonthlyProfit.Name = "chartMonthlyProfit";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
@@ -66,11 +67,12 @@
             this.chartMonthlyProfit.Size = new System.Drawing.Size(885, 478);
             this.chartMonthlyProfit.TabIndex = 0;
             this.chartMonthlyProfit.Text = "chart1";
+            this.chartMonthlyProfit.MouseEnter += new System.EventHandler(this.chartMonthlyProfit_MouseEnter);
             // 
             // cmbYearSelect
             // 
             this.cmbYearSelect.FormattingEnabled = true;
-            this.cmbYearSelect.Location = new System.Drawing.Point(779, 230);
+            this.cmbYearSelect.Location = new System.Drawing.Point(776, 261);
             this.cmbYearSelect.Name = "cmbYearSelect";
             this.cmbYearSelect.Size = new System.Drawing.Size(121, 24);
             this.cmbYearSelect.TabIndex = 1;
@@ -80,7 +82,7 @@
             // 
             this.lblYearSelect.AutoSize = true;
             this.lblYearSelect.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblYearSelect.Location = new System.Drawing.Point(455, 88);
+            this.lblYearSelect.Location = new System.Drawing.Point(452, 119);
             this.lblYearSelect.Name = "lblYearSelect";
             this.lblYearSelect.Size = new System.Drawing.Size(33, 28);
             this.lblYearSelect.TabIndex = 5;
@@ -90,7 +92,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(257, 88);
+            this.label4.Location = new System.Drawing.Point(254, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(192, 28);
             this.label4.TabIndex = 4;
@@ -129,7 +131,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTopSell.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTopSell.EnableHeadersVisualStyles = false;
-            this.dgvTopSell.Location = new System.Drawing.Point(935, 119);
+            this.dgvTopSell.Location = new System.Drawing.Point(932, 150);
             this.dgvTopSell.MultiSelect = false;
             this.dgvTopSell.Name = "dgvTopSell";
             this.dgvTopSell.ReadOnly = true;
@@ -143,6 +145,7 @@
             this.dgvTopSell.ShowRowErrors = false;
             this.dgvTopSell.Size = new System.Drawing.Size(644, 444);
             this.dgvTopSell.TabIndex = 6;
+            this.dgvTopSell.MouseEnter += new System.EventHandler(this.dgvTopSell_MouseEnter);
             // 
             // Column2
             // 
@@ -164,7 +167,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1105, 88);
+            this.label1.Location = new System.Drawing.Point(1102, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 28);
             this.label1.TabIndex = 4;
@@ -174,11 +177,21 @@
             // 
             this.lblYearSelect1.AutoSize = true;
             this.lblYearSelect1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblYearSelect1.Location = new System.Drawing.Point(1332, 88);
+            this.lblYearSelect1.Location = new System.Drawing.Point(1329, 119);
             this.lblYearSelect1.Name = "lblYearSelect1";
             this.lblYearSelect1.Size = new System.Drawing.Size(33, 28);
             this.lblYearSelect1.TabIndex = 5;
             this.lblYearSelect1.Text = "{?}";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(685, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(298, 46);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Notable Statistics";
             // 
             // UserControlStats
             // 
@@ -189,6 +202,7 @@
             this.Controls.Add(this.lblYearSelect1);
             this.Controls.Add(this.lblYearSelect);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbYearSelect);
             this.Controls.Add(this.chartMonthlyProfit);
@@ -212,5 +226,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblYearSelect1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -38,6 +38,7 @@ namespace Management_System.PAL
         }
         Order order = new Order();
         OrderBUS orderbus = new OrderBUS();
+        ProductBUS productbus = new ProductBUS();
         string warranty = "";
         //string warranty_days = "";
         string product_detail = "";
@@ -78,7 +79,17 @@ namespace Management_System.PAL
             cmbDiscount.SelectedIndex = 1;
 
         }
-
+        public void Display()
+        {
+            try
+            {
+                dgvOrder_Product.DataSource = productbus.GetDataProduct();
+            }
+            catch
+            {
+                MessageBox.Show("View Product is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void AddClear()
         {
             cmbProduct.Items.Clear();
@@ -109,7 +120,7 @@ namespace Management_System.PAL
                 }
 
             }
-
+            Display();
         }
 
         private void EmptyBox1()
@@ -334,8 +345,6 @@ namespace Management_System.PAL
                     reader.Close();
                 }
             }
-
-
         }
 
         private void nudQuantity_ValueChanged(object sender, EventArgs e)
@@ -1210,5 +1219,16 @@ namespace Management_System.PAL
                 MessageBox.Show("CustomerNumer is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void dgvOrder_Product_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = dgvOrder_Product.Rows[e.RowIndex];
+                cmbProduct.SelectedItem = row.Cells[1].Value.ToString();
+                txtRate.Text = row.Cells[3].Value.ToString();
+            }
+        }
+
     }
 }

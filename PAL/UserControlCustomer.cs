@@ -135,6 +135,24 @@ namespace Management_System.PAL
                 txtCustomerName1.Text = row.Cells[1].Value.ToString();
                 txtNumber1.Text = row.Cells[2].Value.ToString();
 
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Date,p.Product_Name, p.Product_Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total \r\nFROM OrdersInfo i \r\nINNER JOIN Product p \r\nON i.Product_Id = p.Product_Id \r\nINNER JOIN Orders o \r\nON i.Orders_Id = o.Orders_Id \r\n--where o.Customer_Id = @Customer_Id \r\nwhere o.Customer_Id = @Customer_Id", connection)) //"+p_detals+"
+                    {
+                        command1.Parameters.AddWithValue("@Customer_Id", id);
+
+                        using (var reader = command1.ExecuteReader())
+                        {
+                            var dataTable = new DataTable();
+                            dataTable.Load(reader);
+                            dgvDetails.DataSource = dataTable;
+                        }
+                        lblTotal.Text = dgvDetails.Rows.Count.ToString();
+                    }
+                }
+
+
                 tcCustomer.SelectedTab = tpOptions;
             }
         }

@@ -45,5 +45,11 @@ namespace BusinessLogicLayer
         {
             return dao.Delete(ID);
         }
+
+        //---------------------------------------autofill phan combobox trong product----------------------------
+        public DataTable Auto_Fill_Combobox()
+        {
+            return dao.Auto_Fill_Combobox();
+        }
     }
 }
