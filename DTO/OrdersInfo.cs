@@ -12,5 +12,6 @@ namespace DTO
         public int Orders_Id { get; set; }
         public int Product_Id { get; set; }
         public int Orders_Quantity { get; set; }
+        public string Warranty {  get; set; }
     }
 }

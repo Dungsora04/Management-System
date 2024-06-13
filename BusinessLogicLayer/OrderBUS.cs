@@ -54,7 +54,10 @@ namespace BusinessLogicLayer
         {
             return dao.Insert(obj);
         }
-
+        public int InsertOrderInfo(OrdersInfo obj)
+        {
+            return dao.InsertOrderInfo(obj);
+        }
 
         public int Update(Order obj)
         {
@@ -64,6 +67,11 @@ namespace BusinessLogicLayer
         public int Delete(string ID)
         {
             return dao.Delete(ID);
+        }
+
+        public int DeleteOrdersInfo(string ID)
+        {
+            return dao.DeleteOrdersInfo(ID);
         }
     }
 }

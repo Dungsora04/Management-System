@@ -24,6 +24,11 @@ namespace BusinessLogicLayer
             return customerDAO.Insert(obj);
         }
 
+        public DataTable CheckCustomerExist(string name, string number)
+        {
+            return customerDAO.CheckCustomerExist(name,number);
+        }
+
         public DataTable GetDataByName(string name)
         {
             return customerDAO.GetDataByName(name);

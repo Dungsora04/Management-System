@@ -77,6 +77,17 @@ namespace DataAccessLayer
             return data.ExecuteSQL("Order_Insert", para);
         }
 
+        public int InsertOrderInfo(OrdersInfo obj)
+        {
+            SqlParameter[] para = {
+                        new SqlParameter("Orders_Id", obj.Orders_Id),
+                        new SqlParameter("Product_Id", obj.Product_Id),
+                        new SqlParameter("Orders_Quantity", obj.Orders_Quantity),
+                        new SqlParameter("Warranty", obj.Warranty),
+                    };
+            return data.ExecuteSQL("OrderInfo_Insert", para);
+        }
+
         public int Update(Order obj)
         {
             SqlParameter[] para = {
@@ -99,6 +110,14 @@ namespace DataAccessLayer
                 new SqlParameter("Orders_Id", Convert.ToInt32(ID))
             };
             return data.ExecuteSQL("Order_Delete", para);
+        }
+
+        public int DeleteOrdersInfo(string ID)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("Orders_Id", Convert.ToInt32(ID))
+            };
+            return data.ExecuteSQL("OrdersInfo_Delete", para);
         }
     }
 }
