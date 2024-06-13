@@ -22,8 +22,22 @@ namespace Management_System.PAL
         public UserControlCategory()
         {
             InitializeComponent();
-            dgvCategory.DataSource = categorybus.GetData();
-            lblTotal.Text = dgvCategory.Rows.Count.ToString();
+            txtCategoryName.Clear();
+            dgvCategory.Columns[0].Visible = false;
+
+            try
+            {
+                dgvCategory.DataSource = categorybus.GetData();
+                DataTable a;
+                a = categorybus.GetData();
+                //MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblTotal.Text = dgvCategory.Rows.Count.ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("View Brand is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         public void EmptyBox()
@@ -61,22 +75,35 @@ namespace Management_System.PAL
             {
                 category.CategoryName = txtCategoryName.Text;
                 category.CategoryStatus = cmbStatus.SelectedItem.ToString();
-                txtSearchCategoryName.Clear();
-                dgvCategory.Columns[0].Visible = false;
-              
-                    dgvCategory.DataSource = categorybus.GetData();
-                    lblTotal.Text = dgvCategory.Rows.Count.ToString();
-              
+
                 try
                 {
                     categorybus.Insert(category);
-                    MessageBox.Show("Adding Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtSearchCategoryName.Clear();
+                    dgvCategory.Columns[0].Visible = false;
+
+                    try
+                    {
+                        dgvCategory.DataSource = categorybus.GetData();
+                        DataTable a;
+                        a = categorybus.GetData();
+                        //MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblTotal.Text = dgvCategory.Rows.Count.ToString();
+
+                    }
+                    catch
+                    {
+                        MessageBox.Show("View Brand is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     EmptyBox();
+
                 }
                 catch
                 {
                     MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            
                 /*
                  using (SqlConnection connection = new SqlConnection(connectionString))
                 {
