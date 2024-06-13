@@ -34,6 +34,8 @@ namespace Management_System.PAL
         public UserControlUser()
         {
             InitializeComponent();
+            dgvUser.DataSource = userBUS.GetData();
+            lblTotal.Text = dgvUser.Rows.Count.ToString();
         }
 
         public void EmptyBox()
@@ -172,6 +174,7 @@ namespace Management_System.PAL
 
         private void tpManagerUser_Enter(object sender, EventArgs e)
         {
+            EmptyBox();
             EmptyBox1();
             txtSearchUserName.Clear();
             dgvUser.Columns[0].Visible = false;
@@ -460,6 +463,7 @@ namespace Management_System.PAL
 
         private void tpManagerRole_Enter(object sender, EventArgs e)
         {
+            EmptyBox();
             txtSearchRoleName.Clear();
             dgvRole.Columns[0].Visible = false;
             using (SqlConnection connection = new SqlConnection(connectionString))

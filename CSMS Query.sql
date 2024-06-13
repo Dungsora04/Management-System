@@ -420,10 +420,12 @@ END
 CREATE PROC Product_Select_data
 AS
 BEGIN
-	SELECT Product_Id, Product_Name, Product_Image,Product_Price FROM Product
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price 
+	FROM Product
+	WHERE Product_Status = 'Available'
 END
 GO
-
+drop PROC Product_Select_data
 --------------------Customer-------------
 GO
 CREATE PROC Customer_Select_All
@@ -478,3 +480,12 @@ AS
 BEGIN
 DELETE FROM Customer WHERE Customer_Id = @Customer_Id
 END
+drop PROC Product_Select_data
+CREATE PROC Product_Select_data
+AS
+BEGIN
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price 
+	FROM Product
+	WHERE Product_Status = 'Available'
+END
+GO

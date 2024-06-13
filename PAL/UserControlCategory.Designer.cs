@@ -34,6 +34,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlCategory));
             this.tcCategory = new System.Windows.Forms.TabControl();
             this.tpManageCategory = new System.Windows.Forms.TabPage();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCategoryName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtSearchCategoryName = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,11 +61,6 @@
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.guna2Elipse3 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCategoryName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tcCategory.SuspendLayout();
             this.tpManageCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
@@ -79,7 +79,7 @@
             this.tcCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tcCategory.Name = "tcCategory";
             this.tcCategory.SelectedIndex = 0;
-            this.tcCategory.Size = new System.Drawing.Size(1315, 942);
+            this.tcCategory.Size = new System.Drawing.Size(1479, 1178);
             this.tcCategory.TabIndex = 0;
             // 
             // tpManageCategory
@@ -100,19 +100,87 @@
             this.tpManageCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpManageCategory.Name = "tpManageCategory";
             this.tpManageCategory.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpManageCategory.Size = new System.Drawing.Size(1307, 904);
+            this.tpManageCategory.Size = new System.Drawing.Size(1471, 1136);
             this.tpManageCategory.TabIndex = 1;
             this.tpManageCategory.Text = "Manage Category";
             this.tpManageCategory.UseVisualStyleBackColor = true;
             this.tpManageCategory.Enter += new System.EventHandler(this.tpManageCategory_Enter);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(402, 281);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(129, 62);
+            this.btnAdd.TabIndex = 16;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "-- SELECT --",
+            "Available",
+            "Not Available"});
+            this.cmbStatus.Location = new System.Drawing.Point(783, 209);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(327, 37);
+            this.cmbStatus.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(777, 174);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 29);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Status:";
+            // 
+            // txtCategoryName
+            // 
+            this.txtCategoryName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoryName.Location = new System.Drawing.Point(402, 209);
+            this.txtCategoryName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCategoryName.Name = "txtCategoryName";
+            this.txtCategoryName.Size = new System.Drawing.Size(327, 35);
+            this.txtCategoryName.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(396, 174);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(193, 29);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Category Name: ";
+            // 
             // txtSearchCategoryName
             // 
             this.txtSearchCategoryName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSearchCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchCategoryName.Location = new System.Drawing.Point(494, 439);
+            this.txtSearchCategoryName.Location = new System.Drawing.Point(556, 549);
+            this.txtSearchCategoryName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchCategoryName.Name = "txtSearchCategoryName";
-            this.txtSearchCategoryName.Size = new System.Drawing.Size(268, 30);
+            this.txtSearchCategoryName.Size = new System.Drawing.Size(301, 35);
             this.txtSearchCategoryName.TabIndex = 10;
             this.txtSearchCategoryName.TextChanged += new System.EventHandler(this.txtSearchCategoryName_TextChanged);
             // 
@@ -122,9 +190,9 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(79, 856);
+            this.lblTotal.Location = new System.Drawing.Point(89, 1070);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(37, 25);
+            this.lblTotal.Size = new System.Drawing.Size(43, 29);
             this.lblTotal.TabIndex = 5;
             this.lblTotal.Text = "{?}";
             // 
@@ -134,9 +202,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(23, 856);
+            this.label6.Location = new System.Drawing.Point(26, 1070);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 25);
+            this.label6.Size = new System.Drawing.Size(80, 29);
             this.label6.TabIndex = 6;
             this.label6.Text = "Total: ";
             // 
@@ -174,7 +242,8 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCategory.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCategory.EnableHeadersVisualStyles = false;
-            this.dgvCategory.Location = new System.Drawing.Point(9, 498);
+            this.dgvCategory.Location = new System.Drawing.Point(10, 622);
+            this.dgvCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCategory.MultiSelect = false;
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.ReadOnly = true;
@@ -186,7 +255,7 @@
             this.dgvCategory.ShowCellToolTips = false;
             this.dgvCategory.ShowEditingIcon = false;
             this.dgvCategory.ShowRowErrors = false;
-            this.dgvCategory.Size = new System.Drawing.Size(1273, 300);
+            this.dgvCategory.Size = new System.Drawing.Size(1432, 375);
             this.dgvCategory.TabIndex = 7;
             this.dgvCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellClick);
             // 
@@ -220,9 +289,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(489, 411);
+            this.label5.Location = new System.Drawing.Point(550, 514);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 25);
+            this.label5.Size = new System.Drawing.Size(193, 29);
             this.label5.TabIndex = 8;
             this.label5.Text = "Category Name: ";
             // 
@@ -231,9 +300,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            this.label4.Location = new System.Drawing.Point(4, 3);
+            this.label4.Location = new System.Drawing.Point(4, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 28);
+            this.label4.Size = new System.Drawing.Size(210, 32);
             this.label4.TabIndex = 9;
             this.label4.Text = "Manage Category";
             // 
@@ -243,9 +312,10 @@
             this.picSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearch.Image = ((System.Drawing.Image)(resources.GetObject("picSearch.Image")));
-            this.picSearch.Location = new System.Drawing.Point(768, 439);
+            this.picSearch.Location = new System.Drawing.Point(864, 549);
+            this.picSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picSearch.Name = "picSearch";
-            this.picSearch.Size = new System.Drawing.Size(32, 32);
+            this.picSearch.Size = new System.Drawing.Size(36, 40);
             this.picSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSearch.TabIndex = 11;
             this.picSearch.TabStop = false;
@@ -265,7 +335,7 @@
             this.tpOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpOptions.Name = "tpOptions";
             this.tpOptions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpOptions.Size = new System.Drawing.Size(739, 426);
+            this.tpOptions.Size = new System.Drawing.Size(1471, 1136);
             this.tpOptions.TabIndex = 2;
             this.tpOptions.Text = "Options";
             this.tpOptions.Enter += new System.EventHandler(this.tpOptions_Enter);
@@ -279,9 +349,10 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Location = new System.Drawing.Point(232, 179);
+            this.btnRemove.Location = new System.Drawing.Point(569, 530);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(115, 50);
+            this.btnRemove.Size = new System.Drawing.Size(129, 62);
             this.btnRemove.TabIndex = 4;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -295,9 +366,10 @@
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.Color.White;
-            this.btnChange.Location = new System.Drawing.Point(56, 179);
+            this.btnChange.Location = new System.Drawing.Point(371, 530);
+            this.btnChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(115, 50);
+            this.btnChange.Size = new System.Drawing.Size(129, 62);
             this.btnChange.TabIndex = 3;
             this.btnChange.Text = "Change";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -313,9 +385,10 @@
             "-- SELECT --",
             "Available",
             "Not Available"});
-            this.cmbStatus1.Location = new System.Drawing.Point(392, 121);
+            this.cmbStatus1.Location = new System.Drawing.Point(749, 457);
+            this.cmbStatus1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbStatus1.Name = "cmbStatus1";
-            this.cmbStatus1.Size = new System.Drawing.Size(291, 33);
+            this.cmbStatus1.Size = new System.Drawing.Size(327, 37);
             this.cmbStatus1.TabIndex = 2;
             // 
             // label7
@@ -324,9 +397,9 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(387, 93);
+            this.label7.Location = new System.Drawing.Point(743, 422);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.Size = new System.Drawing.Size(85, 29);
             this.label7.TabIndex = 0;
             this.label7.Text = "Status:";
             // 
@@ -334,9 +407,10 @@
             // 
             this.txtCategoryName1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCategoryName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoryName1.Location = new System.Drawing.Point(56, 121);
+            this.txtCategoryName1.Location = new System.Drawing.Point(371, 457);
+            this.txtCategoryName1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCategoryName1.Name = "txtCategoryName1";
-            this.txtCategoryName1.Size = new System.Drawing.Size(291, 30);
+            this.txtCategoryName1.Size = new System.Drawing.Size(327, 35);
             this.txtCategoryName1.TabIndex = 1;
             // 
             // label8
@@ -345,9 +419,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(51, 93);
+            this.label8.Location = new System.Drawing.Point(365, 422);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(160, 25);
+            this.label8.Size = new System.Drawing.Size(193, 29);
             this.label8.TabIndex = 0;
             this.label8.Text = "Category Name: ";
             // 
@@ -358,7 +432,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
             this.label9.Location = new System.Drawing.Point(3, 2);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 28);
+            this.label9.Size = new System.Drawing.Size(99, 32);
             this.label9.TabIndex = 0;
             this.label9.Text = "Options";
             // 
@@ -370,79 +444,15 @@
             // 
             this.guna2Elipse3.TargetControl = this.btnRemove;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(358, 165);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 50);
-            this.btnAdd.TabIndex = 16;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "-- SELECT --",
-            "Available",
-            "Not Available"});
-            this.cmbStatus.Location = new System.Drawing.Point(697, 107);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(291, 33);
-            this.cmbStatus.TabIndex = 15;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(692, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 25);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Status:";
-            // 
-            // txtCategoryName
-            // 
-            this.txtCategoryName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoryName.Location = new System.Drawing.Point(358, 107);
-            this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.Size = new System.Drawing.Size(291, 30);
-            this.txtCategoryName.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(353, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 25);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Category Name: ";
-            // 
             // UserControlCategory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcCategory);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserControlCategory";
-            this.Size = new System.Drawing.Size(1315, 942);
+            this.Size = new System.Drawing.Size(1479, 1178);
             this.tcCategory.ResumeLayout(false);
             this.tpManageCategory.ResumeLayout(false);
             this.tpManageCategory.PerformLayout();
