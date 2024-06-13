@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BrandDAO.cs" />
     <Compile Include="CategoryDAO.cs" />
+    <Compile Include="CustomerDAO.cs" />
     <Compile Include="DataConnect.cs" />
     <Compile Include="OrderDAO.cs" />
     <Compile Include="ProductDAO.cs" />

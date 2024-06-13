@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Brand.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrdersInfo.cs" />
     <Compile Include="Product.cs" />
