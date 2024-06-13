@@ -28,6 +28,11 @@ namespace BusinessLogicLayer
             return dao.GetData();
         }
 
+        public DataTable SearchProductinOrder(string name)
+        {
+            return dao.SearchProductinOrder(name);
+        }
+
         public DataTable GetDataProductAvailable()
         {
             return dao.GetDataProductAvailable();

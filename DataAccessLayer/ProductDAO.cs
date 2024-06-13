@@ -33,6 +33,14 @@ namespace DataAccessLayer
             return data.GetData("Product_Select_data", null);
         }
 
+        public DataTable SearchProductinOrder(string name)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("Product_Name", name)
+            };
+            return data.GetData("Product_Select_data_ByName", para);
+        }
+
         public DataTable GetDataProductAvailable()
         {
             return data.GetData("Product_Select_Available", null);

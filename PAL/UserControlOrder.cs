@@ -206,7 +206,7 @@ namespace Management_System.PAL
 
                 if (nudQuantity.Value > 0)
                 {
-                    
+
                     DataTable a;
                     a = productbus.GetDataProductWarranty((cmbProduct.SelectedItem as Item).Text.ToString());
                     for (int i = 0; i < a.Rows.Count; i++)
@@ -1003,9 +1003,9 @@ namespace Management_System.PAL
                     {
                         orderbus.DeleteOrdersInfo(Id);
                         orderbus.Delete(Id);
-                        
+
                         MessageBox.Show($"Row with ID {Id} deleted successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                     }
                     catch
                     {
@@ -1133,7 +1133,7 @@ namespace Management_System.PAL
                 {
                     orderbus.Update(order);
                     MessageBox.Show("Update Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                 }
                 catch
                 {
@@ -1338,7 +1338,8 @@ namespace Management_System.PAL
             {
                 DataTable a;
                 a = orderbus.GetDataByNumber(mtbCustomerNumber.Text);
-                if(a.Rows.Count == 1) {
+                if (a.Rows.Count == 1)
+                {
                     txtCustomerName.Text = a.Rows[0][2].ToString();
                 }
                 else
@@ -1362,5 +1363,17 @@ namespace Management_System.PAL
             }
         }
 
+        private void txtSearchProductName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dgvOrder_Product.DataSource = productbus.SearchProductinOrder(txtSearchProductName.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
     }
 }

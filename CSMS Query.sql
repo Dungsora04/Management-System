@@ -1,3 +1,15 @@
+GO
+CREATE PROC Product_Select_data_ByName
+@Product_Name NVARCHAR(150)
+AS
+BEGIN
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price FROM Product
+	WHERE Product_Name LIKE CONCAT('%', @Product_Name, '%');
+END
+
+
+
+
 CREATE TABLE Roles (
     Roles_Id INT IDENTITY(1,1),
     Roles_Name VARCHAR(150) UNIQUE,

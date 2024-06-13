@@ -313,6 +313,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlOrder.resx">
       <DependentUpon>UserControlOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PAL\UserControlProduct.resx">
       <DependentUpon>UserControlProduct.cs</DependentUpon>
