@@ -368,5 +368,19 @@ namespace Management_System.PAL
 
             EmptyBox();
         }
+
+        private void txtSearchCustomerNumber_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                dgvCustomer.DataSource = customerBUS.GetDataByNumber(txtSearchCustomerNumber.Text);
+                lblTotal.Text = dgvCustomer.Rows.Count.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Search Bar is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

@@ -18,7 +18,13 @@ namespace DataAccessLayer
         {
             return data.GetData("Customer_Select_All", null);
         }
-
+        public DataTable GetDataByNumber(string Number)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("Customer_Number", Number)
+            };
+            return data.GetData("Customer_Select_ByNumber", para);
+        }
         public int Insert(Customer obj)
         {
             SqlParameter[] para = {

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCustomer = new System.Windows.Forms.TabControl();
             this.tpManageCustomer = new System.Windows.Forms.TabPage();
             this.mtbCustomerNumber = new System.Windows.Forms.MaskedTextBox();
@@ -65,12 +65,16 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtSearchCustomerNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tcCustomer.SuspendLayout();
             this.tpManageCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSearch)).BeginInit();
             this.tpOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcCustomer
@@ -79,6 +83,7 @@
             this.tcCustomer.Controls.Add(this.tpManageCustomer);
             this.tcCustomer.Controls.Add(this.tpOptions);
             this.tcCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tcCustomer.Location = new System.Drawing.Point(0, 0);
             this.tcCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tcCustomer.Name = "tcCustomer";
@@ -88,6 +93,9 @@
             // 
             // tpManageCustomer
             // 
+            this.tpManageCustomer.Controls.Add(this.txtSearchCustomerNumber);
+            this.tpManageCustomer.Controls.Add(this.label10);
+            this.tpManageCustomer.Controls.Add(this.pictureBox1);
             this.tpManageCustomer.Controls.Add(this.mtbCustomerNumber);
             this.tpManageCustomer.Controls.Add(this.txtSearchCustomerName);
             this.tpManageCustomer.Controls.Add(this.lblTotal);
@@ -104,7 +112,7 @@
             this.tpManageCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpManageCustomer.Name = "tpManageCustomer";
             this.tpManageCustomer.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tpManageCustomer.Size = new System.Drawing.Size(1330, 706);
+            this.tpManageCustomer.Size = new System.Drawing.Size(1330, 697);
             this.tpManageCustomer.TabIndex = 0;
             this.tpManageCustomer.Text = "Manage Customer";
             this.tpManageCustomer.UseVisualStyleBackColor = true;
@@ -114,20 +122,22 @@
             // 
             this.mtbCustomerNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mtbCustomerNumber.Culture = new System.Globalization.CultureInfo("");
+            this.mtbCustomerNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.mtbCustomerNumber.Location = new System.Drawing.Point(591, 188);
             this.mtbCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mtbCustomerNumber.Mask = "0000-000-000";
             this.mtbCustomerNumber.Name = "mtbCustomerNumber";
-            this.mtbCustomerNumber.Size = new System.Drawing.Size(327, 26);
+            this.mtbCustomerNumber.Size = new System.Drawing.Size(327, 35);
             this.mtbCustomerNumber.TabIndex = 23;
             // 
             // txtSearchCustomerName
             // 
             this.txtSearchCustomerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSearchCustomerName.Location = new System.Drawing.Point(460, 292);
+            this.txtSearchCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearchCustomerName.Location = new System.Drawing.Point(292, 287);
             this.txtSearchCustomerName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchCustomerName.Name = "txtSearchCustomerName";
-            this.txtSearchCustomerName.Size = new System.Drawing.Size(301, 26);
+            this.txtSearchCustomerName.Size = new System.Drawing.Size(301, 35);
             this.txtSearchCustomerName.TabIndex = 21;
             this.txtSearchCustomerName.TextChanged += new System.EventHandler(this.txtSearchCustomerName_TextChanged);
             // 
@@ -135,11 +145,11 @@
             // 
             this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(71, 616);
+            this.lblTotal.Location = new System.Drawing.Point(94, 607);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(30, 25);
+            this.lblTotal.Size = new System.Drawing.Size(43, 29);
             this.lblTotal.TabIndex = 17;
             this.lblTotal.Text = "{?}";
             // 
@@ -147,11 +157,11 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(8, 616);
+            this.label6.Location = new System.Drawing.Point(8, 607);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 25);
+            this.label6.Size = new System.Drawing.Size(80, 29);
             this.label6.TabIndex = 18;
             this.label6.Text = "Total: ";
             // 
@@ -166,30 +176,30 @@
             this.dgvCustomer.BackgroundColor = System.Drawing.Color.White;
             this.dgvCustomer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvCustomer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCustomer.ColumnHeadersHeight = 29;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(151)))), ((int)(((byte)(196)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(151)))), ((int)(((byte)(196)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomer.EnableHeadersVisualStyles = false;
-            this.dgvCustomer.Location = new System.Drawing.Point(12, 334);
+            this.dgvCustomer.Location = new System.Drawing.Point(12, 329);
             this.dgvCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCustomer.MultiSelect = false;
             this.dgvCustomer.Name = "dgvCustomer";
@@ -236,7 +246,7 @@
             this.picSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearch.Image = global::Management_System.Properties.Resources.search1;
-            this.picSearch.Location = new System.Drawing.Point(762, 292);
+            this.picSearch.Location = new System.Drawing.Point(594, 287);
             this.picSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picSearch.Name = "picSearch";
             this.picSearch.Size = new System.Drawing.Size(30, 33);
@@ -248,11 +258,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(456, 264);
+            this.label5.Location = new System.Drawing.Point(287, 254);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 25);
+            this.label5.Size = new System.Drawing.Size(200, 29);
             this.label5.TabIndex = 20;
             this.label5.Text = "Customer Name: ";
             // 
@@ -277,32 +287,33 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(586, 159);
+            this.label3.Location = new System.Drawing.Point(586, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 25);
+            this.label3.Size = new System.Drawing.Size(188, 29);
             this.label3.TabIndex = 8;
             this.label3.Text = "Phone Number: ";
             // 
             // txtCustomerName
             // 
             this.txtCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCustomerName.Location = new System.Drawing.Point(221, 188);
             this.txtCustomerName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(327, 26);
+            this.txtCustomerName.Size = new System.Drawing.Size(327, 35);
             this.txtCustomerName.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(216, 159);
+            this.label2.Location = new System.Drawing.Point(216, 155);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 25);
+            this.label2.Size = new System.Drawing.Size(200, 29);
             this.label2.TabIndex = 9;
             this.label2.Text = "Customer Name: ";
             // 
@@ -331,7 +342,7 @@
             this.tpOptions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpOptions.Name = "tpOptions";
             this.tpOptions.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tpOptions.Size = new System.Drawing.Size(1330, 706);
+            this.tpOptions.Size = new System.Drawing.Size(1330, 697);
             this.tpOptions.TabIndex = 1;
             this.tpOptions.Text = "Options";
             this.tpOptions.UseVisualStyleBackColor = true;
@@ -348,14 +359,14 @@
             this.dgvDetails.BackgroundColor = System.Drawing.Color.White;
             this.dgvDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetails.ColumnHeadersHeight = 29;
             this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -364,16 +375,16 @@
             this.Column15,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(151)))), ((int)(((byte)(196)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(151)))), ((int)(((byte)(196)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDetails.EnableHeadersVisualStyles = false;
-            this.dgvDetails.Location = new System.Drawing.Point(37, 370);
+            this.dgvDetails.Location = new System.Drawing.Point(37, 365);
             this.dgvDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDetails.MultiSelect = false;
             this.dgvDetails.Name = "dgvDetails";
@@ -435,7 +446,7 @@
             this.txtNumber1.Location = new System.Drawing.Point(684, 211);
             this.txtNumber1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNumber1.Name = "txtNumber1";
-            this.txtNumber1.Size = new System.Drawing.Size(327, 26);
+            this.txtNumber1.Size = new System.Drawing.Size(327, 35);
             this.txtNumber1.TabIndex = 20;
             // 
             // label4
@@ -456,7 +467,7 @@
             this.txtCustomerName1.Location = new System.Drawing.Point(314, 211);
             this.txtCustomerName1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCustomerName1.Name = "txtCustomerName1";
-            this.txtCustomerName1.Size = new System.Drawing.Size(327, 26);
+            this.txtCustomerName1.Size = new System.Drawing.Size(327, 35);
             this.txtCustomerName1.TabIndex = 19;
             // 
             // label7
@@ -518,6 +529,42 @@
             this.label11.TabIndex = 11;
             this.label11.Text = "../Options";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::Management_System.Properties.Resources.search1;
+            this.pictureBox1.Location = new System.Drawing.Point(971, 287);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtSearchCustomerNumber
+            // 
+            this.txtSearchCustomerNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtSearchCustomerNumber.Location = new System.Drawing.Point(664, 285);
+            this.txtSearchCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearchCustomerNumber.Name = "txtSearchCustomerNumber";
+            this.txtSearchCustomerNumber.Size = new System.Drawing.Size(301, 35);
+            this.txtSearchCustomerNumber.TabIndex = 28;
+            this.txtSearchCustomerNumber.TextChanged += new System.EventHandler(this.txtSearchCustomerNumber_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(659, 252);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(222, 29);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Customer Number: ";
+            // 
             // UserControlCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -535,6 +582,7 @@
             this.tpOptions.ResumeLayout(false);
             this.tpOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -573,5 +621,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.MaskedTextBox mtbCustomerNumber;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtSearchCustomerNumber;
+        private System.Windows.Forms.Label label10;
     }
 }
