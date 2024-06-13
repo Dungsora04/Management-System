@@ -3,9 +3,11 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BusinessLogicLayer
 {
@@ -26,6 +28,11 @@ namespace BusinessLogicLayer
             return dao.GetData();
         }
 
+        public DataTable GetDataProductAvailable()
+        {
+            return dao.GetDataProductAvailable();
+        }
+
         public DataTable GetDataByID(string id)
         {
             return dao.GetDataByID(id);
@@ -34,6 +41,11 @@ namespace BusinessLogicLayer
         public DataTable GetDataByName(string name)
         {
             return dao.GetDataByName(name);
+        }
+
+        public DataTable GetDataProductWarranty(string name)
+        {
+            return dao.GetDataProductWarranty(name);
         }
 
         public int Insert(Product obj)

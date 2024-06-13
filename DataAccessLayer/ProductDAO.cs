@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataAccessLayer
 {
@@ -31,6 +32,20 @@ namespace DataAccessLayer
         {
             return data.GetData("Product_Select_data", null);
         }
+
+        public DataTable GetDataProductAvailable()
+        {
+            return data.GetData("Product_Select_Available", null);
+        }
+
+        public DataTable GetDataProductWarranty(string Name)
+        {
+            SqlParameter[] para ={
+                new SqlParameter("Product_Name", Name)
+            };
+            return data.GetData("Product_Select_Warranty_Price", para);
+        }
+
         public DataTable GetDataByID(string ID)
         {
             SqlParameter[] para ={

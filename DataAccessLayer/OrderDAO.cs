@@ -32,6 +32,7 @@ namespace DataAccessLayer
             return data.GetData("Order_Select_Customer", para);
         }
 
+
         public DataTable GetDataDGV()
         {
             return data.GetData("Order_Select_DGV", null);

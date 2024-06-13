@@ -100,27 +100,38 @@ namespace Management_System.PAL
             txtTotal.Clear();
             nudDiscount.Value = 0;
             cmbDiscount.SelectedIndex = 1;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            DataTable a;
+            a = productbus.GetDataProductAvailable();
+            for (int i = 0; i < a.Rows.Count; i++)
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT Product_Name,Product_Id From Product Where Product_Status = 'Available' order By Product_Name", connection))
-                {
-
-                    using (SqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Item item = new Item();
-                            item.Text = reader.GetString(0);
-                            item.Id = reader.GetInt32(1);
-                            cmbProduct.Items.Add(item);
-                        }
-                        reader.Close();
-                    }
-                    command1.ExecuteNonQuery();
-                }
-
+                Item item = new Item();
+                item.Text = a.Rows[i][0].ToString();
+                item.Id = Convert.ToInt32(a.Rows[i][1]);
+                cmbProduct.Items.Add(item);
             }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Product_Name,Product_Id From Product Where Product_Status = 'Available' order By Product_Name", connection))
+            //    {
+
+            //        using (SqlDataReader reader = command1.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                Item item = new Item();
+            //                item.Text = reader.GetString(0);
+            //                item.Id = reader.GetInt32(1);
+            //                cmbProduct.Items.Add(item);
+            //            }
+            //            reader.Close();
+            //        }
+            //        command1.ExecuteNonQuery();
+            //    }
+
+            //}
             Display();
         }
 
@@ -188,25 +199,35 @@ namespace Management_System.PAL
 
                 if (nudQuantity.Value > 0)
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    
+                    DataTable a;
+                    a = productbus.GetDataProductWarranty((cmbProduct.SelectedItem as Item).Text.ToString());
+                    for (int i = 0; i < a.Rows.Count; i++)
                     {
-                        connection.Open();
-
-                        //var rate_hold = -1;
-                        using (SqlCommand command2 = new SqlCommand("SELECT Product_Warranty FROM Product WHERE Product_Name = @Product_Name;", connection))
-                        {
-                            command2.Parameters.AddWithValue("@Product_Name", (cmbProduct.SelectedItem as Item).Text.ToString());
-                            SqlDataReader reader1 = command2.ExecuteReader();
-
-                            while (reader1.Read())
-                            {
-                                string Product_War = reader1["Product_Warranty"].ToString();
-                                warranty = Product_War;
-
-                            }
-                            reader1.Close();
-                        }
+                        Item item = new Item();
+                        item.Text = a.Rows[i][0].ToString();
+                        item.Id = Convert.ToInt32(a.Rows[i][1]);
+                        cmbProduct.Items.Add(item);
                     }
+                    //using (SqlConnection connection = new SqlConnection(connectionString))
+                    //{
+                    //    connection.Open();
+
+                    //    //var rate_hold = -1;
+                    //    using (SqlCommand command2 = new SqlCommand("SELECT Product_Warranty FROM Product WHERE Product_Name = @Product_Name;", connection))
+                    //    {
+                    //        command2.Parameters.AddWithValue("@Product_Name", (cmbProduct.SelectedItem as Item).Text.ToString());
+                    //        SqlDataReader reader1 = command2.ExecuteReader();
+
+                    //        while (reader1.Read())
+                    //        {
+                    //            string Product_War = reader1["Product_Warranty"].ToString();
+                    //            warranty = Product_War;
+
+                    //        }
+                    //        reader1.Close();
+                    //    }
+                    //}
                     int rate, total;
                     Int32.TryParse(txtRate.Text, out rate);
                     Int32.TryParse(txtTotal.Text, out total);
@@ -311,41 +332,51 @@ namespace Management_System.PAL
 
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            DataTable a;
+            a = productbus.GetDataProductWarranty(cmbProduct.SelectedItem.ToString());
+            if (a.Rows.Count > 0)
             {
-                connection.Open();
-
-                var rate_hold = -1;
-                using (SqlCommand command2 = new SqlCommand("SELECT Product_Warranty FROM Product WHERE Product_Name = @Product_Name;", connection))
-                {
-                    command2.Parameters.AddWithValue("@Product_Name", cmbProduct.SelectedItem.ToString());
-                    SqlDataReader reader1 = command2.ExecuteReader();
-
-                    while (reader1.Read())
-                    {
-                        string Product_War = reader1["Product_Warranty"].ToString();
-                        warranty = Product_War;
-
-                    }
-                    reader1.Close();
-                }
-                using (SqlCommand command1 = new SqlCommand("SELECT Product_Price FROM Product WHERE Product_Name = @ProductName;", connection))
-                {
-                    command1.Parameters.AddWithValue("@ProductName", cmbProduct.SelectedItem.ToString());
-                    SqlDataReader reader = command1.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        rate_hold = reader.GetInt32(0);
-                    }
-                    if (rate_hold != -1)
-                    {
-                        txtRate.Text = rate_hold.ToString();
-                    }
-
-                    //command1.ExecuteNonQuery();
-                    reader.Close();
-                }
+                warranty = a.Rows[0][0].ToString();
+                txtRate.Text = a.Rows[0][1].ToString();
+                //MessageBox.Show("1", a.Rows[0][0].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+
+
+            //    using (SqlCommand command2 = new SqlCommand("SELECT Product_Warranty FROM Product WHERE Product_Name = @Product_Name;", connection))
+            //    {
+            //        command2.Parameters.AddWithValue("@Product_Name", cmbProduct.SelectedItem.ToString());
+            //        SqlDataReader reader1 = command2.ExecuteReader();
+
+            //        while (reader1.Read())
+            //        {
+            //            string Product_War = reader1["Product_Warranty"].ToString();
+            //            warranty = Product_War;
+
+            //        }
+            //        reader1.Close();
+            //    }
+            //    using (SqlCommand command1 = new SqlCommand("SELECT Product_Price FROM Product WHERE Product_Name = @ProductName;", connection))
+            //    {
+            //        command1.Parameters.AddWithValue("@ProductName", cmbProduct.SelectedItem.ToString());
+            //        SqlDataReader reader = command1.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            rate_hold = reader.GetInt32(0);
+            //        }
+            //        if (rate_hold != -1)
+            //        {
+            //            txtRate.Text = rate_hold.ToString();
+            //        }
+
+            //        //command1.ExecuteNonQuery();
+            //        reader.Close();
+            //    }
+            //}
         }
 
         private void nudQuantity_ValueChanged(object sender, EventArgs e)
