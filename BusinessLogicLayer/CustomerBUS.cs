@@ -18,7 +18,10 @@ namespace BusinessLogicLayer
         {
             return customerDAO.GetData();
         }
-
+        public DataTable GetDataByNumber(string number)
+        {
+            return customerDAO.GetDataByNumber(number);
+        }
         public int Insert(Customer obj)
         {
             return customerDAO.Insert(obj);

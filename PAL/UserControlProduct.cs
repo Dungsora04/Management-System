@@ -39,7 +39,7 @@ namespace Management_System.PAL
         private List<ProductDto> products;
         private List<BrandDto> brands;
         private List<CategoryDto> categories;
-
+        int a = 0;
 
         private byte[] GetImageBytes(Image image)
         {
@@ -1060,17 +1060,25 @@ namespace Management_System.PAL
             //}
 
             List<ProductDto> filteredProducts;
-
+            
             if (cmbBrand2.SelectedIndex != 0 && cmbCategory2.SelectedIndex != 0)
             {
                 var brandName = (cmbBrand2.SelectedItem as Item).Text;
                 var categoryName = (cmbCategory2.SelectedItem as Item).Text;
                 filteredProducts = products.Where(p => p.Brand_Name == brandName && p.Category_Name == categoryName).ToList();
+                a++;
             }
             else if (cmbBrand2.SelectedIndex != 0)
             {
                 var brandName = (cmbBrand2.SelectedItem as Item).Text;
                 filteredProducts = products.Where(p => p.Brand_Name == brandName).ToList();
+                a++;
+            }
+            
+            else if (a != 0)
+            {
+                var categoryName = (cmbCategory2.SelectedItem as Item).Text; // chỉ cần không sử dụng cái này lần đầu tiên là được
+                filteredProducts = products.Where(p => p.Category_Name == categoryName).ToList();
             }
             else
             {
@@ -1164,6 +1172,11 @@ namespace Management_System.PAL
                 var brandName = (cmbBrand2.SelectedItem as Item).Text;
                 var categoryName = (cmbCategory2.SelectedItem as Item).Text;
                 filteredProducts = products.Where(p => p.Brand_Name == brandName && p.Category_Name == categoryName).ToList();
+            }
+            else if (cmbBrand2.SelectedIndex != 0)
+            {
+                var brandName = (cmbBrand2.SelectedItem as Item).Text;
+                filteredProducts = products.Where(p => p.Brand_Name == brandName).ToList();
             }
             else if (cmbCategory2.SelectedIndex != 0)
             {

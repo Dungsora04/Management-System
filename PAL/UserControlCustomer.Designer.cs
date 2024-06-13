@@ -65,12 +65,16 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtSearchCustomerNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tcCustomer.SuspendLayout();
             this.tpManageCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSearch)).BeginInit();
             this.tpOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcCustomer
@@ -79,14 +83,19 @@
             this.tcCustomer.Controls.Add(this.tpManageCustomer);
             this.tcCustomer.Controls.Add(this.tpOptions);
             this.tcCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tcCustomer.Location = new System.Drawing.Point(0, 0);
+            this.tcCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tcCustomer.Name = "tcCustomer";
             this.tcCustomer.SelectedIndex = 0;
-            this.tcCustomer.Size = new System.Drawing.Size(1189, 591);
+            this.tcCustomer.Size = new System.Drawing.Size(1338, 739);
             this.tcCustomer.TabIndex = 0;
             // 
             // tpManageCustomer
             // 
+            this.tpManageCustomer.Controls.Add(this.txtSearchCustomerNumber);
+            this.tpManageCustomer.Controls.Add(this.label10);
+            this.tpManageCustomer.Controls.Add(this.pictureBox1);
             this.tpManageCustomer.Controls.Add(this.mtbCustomerNumber);
             this.tpManageCustomer.Controls.Add(this.txtSearchCustomerName);
             this.tpManageCustomer.Controls.Add(this.lblTotal);
@@ -100,9 +109,10 @@
             this.tpManageCustomer.Controls.Add(this.label2);
             this.tpManageCustomer.Controls.Add(this.label1);
             this.tpManageCustomer.Location = new System.Drawing.Point(4, 4);
+            this.tpManageCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpManageCustomer.Name = "tpManageCustomer";
-            this.tpManageCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.tpManageCustomer.Size = new System.Drawing.Size(1181, 562);
+            this.tpManageCustomer.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpManageCustomer.Size = new System.Drawing.Size(1330, 697);
             this.tpManageCustomer.TabIndex = 0;
             this.tpManageCustomer.Text = "Manage Customer";
             this.tpManageCustomer.UseVisualStyleBackColor = true;
@@ -112,18 +122,22 @@
             // 
             this.mtbCustomerNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mtbCustomerNumber.Culture = new System.Globalization.CultureInfo("");
-            this.mtbCustomerNumber.Location = new System.Drawing.Point(534, 164);
+            this.mtbCustomerNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mtbCustomerNumber.Location = new System.Drawing.Point(591, 188);
+            this.mtbCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mtbCustomerNumber.Mask = "0000-000-000";
             this.mtbCustomerNumber.Name = "mtbCustomerNumber";
-            this.mtbCustomerNumber.Size = new System.Drawing.Size(291, 22);
+            this.mtbCustomerNumber.Size = new System.Drawing.Size(327, 35);
             this.mtbCustomerNumber.TabIndex = 23;
             // 
             // txtSearchCustomerName
             // 
             this.txtSearchCustomerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSearchCustomerName.Location = new System.Drawing.Point(409, 234);
+            this.txtSearchCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearchCustomerName.Location = new System.Drawing.Point(292, 287);
+            this.txtSearchCustomerName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchCustomerName.Name = "txtSearchCustomerName";
-            this.txtSearchCustomerName.Size = new System.Drawing.Size(268, 22);
+            this.txtSearchCustomerName.Size = new System.Drawing.Size(301, 35);
             this.txtSearchCustomerName.TabIndex = 21;
             this.txtSearchCustomerName.TextChanged += new System.EventHandler(this.txtSearchCustomerName_TextChanged);
             // 
@@ -131,11 +145,11 @@
             // 
             this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(63, 493);
+            this.lblTotal.Location = new System.Drawing.Point(94, 607);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(26, 20);
+            this.lblTotal.Size = new System.Drawing.Size(43, 29);
             this.lblTotal.TabIndex = 17;
             this.lblTotal.Text = "{?}";
             // 
@@ -143,11 +157,11 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(7, 493);
+            this.label6.Location = new System.Drawing.Point(8, 607);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 20);
+            this.label6.Size = new System.Drawing.Size(80, 29);
             this.label6.TabIndex = 18;
             this.label6.Text = "Total: ";
             // 
@@ -164,7 +178,7 @@
             this.dgvCustomer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -178,14 +192,15 @@
             this.Column3});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(151)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomer.EnableHeadersVisualStyles = false;
-            this.dgvCustomer.Location = new System.Drawing.Point(11, 267);
+            this.dgvCustomer.Location = new System.Drawing.Point(12, 329);
+            this.dgvCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCustomer.MultiSelect = false;
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.ReadOnly = true;
@@ -197,7 +212,7 @@
             this.dgvCustomer.ShowCellToolTips = false;
             this.dgvCustomer.ShowEditingIcon = false;
             this.dgvCustomer.ShowRowErrors = false;
-            this.dgvCustomer.Size = new System.Drawing.Size(1149, 213);
+            this.dgvCustomer.Size = new System.Drawing.Size(1293, 266);
             this.dgvCustomer.TabIndex = 19;
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
             // 
@@ -231,9 +246,10 @@
             this.picSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearch.Image = global::Management_System.Properties.Resources.search1;
-            this.picSearch.Location = new System.Drawing.Point(677, 234);
+            this.picSearch.Location = new System.Drawing.Point(594, 287);
+            this.picSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picSearch.Name = "picSearch";
-            this.picSearch.Size = new System.Drawing.Size(27, 27);
+            this.picSearch.Size = new System.Drawing.Size(30, 33);
             this.picSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSearch.TabIndex = 22;
             this.picSearch.TabStop = false;
@@ -242,11 +258,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(405, 211);
+            this.label5.Location = new System.Drawing.Point(287, 254);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 20);
+            this.label5.Size = new System.Drawing.Size(200, 29);
             this.label5.TabIndex = 20;
             this.label5.Text = "Customer Name: ";
             // 
@@ -258,9 +274,10 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(872, 155);
+            this.btnAdd.Location = new System.Drawing.Point(971, 177);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 38);
+            this.btnAdd.Size = new System.Drawing.Size(123, 48);
             this.btnAdd.TabIndex = 14;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -270,31 +287,33 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(530, 141);
+            this.label3.Location = new System.Drawing.Point(586, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 20);
+            this.label3.Size = new System.Drawing.Size(188, 29);
             this.label3.TabIndex = 8;
             this.label3.Text = "Phone Number: ";
             // 
             // txtCustomerName
             // 
             this.txtCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCustomerName.Location = new System.Drawing.Point(205, 164);
+            this.txtCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtCustomerName.Location = new System.Drawing.Point(221, 188);
+            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(291, 22);
+            this.txtCustomerName.Size = new System.Drawing.Size(327, 35);
             this.txtCustomerName.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(201, 141);
+            this.label2.Location = new System.Drawing.Point(216, 155);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 20);
+            this.label2.Size = new System.Drawing.Size(200, 29);
             this.label2.TabIndex = 9;
             this.label2.Text = "Customer Name: ";
             // 
@@ -303,9 +322,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
-            this.label1.Location = new System.Drawing.Point(6, 5);
+            this.label1.Location = new System.Drawing.Point(7, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 28);
+            this.label1.Size = new System.Drawing.Size(136, 32);
             this.label1.TabIndex = 10;
             this.label1.Text = "../Add User";
             // 
@@ -320,9 +339,10 @@
             this.tpOptions.Controls.Add(this.btnChange);
             this.tpOptions.Controls.Add(this.label11);
             this.tpOptions.Location = new System.Drawing.Point(4, 4);
+            this.tpOptions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpOptions.Name = "tpOptions";
-            this.tpOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOptions.Size = new System.Drawing.Size(1181, 562);
+            this.tpOptions.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpOptions.Size = new System.Drawing.Size(1330, 697);
             this.tpOptions.TabIndex = 1;
             this.tpOptions.Text = "Options";
             this.tpOptions.UseVisualStyleBackColor = true;
@@ -364,7 +384,8 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDetails.EnableHeadersVisualStyles = false;
-            this.dgvDetails.Location = new System.Drawing.Point(33, 296);
+            this.dgvDetails.Location = new System.Drawing.Point(37, 365);
+            this.dgvDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDetails.MultiSelect = false;
             this.dgvDetails.Name = "dgvDetails";
             this.dgvDetails.ReadOnly = true;
@@ -376,7 +397,7 @@
             this.dgvDetails.ShowCellToolTips = false;
             this.dgvDetails.ShowEditingIcon = false;
             this.dgvDetails.ShowRowErrors = false;
-            this.dgvDetails.Size = new System.Drawing.Size(1103, 187);
+            this.dgvDetails.Size = new System.Drawing.Size(1241, 234);
             this.dgvDetails.TabIndex = 21;
             // 
             // Date
@@ -422,9 +443,10 @@
             // txtNumber1
             // 
             this.txtNumber1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNumber1.Location = new System.Drawing.Point(608, 169);
+            this.txtNumber1.Location = new System.Drawing.Point(684, 211);
+            this.txtNumber1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNumber1.Name = "txtNumber1";
-            this.txtNumber1.Size = new System.Drawing.Size(291, 22);
+            this.txtNumber1.Size = new System.Drawing.Size(327, 35);
             this.txtNumber1.TabIndex = 20;
             // 
             // label4
@@ -433,18 +455,19 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(604, 146);
+            this.label4.Location = new System.Drawing.Point(680, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 20);
+            this.label4.Size = new System.Drawing.Size(149, 25);
             this.label4.TabIndex = 17;
             this.label4.Text = "Phone Number: ";
             // 
             // txtCustomerName1
             // 
             this.txtCustomerName1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCustomerName1.Location = new System.Drawing.Point(279, 169);
+            this.txtCustomerName1.Location = new System.Drawing.Point(314, 211);
+            this.txtCustomerName1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCustomerName1.Name = "txtCustomerName1";
-            this.txtCustomerName1.Size = new System.Drawing.Size(291, 22);
+            this.txtCustomerName1.Size = new System.Drawing.Size(327, 35);
             this.txtCustomerName1.TabIndex = 19;
             // 
             // label7
@@ -453,9 +476,9 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(275, 146);
+            this.label7.Location = new System.Drawing.Point(309, 182);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 20);
+            this.label7.Size = new System.Drawing.Size(156, 25);
             this.label7.TabIndex = 18;
             this.label7.Text = "Customer Name: ";
             // 
@@ -467,9 +490,10 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Location = new System.Drawing.Point(432, 233);
+            this.btnRemove.Location = new System.Drawing.Point(486, 291);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(138, 54);
+            this.btnRemove.Size = new System.Drawing.Size(155, 68);
             this.btnRemove.TabIndex = 16;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -485,9 +509,10 @@
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.Color.White;
-            this.btnChange.Location = new System.Drawing.Point(265, 233);
+            this.btnChange.Location = new System.Drawing.Point(298, 291);
+            this.btnChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(138, 54);
+            this.btnChange.Size = new System.Drawing.Size(155, 68);
             this.btnChange.TabIndex = 15;
             this.btnChange.Text = "Change";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -500,18 +525,55 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(67)))), ((int)(((byte)(108)))));
             this.label11.Location = new System.Drawing.Point(2, 2);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(102, 28);
+            this.label11.Size = new System.Drawing.Size(121, 32);
             this.label11.TabIndex = 11;
             this.label11.Text = "../Options";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::Management_System.Properties.Resources.search1;
+            this.pictureBox1.Location = new System.Drawing.Point(971, 287);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtSearchCustomerNumber
+            // 
+            this.txtSearchCustomerNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtSearchCustomerNumber.Location = new System.Drawing.Point(664, 285);
+            this.txtSearchCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearchCustomerNumber.Name = "txtSearchCustomerNumber";
+            this.txtSearchCustomerNumber.Size = new System.Drawing.Size(301, 35);
+            this.txtSearchCustomerNumber.TabIndex = 28;
+            this.txtSearchCustomerNumber.TextChanged += new System.EventHandler(this.txtSearchCustomerNumber_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(659, 252);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(222, 29);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Customer Number: ";
+            // 
             // UserControlCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcCustomer);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserControlCustomer";
-            this.Size = new System.Drawing.Size(1189, 591);
+            this.Size = new System.Drawing.Size(1338, 739);
             this.tcCustomer.ResumeLayout(false);
             this.tpManageCustomer.ResumeLayout(false);
             this.tpManageCustomer.PerformLayout();
@@ -520,6 +582,7 @@
             this.tpOptions.ResumeLayout(false);
             this.tpOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -558,5 +621,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.MaskedTextBox mtbCustomerNumber;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtSearchCustomerNumber;
+        private System.Windows.Forms.Label label10;
     }
 }

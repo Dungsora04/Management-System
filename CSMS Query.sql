@@ -432,10 +432,12 @@ END
 CREATE PROC Product_Select_data
 AS
 BEGIN
-	SELECT Product_Id, Product_Name, Product_Image,Product_Price FROM Product
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price 
+	FROM Product
+	WHERE Product_Status = 'Available'
 END
 GO
-
+drop PROC Product_Select_data
 --------------------Customer-------------
 GO
 CREATE PROC Customer_Select_All
@@ -489,4 +491,145 @@ CREATE PROC Customer_Delete
 AS
 BEGIN
 DELETE FROM Customer WHERE Customer_Id = @Customer_Id
+END
+drop PROC Product_Select_data
+CREATE PROC Product_Select_data
+AS
+BEGIN
+	SELECT Product_Id, Product_Name, Product_Image,Product_Price 
+	FROM Product
+	WHERE Product_Status = 'Available'
+END
+GO
+
+
+go
+CREATE PROC OrderInfo_Insert
+@Orders_Id INT,
+@Product_Id INT,
+@Orders_Quantity INT,
+@Warranty varchar(150)
+AS
+BEGIN
+INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity, Warranty)
+OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity, @Warranty);
+END
+--
+GO
+CREATE PROC OrdersInfo_Delete
+@Orders_Id INT
+AS
+BEGIN
+DELETE FROM OrdersInfo WHERE Orders_Id = @Orders_Id
+END
+
+GO
+CREATE PROC Customer_Get_Detail
+@Customer_Id INT
+AS
+BEGIN
+	SELECT o.Orders_Date,p.Product_Name, Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total 
+	FROM OrdersInfo i INNER JOIN Product p ON i.Product_Id = p.Product_Id 
+	INNER JOIN Orders o ON i.Orders_Id = o.Orders_Id
+	where o.Customer_Id = @Customer_Id
+END
+CREATE PROC Customer_Check_Exist
+@Customer_Name NVARCHAR(150), 
+@Customer_Number NVARCHAR(15)
+AS
+BEGIN
+SELECT * FROM Customer WHERE Customer_Name = @Customer_Name AND Customer_Number = @Customer_Number
+END
+
+GO
+CREATE PROC Customer_Select_All
+AS
+BEGIN
+	SELECT * FROM Customer
+END
+
+GO
+CREATE PROC Customer_Insert
+@Customer_Name NVARCHAR(150), 
+@Customer_Number NVARCHAR(15)
+AS
+BEGIN
+INSERT INTO Customer (Customer_Name, Customer_Number) OUTPUT inserted.Customer_Id VALUES (@Customer_Name, @Customer_Number)
+END
+
+GO
+CREATE PROC Customer_Select_ByName
+@Customer_Name NVARCHAR(150)
+AS
+BEGIN
+SELECT * FROM Customer WHERE Customer_Name LIKE CONCAT('%', @Customer_Name, '%');
+END
+
+CREATE PROC Customer_Select_ByNumber
+@Customer_Number varchar(15)
+AS
+BEGIN
+SELECT *
+FROM Customer
+WHERE Customer_Number LIKE CONCAT('%', @Customer_Number, '%')
+END
+GO
+CREATE PROC Customer_Get_Detail
+@Customer_Id INT
+AS
+BEGIN
+	SELECT o.Orders_Date,p.Product_Name, Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total 
+	FROM OrdersInfo i INNER JOIN Product p ON i.Product_Id = p.Product_Id 
+	INNER JOIN Orders o ON i.Orders_Id = o.Orders_Id
+	where o.Customer_Id = @Customer_Id
+END
+CREATE PROC Customer_Check_Exist
+@Customer_Name NVARCHAR(150), 
+@Customer_Number NVARCHAR(15)
+AS
+BEGIN
+SELECT * FROM Customer WHERE Customer_Name = @Customer_Name AND Customer_Number = @Customer_Number
+END
+
+GO
+CREATE PROC Customer_Get_Detail
+@Customer_Id INT
+AS
+BEGIN
+	SELECT o.Orders_Date,p.Product_Name, p.Product_Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total 
+	FROM OrdersInfo i INNER JOIN Product p ON i.Product_Id = p.Product_Id 
+	INNER JOIN Orders o ON i.Orders_Id = o.Orders_Id
+	where o.Customer_Id = @Customer_Id
+END
+
+GO
+CREATE PROC Customer_Update
+@Customer_Id INT, 
+@Customer_Name NVARCHAR(150), 
+@Customer_Number NVARCHAR(15)
+AS
+BEGIN
+UPDATE Customer SET Customer_Name = @Customer_Name, Customer_Number = @Customer_Number where Customer_Id = @Customer_Id
+END
+
+GO
+CREATE PROC Customer_Delete
+@Customer_Id INT
+AS
+BEGIN
+	DELETE FROM OrdersInfo
+	WHERE Orders_Id IN (
+		SELECT Orders_Id FROM Orders WHERE Customer_Id = @Customer_Id
+	);
+	DELETE FROM Orders WHERE Customer_Id = @Customer_Id;
+	DELETE FROM Customer WHERE Customer_Id = @Customer_Id;
+END
+
+CREATE PROC Customer_Select_ByNumber
+@Customer_Number varchar(15)
+AS
+BEGIN
+SELECT *
+FROM Customer
+WHERE Customer_Number LIKE CONCAT('%', @Customer_Number, '%')
 END
