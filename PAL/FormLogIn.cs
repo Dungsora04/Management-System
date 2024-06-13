@@ -93,7 +93,7 @@ namespace Management_System.PAL
                     if (check.Rows.Count > 0)
                     {
                         SharedData.ValueToPass = txtUsername1.Text;
-                        SharedData1.ValueToPass1 = check.Rows[0][0].ToString();
+                        SharedData1.ValueToPass1 = check.Rows[0][4].ToString();
                         FormMain formMain = new FormMain();
                         formMain.name = txtUsername1.Text;
                         formMain.ShowDialog();

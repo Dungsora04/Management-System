@@ -540,6 +540,7 @@ namespace Management_System.PAL
             {
                 product.ProductName = txtProductName.Text.Trim();
                 product.ProductImage = GetImageBytes(picPhoto.Image);
+                product.ProductPrice = Convert.ToInt32(nudRate.Value);
                 product.ProductQuantity = Convert.ToInt32(nudQuantity.Value);
                 product.BrandId = Convert.ToInt32((cmbBrand.SelectedItem as Item).Id.ToString());
                 product.CategoryId = Convert.ToInt32((cmbCategory.SelectedItem as Item).Id.ToString());
@@ -914,6 +915,7 @@ namespace Management_System.PAL
                         Console.WriteLine($"No rows found with ID {Id}.");
                     }
                     EmptyBox1();
+                    tcProduct.SelectedTab = tpManageProduct;
                     /*
                                         using (SqlConnection connection = new SqlConnection(connectionString))
                                         {

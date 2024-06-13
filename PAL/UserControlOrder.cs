@@ -529,12 +529,13 @@ namespace Management_System.PAL
 
                     for (int i = 0; i < dgvProductList.Rows.Count; i++)
                     {
-                        using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity)" +
-                                                "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity);", connection))
+                        using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity, Warranty)" +
+                                                "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity, @Warranty);", connection))
                         {
                             command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
                             command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
                             command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
+                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
                             command1.ExecuteNonQuery();
                             tpManageOrders_Enter(sender, e);
 
@@ -1216,7 +1217,7 @@ namespace Management_System.PAL
             }
             catch
             {
-                MessageBox.Show("CustomerNumer is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("CustomerNumber is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1225,7 +1226,7 @@ namespace Management_System.PAL
             if (e.RowIndex != -1)
             {
                 DataGridViewRow row = dgvOrder_Product.Rows[e.RowIndex];
-                cmbProduct.SelectedItem = row.Cells[1].Value.ToString();
+                cmbProduct.Text = row.Cells[1].Value.ToString();
                 txtRate.Text = row.Cells[3].Value.ToString();
             }
         }
