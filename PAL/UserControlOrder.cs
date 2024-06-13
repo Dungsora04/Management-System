@@ -340,14 +340,15 @@ namespace Management_System.PAL
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            DataTable a;
-            a = productbus.GetDataProductWarranty(cmbProduct.SelectedItem.ToString());
-            if (a.Rows.Count > 0)
-            {
-                warranty = a.Rows[0][0].ToString();
-                txtRate.Text = a.Rows[0][1].ToString();
-                //MessageBox.Show("1", a.Rows[0][0].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //DataTable a;
+            //a = productbus.GetDataProductWarranty(cmbProduct.SelectedItem.ToString());
+            //if (a.Rows.Count > 0)
+            //{
+            //    warranty = a.Rows[0][0].ToString();
+            //    txtRate.Text = a.Rows[0][1].ToString();
+            //    //MessageBox.Show("1", a.Rows[0][0].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+
 
             //using (SqlConnection connection = new SqlConnection(connectionString))
             //{
