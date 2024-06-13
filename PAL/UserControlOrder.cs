@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 using BusinessLogicLayer;
 using DTO;
+using static Management_System.PAL.FormLogIn;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 
 //using Microsoft.ReportingServices.Diagnostics.Internal;
 //using Microsoft.Reporting.Map.WebForms.BingMaps;
@@ -37,12 +39,17 @@ namespace Management_System.PAL
             }
         }
         Order order = new Order();
+        OrdersInfo ordersinfo = new OrdersInfo();
         OrderBUS orderbus = new OrderBUS();
         ProductBUS productbus = new ProductBUS();
+        Customer customer = new Customer();
+        CustomerBUS customerbus = new CustomerBUS();
+        User user = new User();
+        UserBUS userbus = new UserBUS();
         string warranty = "";
         //string warranty_days = "";
         string product_detail = "";
-        private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
+        //private string connectionString = "Data Source=localhost;Initial Catalog=CSMS;Integrated Security=True;";
         private string Id = "";
         public string name;
         private Int32 userId = 0;
@@ -470,114 +477,166 @@ namespace Management_System.PAL
             else
             {
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                DataTable check = customerbus.CheckCustomerExist(txtCustomerName.Text.Trim(), mtbCustomerNumber.Text.Trim());
+
+                if (check.Rows.Count > 0)
                 {
-                    connection.Open();
-                    using (SqlCommand command1 = new SqlCommand("INSERT INTO Customer (Customer_Name, Customer_Number) " +
-                                                "OUTPUT inserted.Customer_Id Values ( @Customer_Name, @Customer_Number);", connection))
-                    {
-                        command1.Parameters.AddWithValue("@Customer_Name", txtCustomerName.Text.Trim());
-                        command1.Parameters.AddWithValue("@Customer_Number", mtbCustomerNumber.Text.Trim());
-
-                        command1.ExecuteNonQuery();
-                    }
-
-                    using (SqlCommand command2 = new SqlCommand("SELECT Customer_Name,Customer_Id FROM Customer", connection))
-                    {
-                        SqlDataReader reader = command2.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (txtCustomerName.Text.Trim() == reader.GetString(0)) txtCustomerName.Text = reader.GetInt32(1).ToString();
-                        }
-                        reader.Close();
-                    }
-
-                    using (SqlCommand command2 = new SqlCommand("SELECT Users_Name,Users_Id FROM Users", connection))
-                    {
-                        SqlDataReader reader = command2.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (name == reader.GetString(0))
-                            {
-                                userId = reader.GetInt32(1);
-                            }
-                        }
-                        reader.Close();
-                    }
-
-                    // proc done
-                    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "before", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    order.Orders_Date = dtpDate.Value.Date;
-                    order.Customer_Id = Convert.ToInt32(txtCustomerName.Text);
-                    order.Users_Id = userId;
-                    order.Total_Amount = Convert.ToInt32(txtTotalAmount.Text);
-                    order.Paid_Amount = Convert.ToInt32(nudPaidAmount.Value);
-                    order.Due_Amount = Convert.ToInt32(txtDueAmount.Text);
-                    order.Discount = Convert.ToInt32(nudDiscount.Value);
-                    order.Grand_Total = Convert.ToInt32(txtGrandTotal.Text);
-                    try
-                    {
-                        //MessageBox.Show(order.Users_Id.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        orderbus.Insert(order);
-                        MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "after", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //using (SqlCommand command1 = new SqlCommand("INSERT INTO Orders (Orders_Date, Customer_Id, Users_Id, Total_Amount, Paid_Amount, Due_Amount, Discount, Grand_Total) " +
-                    //                        "OUTPUT inserted.Orders_Id Values (@OrdersDate, @Customer_Id, @Users_Id, @TotalAmount, @PaidAmount, @DueAmount, @Discount, @GrandTotal);", connection))
-                    //{
-                    //    //MessageBox.Show(name, userId.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    command1.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
-                    //    command1.Parameters.AddWithValue("@OrdersDate", dtpDate.Value.Date);
-                    //    command1.Parameters.AddWithValue("@Users_Id", userId);
-                    //    command1.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount.Text));
-                    //    command1.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount.Value));
-                    //    command1.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount.Text));
-                    //    command1.Parameters.AddWithValue("@Discount", nudDiscount.Value);
-                    //    command1.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
-                    //    command1.ExecuteNonQuery();
-                    //    //command1.Parameters.AddWithValue("@Customer_Id", txtCustomerName.Text.Trim());
-                    //}
-                    // done proc
-
-
-                    DataTable a;
-                    a = orderbus.GetData_MaxOrderId();
-                    txtCustomerName.Text = a.Rows[0][0].ToString();
-                    //MessageBox.Show(a.Rows[0][0].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //using (SqlCommand command2 = new SqlCommand("SELECT Orders_Id\r\nFROM Orders\r\nWHERE Orders_Id = (SELECT MAX(Orders_Id) FROM Orders);", connection))
-                    //{
-                    //    SqlDataReader reader = command2.ExecuteReader();
-                    //    while (reader.Read())
-                    //    {
-                    //            int intValue = reader.GetInt32(0);
-                    //            txtCustomerName.Text = intValue.ToString();
-                    //    }
-                    //    reader.Close();
-                    //}
-
-                    for (int i = 0; i < dgvProductList.Rows.Count; i++)
-                    {
-                        using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity, Warranty)" +
-                                                "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity, @Warranty);", connection))
-                        {
-                            command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
-                            command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
-                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
-                            command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
-                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
-                            command1.ExecuteNonQuery();
-                            tpManageOrders_Enter(sender, e);
-
-                        }
-
-                    }
-                    EmptyBox();
+                    // do nothing
                 }
+                else
+                {
+                    customer.CustomerName = txtCustomerName.Text.Trim();
+                    customer.CustomerNumber = mtbCustomerNumber.Text.Trim();
+                    customerbus.Insert(customer);
+                }
+
+                DataTable check1 = customerbus.CheckCustomerExist(txtCustomerName.Text.Trim(), mtbCustomerNumber.Text.Trim());
+                txtCustomerName.Text = check1.Rows[0][0].ToString();
+                DataTable check2 = userbus.GetDataByName(name);
+                userId = Convert.ToInt32(check2.Rows[0][0]);
+
+                order.Orders_Date = dtpDate.Value.Date;
+                order.Customer_Id = Convert.ToInt32(txtCustomerName.Text);
+                order.Users_Id = userId;
+                order.Total_Amount = Convert.ToInt32(txtTotalAmount.Text);
+                order.Paid_Amount = Convert.ToInt32(nudPaidAmount.Value);
+                order.Due_Amount = Convert.ToInt32(txtDueAmount.Text);
+                order.Discount = Convert.ToInt32(nudDiscount.Value);
+                order.Grand_Total = Convert.ToInt32(txtGrandTotal.Text);
+                try
+                {
+                    //MessageBox.Show(order.Users_Id.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    orderbus.Insert(order);
+                    MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                DataTable a;
+                a = orderbus.GetData_MaxOrderId();
+                txtCustomerName.Text = a.Rows[0][0].ToString();
+                for (int i = 0; i < dgvProductList.Rows.Count; i++)
+                {
+                    ordersinfo.Orders_Id = Convert.ToInt32(txtCustomerName.Text.Trim());
+                    ordersinfo.Product_Id = Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString());
+                    ordersinfo.Orders_Quantity = Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString());
+                    ordersinfo.Warranty = dgvProductList.Rows[i].Cells[4].Value.ToString();
+
+                    orderbus.InsertOrderInfo(ordersinfo);
+
+                }
+                EmptyBox();
                 product_detail = "";
+                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //{
+                //    connection.Open();
+                //    using (SqlCommand command1 = new SqlCommand("INSERT INTO Customer (Customer_Name, Customer_Number) " +
+                //                                "OUTPUT inserted.Customer_Id Values ( @Customer_Name, @Customer_Number);", connection))
+                //    {
+                //        command1.Parameters.AddWithValue("@Customer_Name", txtCustomerName.Text.Trim());
+                //        command1.Parameters.AddWithValue("@Customer_Number", mtbCustomerNumber.Text.Trim());
+
+                //        command1.ExecuteNonQuery();
+                //    }
+
+                //    using (SqlCommand command2 = new SqlCommand("SELECT Customer_Name,Customer_Id FROM Customer", connection))
+                //    {
+                //        SqlDataReader reader = command2.ExecuteReader();
+                //        while (reader.Read())
+                //        {
+                //            if (txtCustomerName.Text.Trim() == reader.GetString(0)) txtCustomerName.Text = reader.GetInt32(1).ToString();
+                //        }
+                //        reader.Close();
+                //    }
+
+                //    using (SqlCommand command2 = new SqlCommand("SELECT Users_Name,Users_Id FROM Users", connection))
+                //    {
+                //        SqlDataReader reader = command2.ExecuteReader();
+                //        while (reader.Read())
+                //        {
+                //            if (name == reader.GetString(0))
+                //            {
+                //                userId = reader.GetInt32(1);
+                //            }
+                //        }
+                //        reader.Close();
+                //    }
+
+                //    // proc done
+                //    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "before", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //order.Orders_Date = dtpDate.Value.Date;
+                //    //order.Customer_Id = Convert.ToInt32(txtCustomerName.Text);
+                //    //order.Users_Id = userId;
+                //    //order.Total_Amount = Convert.ToInt32(txtTotalAmount.Text);
+                //    //order.Paid_Amount = Convert.ToInt32(nudPaidAmount.Value);
+                //    //order.Due_Amount = Convert.ToInt32(txtDueAmount.Text);
+                //    //order.Discount = Convert.ToInt32(nudDiscount.Value);
+                //    //order.Grand_Total = Convert.ToInt32(txtGrandTotal.Text);
+                //    //try
+                //    //{
+                //    //    //MessageBox.Show(order.Users_Id.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //    orderbus.Insert(order);
+                //    //    MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //}
+                //    //catch
+                //    //{
+                //    //    MessageBox.Show("Adding Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //}
+                //    //MessageBox.Show(txtCustomerName.Text, dgvProductList.Rows.Count.ToString() + "after", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //using (SqlCommand command1 = new SqlCommand("INSERT INTO Orders (Orders_Date, Customer_Id, Users_Id, Total_Amount, Paid_Amount, Due_Amount, Discount, Grand_Total) " +
+                //    //                        "OUTPUT inserted.Orders_Id Values (@OrdersDate, @Customer_Id, @Users_Id, @TotalAmount, @PaidAmount, @DueAmount, @Discount, @GrandTotal);", connection))
+                //    //{
+                //    //    //MessageBox.Show(name, userId.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //    command1.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
+                //    //    command1.Parameters.AddWithValue("@OrdersDate", dtpDate.Value.Date);
+                //    //    command1.Parameters.AddWithValue("@Users_Id", userId);
+                //    //    command1.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount.Text));
+                //    //    command1.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount.Value));
+                //    //    command1.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount.Text));
+                //    //    command1.Parameters.AddWithValue("@Discount", nudDiscount.Value);
+                //    //    command1.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
+                //    //    command1.ExecuteNonQuery();
+                //    //    //command1.Parameters.AddWithValue("@Customer_Id", txtCustomerName.Text.Trim());
+                //    //}
+                //    // done proc
+
+
+                //    //DataTable a;
+                //    //a = orderbus.GetData_MaxOrderId();
+                //    //txtCustomerName.Text = a.Rows[0][0].ToString();
+                //    //MessageBox.Show(dgvProductList.Rows.Count.ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    //using (SqlCommand command2 = new SqlCommand("SELECT Orders_Id\r\nFROM Orders\r\nWHERE Orders_Id = (SELECT MAX(Orders_Id) FROM Orders);", connection))
+                //    //{
+                //    //    SqlDataReader reader = command2.ExecuteReader();
+                //    //    while (reader.Read())
+                //    //    {
+                //    //            int intValue = reader.GetInt32(0);
+                //    //            txtCustomerName.Text = intValue.ToString();
+                //    //    }
+                //    //    reader.Close();
+                //    //}
+
+                //    //for (int i = 0; i < dgvProductList.Rows.Count; i++)
+                //    //{
+                //    //    using (SqlCommand command1 = new SqlCommand("INSERT INTO OrdersInfo (Orders_Id, Product_Id, Orders_Quantity, Warranty)" +
+                //    //                            "OUTPUT inserted.OrdersInfo_Id Values (@Orders_Id, @Product_Id, @Orders_Quantity, @Warranty);", connection))
+                //    //    {
+                //    //        command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
+                //    //        command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
+                //    //        command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
+                //    //        command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
+                //    //        command1.ExecuteNonQuery();
+                //    //        tpManageOrders_Enter(sender, e);
+
+                //    //    }
+
+                //    //}
+                //    //EmptyBox();
+                //    //MessageBox.Show(a.Rows[0][0].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+                //product_detail = "";
 
             }
         }
@@ -937,48 +996,60 @@ namespace Management_System.PAL
 
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Are you want to delete this product", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Are you want to delete this product!", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    // done order proc
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    try
                     {
-                        connection.Open();
-                        using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
-                        using (SqlCommand command = new SqlCommand("DELETE FROM OrdersInfo WHERE Orders_Id = @productid", connection))
-                        {
-
-                            command.Parameters.AddWithValue("@productid", Id);
-                            command1.Parameters.AddWithValue("@productid", Id);
-                            int rowsAffected = command.ExecuteNonQuery();
-                            command1.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                                Console.WriteLine($"Row with ID {Id} deleted successfully.");
-                            else
-                                Console.WriteLine($"No rows found with ID {Id}.");
-                            tcOrders.SelectedTab = tpManageOrders;
-                            EmptyBox1();
-                        }
-                        /*
-                               using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
-                               {
-
-                                   command1.Parameters.AddWithValue("@productid", Id);
-                                   int rowsAffected = command1.ExecuteNonQuery();
-
-                                   if (rowsAffected > 0)
-                                       Console.WriteLine($"Row with ID {Id} deleted successfully.");
-                                   else
-                                       Console.WriteLine($"No rows found with ID {Id}.");
-                                   EmptyBox1();
-                                   tcOrders.SelectedTab = tpManageOrders;
-                                   tpManageOrders_Enter(sender, e);
-                               }
-                        */
-
-
+                        orderbus.DeleteOrdersInfo(Id);
+                        orderbus.Delete(Id);
+                        
+                        MessageBox.Show($"Row with ID {Id} deleted successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
                     }
+                    catch
+                    {
+                        MessageBox.Show($"No rows found with ID {Id}.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    tcOrders.SelectedTab = tpManageOrders;
+                    EmptyBox1();
+                    // done order proc
+                    //using (SqlConnection connection = new SqlConnection(connectionString))
+                    //{
+                    //    connection.Open();
+                    //    using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
+                    //    using (SqlCommand command = new SqlCommand("DELETE FROM OrdersInfo WHERE Orders_Id = @productid", connection))
+                    //    {
+
+                    //        command.Parameters.AddWithValue("@productid", Id);
+                    //        command1.Parameters.AddWithValue("@productid", Id);
+                    //        int rowsAffected = command.ExecuteNonQuery();
+                    //        command1.ExecuteNonQuery();
+
+                    //        if (rowsAffected > 0)
+                    //            Console.WriteLine($"Row with ID {Id} deleted successfully.");
+                    //        else
+                    //            Console.WriteLine($"No rows found with ID {Id}.");
+                    //        tcOrders.SelectedTab = tpManageOrders;
+                    //        EmptyBox1();
+                    //    }
+                    //    /*
+                    //           using (SqlCommand command1 = new SqlCommand("DELETE FROM Orders WHERE Orders_Id = @productid", connection))
+                    //           {
+
+                    //               command1.Parameters.AddWithValue("@productid", Id);
+                    //               int rowsAffected = command1.ExecuteNonQuery();
+
+                    //               if (rowsAffected > 0)
+                    //                   Console.WriteLine($"Row with ID {Id} deleted successfully.");
+                    //               else
+                    //                   Console.WriteLine($"No rows found with ID {Id}.");
+                    //               EmptyBox1();
+                    //               tcOrders.SelectedTab = tpManageOrders;
+                    //               tpManageOrders_Enter(sender, e);
+                    //           }
+                    //    */
+                    //}
                 }
             }
         }
@@ -1043,75 +1114,102 @@ namespace Management_System.PAL
 
             else
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+
+                DataTable check1 = customerbus.CheckCustomerExist(txtCustomerName1.Text.Trim(), mtbCustomerNumber1.Text.Trim());
+                txtCustomerName1.Text = check1.Rows[0][0].ToString();
+
+                // update
+                order.Order_Id = Convert.ToInt32(Id);
+                order.Orders_Date = dtpDate1.Value.Date;
+                order.Customer_Id = Convert.ToInt32(txtCustomerName1.Text);
+                order.Users_Id = userId;
+                order.Total_Amount = Convert.ToInt32(txtTotalAmount1.Text);
+                order.Paid_Amount = Convert.ToInt32(nudPaidAmount1.Value);
+                order.Due_Amount = Convert.ToInt32(txtDueAmount1.Text);
+                order.Discount = Convert.ToInt32(nudDiscount1.Value);
+                order.Grand_Total = Convert.ToInt32(txtGrandTotal1.Text);
+
+                try
                 {
-
-                    connection.Open();
-
-                    //   using (SqlCommand cmd = new SqlCommand("ALTER TABLE Orders DROP CONSTRAINT Customer_Number", connection))
-
-                    using (SqlCommand command2 = new SqlCommand("SELECT Customer_Name,Customer_Id FROM Customer", connection))
-                    {
-                        SqlDataReader reader = command2.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (txtCustomerName1.Text.Trim() == reader.GetString(0))
-                            {
-                                txtCustomerName1.Text = reader.GetInt32(1).ToString();
-
-                            }
-                        }
-                        //foreach (DataGridViewRow row in dgvBrand.Rows)
-                        //{
-                        //    txtCustomerName1.Text  = row.Cells["qty"].Value.ToString();
-                        //    //More code here
-                        //}
-                        reader.Close();
-                    }
-
-                    // done proc 
-                    //      using (SqlCommand cmd = new SqlCommand("update Orders set Orders_Date = @OrdersDate, Customer_Name = @CustomerName, Customer_Number= @CustomerNumber, Total_Amount = @TotalAmount, Paid_Amount = @PaidAmount, Due_Amount = @DueAmount, Discount = @Discount, Grand_Total = @GrandTotal, Payment_Status = @PaymentStatus\r\nwhere Orders_Id = " + Id+ ";", connection))
-                    using (SqlCommand command1 = new SqlCommand("UPDATE Orders SET Orders_Date = @OrdersDate where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command2 = new SqlCommand("UPDATE Orders SET Customer_Id = @Customer_Id where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command4 = new SqlCommand("UPDATE Orders SET Total_Amount = @TotalAmount where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command5 = new SqlCommand("UPDATE Orders SET Paid_Amount = @PaidAmount where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command6 = new SqlCommand("UPDATE Orders SET Due_Amount = @DueAmount where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command7 = new SqlCommand("UPDATE Orders SET Discount = @Discount where Orders_Id= @Orders_Id", connection))
-                    using (SqlCommand command8 = new SqlCommand("UPDATE Orders SET Grand_Total = @GrandTotal where Orders_Id= @Orders_Id", connection))
-                    {
-                        command1.Parameters.AddWithValue("@OrdersDate", dtpDate1.Value.Date);
-                        command1.Parameters.AddWithValue("@Orders_Id", Id);
-                        command2.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName1.Text.Trim()));
-                        command2.Parameters.AddWithValue("@Orders_Id", Id);
-                        command4.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount1.Text.Trim()));
-                        command4.Parameters.AddWithValue("@Orders_Id", Id);
-                        command5.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount1.Value));
-                        command5.Parameters.AddWithValue("@Orders_Id", Id);
-                        command6.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount1.Text.Trim()));
-                        command6.Parameters.AddWithValue("@Orders_Id", Id);
-                        command7.Parameters.AddWithValue("@Discount", nudDiscount1.Value);
-                        command7.Parameters.AddWithValue("@Orders_Id", Id);
-                        command8.Parameters.AddWithValue("@GrandTotal", txtGrandTotal1.Text);
-                        command8.Parameters.AddWithValue("@Orders_Id", Id);
-
-
-
-                        command1.ExecuteNonQuery();
-                        command2.ExecuteNonQuery();
-                        //  command3.ExecuteNonQuery();
-                        command4.ExecuteNonQuery();
-                        command5.ExecuteNonQuery();
-                        command6.ExecuteNonQuery();
-                        command7.ExecuteNonQuery();
-                        command8.ExecuteNonQuery();
-                        tcOrders.SelectedTab = tpManageOrders;
-                        tpManageOrders_Enter(sender, e);
-                        EmptyBox1();
-                    }
-
-
-
+                    orderbus.Update(order);
+                    MessageBox.Show("Update Successful!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                 }
+                catch
+                {
+                    MessageBox.Show("Update Fail!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                tcOrders.SelectedTab = tpManageOrders;
+                tpManageOrders_Enter(sender, e);
+                EmptyBox1();
+                //using (SqlConnection connection = new SqlConnection(connectionString))
+                //{
+
+                //    connection.Open();
+
+
+                //   using (SqlCommand cmd = new SqlCommand("ALTER TABLE Orders DROP CONSTRAINT Customer_Number", connection))
+
+                //using (SqlCommand command2 = new SqlCommand("SELECT Customer_Name,Customer_Id FROM Customer", connection))
+                //{
+                //    SqlDataReader reader = command2.ExecuteReader();
+                //    while (reader.Read())
+                //    {
+                //        if (txtCustomerName1.Text.Trim() == reader.GetString(0))
+                //        {
+                //            txtCustomerName1.Text = reader.GetInt32(1).ToString();
+
+                //        }
+                //    }
+                //    //foreach (DataGridViewRow row in dgvBrand.Rows)
+                //    //{
+                //    //    txtCustomerName1.Text  = row.Cells["qty"].Value.ToString();
+                //    //    //More code here
+                //    //}
+                //    reader.Close();
+                //}
+
+                // done proc 
+                //      using (SqlCommand cmd = new SqlCommand("update Orders set Orders_Date = @OrdersDate, Customer_Name = @CustomerName, Customer_Number= @CustomerNumber, Total_Amount = @TotalAmount, Paid_Amount = @PaidAmount, Due_Amount = @DueAmount, Discount = @Discount, Grand_Total = @GrandTotal, Payment_Status = @PaymentStatus\r\nwhere Orders_Id = " + Id+ ";", connection))
+                //using (SqlCommand command1 = new SqlCommand("UPDATE Orders SET Orders_Date = @OrdersDate where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command2 = new SqlCommand("UPDATE Orders SET Customer_Id = @Customer_Id where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command4 = new SqlCommand("UPDATE Orders SET Total_Amount = @TotalAmount where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command5 = new SqlCommand("UPDATE Orders SET Paid_Amount = @PaidAmount where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command6 = new SqlCommand("UPDATE Orders SET Due_Amount = @DueAmount where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command7 = new SqlCommand("UPDATE Orders SET Discount = @Discount where Orders_Id= @Orders_Id", connection))
+                //using (SqlCommand command8 = new SqlCommand("UPDATE Orders SET Grand_Total = @GrandTotal where Orders_Id= @Orders_Id", connection))
+                //{
+                //    command1.Parameters.AddWithValue("@OrdersDate", dtpDate1.Value.Date);
+                //    command1.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command2.Parameters.AddWithValue("@Customer_Id", Convert.ToInt32(txtCustomerName1.Text.Trim()));
+                //    command2.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command4.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(txtTotalAmount1.Text.Trim()));
+                //    command4.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command5.Parameters.AddWithValue("@PaidAmount", Convert.ToInt32(nudPaidAmount1.Value));
+                //    command5.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command6.Parameters.AddWithValue("@DueAmount", Convert.ToInt32(txtDueAmount1.Text.Trim()));
+                //    command6.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command7.Parameters.AddWithValue("@Discount", nudDiscount1.Value);
+                //    command7.Parameters.AddWithValue("@Orders_Id", Id);
+                //    command8.Parameters.AddWithValue("@GrandTotal", txtGrandTotal1.Text);
+                //    command8.Parameters.AddWithValue("@Orders_Id", Id);
+
+
+
+                //    command1.ExecuteNonQuery();
+                //    command2.ExecuteNonQuery();
+                //    //  command3.ExecuteNonQuery();
+                //    command4.ExecuteNonQuery();
+                //    command5.ExecuteNonQuery();
+                //    command6.ExecuteNonQuery();
+                //    command7.ExecuteNonQuery();
+                //    command8.ExecuteNonQuery();
+                //    tcOrders.SelectedTab = tpManageOrders;
+                //    tpManageOrders_Enter(sender, e);
+                //    EmptyBox1();
+                //}
+                //}
             }
         }
 

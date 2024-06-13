@@ -28,6 +28,15 @@ namespace DataAccessLayer
             return data.ExecuteSQL("Customer_Insert", para);
         }
 
+        public DataTable CheckCustomerExist(string name, string number)
+        {
+            SqlParameter[] para = {
+                        new SqlParameter("Customer_Name", name),
+                        new SqlParameter("Customer_Number", number)
+                    };
+            return data.GetData("Customer_Check_Exist", para);
+        }
+
         public DataTable GetDataByName(string Name)
         {
             SqlParameter[] para ={

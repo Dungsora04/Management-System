@@ -18,6 +18,7 @@ namespace Management_System.DTO
         public int Product_Quantity { get; set; }
         public int Product_Warranty { get; set; }
         public string Product_Status { get; set; }
+        public string Product_Details { get; set; }
     }
 
     public class BrandDto
