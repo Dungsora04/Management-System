@@ -373,7 +373,7 @@
             this.btnReceipt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReceipt.Location = new System.Drawing.Point(153, 551);
             this.btnReceipt.Name = "btnReceipt";
-            this.btnReceipt.Size = new System.Drawing.Size(123, 38);
+            this.btnReceipt.Size = new System.Drawing.Size(132, 38);
             this.btnReceipt.TabIndex = 16;
             this.btnReceipt.Text = "Receipt";
             this.btnReceipt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -716,7 +716,7 @@
             // mtbCustomerNumber
             // 
             this.mtbCustomerNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mtbCustomerNumber.Location = new System.Drawing.Point(29, 114);
+            this.mtbCustomerNumber.Location = new System.Drawing.Point(-13, 98);
             this.mtbCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mtbCustomerNumber.Mask = "+0000000000";
             this.mtbCustomerNumber.Name = "mtbCustomerNumber";

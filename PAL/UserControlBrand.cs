@@ -24,6 +24,22 @@ namespace Management_System.PAL
         public UserControlBrand()
         {
             InitializeComponent();
+            txtSearchBrandName.Clear();
+            dgvBrand.Columns[0].Visible = false;
+
+            try
+            {
+                dgvBrand.DataSource = brandbus.GetData();
+                DataTable a;
+                a = brandbus.GetData();
+                //MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblTotal.Text = dgvBrand.Rows.Count.ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("View Brand is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         public void EmptyBox()
@@ -64,7 +80,24 @@ namespace Management_System.PAL
                 {
                     brandbus.Insert(brand);
                     MessageBox.Show("Adding Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtSearchBrandName.Clear();
+                    dgvBrand.Columns[0].Visible = false;
+
+                    try
+                    {
+                        dgvBrand.DataSource = brandbus.GetData();
+                        DataTable a;
+                        a = brandbus.GetData();
+                        //MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblTotal.Text = dgvBrand.Rows.Count.ToString();
+
+                    }
+                    catch
+                    {
+                        MessageBox.Show("View Brand is error now!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     EmptyBox();
+
                 }
                 catch
                 {
@@ -103,7 +136,7 @@ namespace Management_System.PAL
                 dgvBrand.DataSource = brandbus.GetData();
                 DataTable a;
                 a = brandbus.GetData();
-                MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(a.Rows[0][1].ToString(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblTotal.Text = dgvBrand.Rows.Count.ToString();
                 
             }

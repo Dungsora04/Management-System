@@ -138,7 +138,8 @@ namespace Management_System.PAL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Date,p.Product_Name, p.Product_Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total \r\nFROM OrdersInfo i \r\nINNER JOIN Product p \r\nON i.Product_Id = p.Product_Id \r\nINNER JOIN Orders o \r\nON i.Orders_Id = o.Orders_Id \r\n--where o.Customer_Id = @Customer_Id \r\nwhere o.Customer_Id = @Customer_Id", connection)) //"+p_detals+"
+                    using (SqlCommand command1 = new SqlCommand("SELECT o.Orders_Date,p.Product_Name, p.Product_Warranty, i.Orders_Quantity, p.Product_Price*i.Orders_Quantity AS Total \r\nFROM OrdersInfo i \r\nINNER JOIN Product p \r\n"+
+                        "ON i.Product_Id = p.Product_Id \r\nINNER JOIN Orders o \r\nON i.Orders_Id = o.Orders_Id \r\n--where o.Customer_Id = @Customer_Id \r\nwhere o.Customer_Id = @Customer_Id", connection)) //"+p_detals+"
                     {
                         command1.Parameters.AddWithValue("@Customer_Id", id);
 

@@ -115,6 +115,7 @@ namespace Management_System.PAL
                             item.Id = reader.GetInt32(1);
                             cmbProduct.Items.Add(item);
                         }
+                        reader.Close();
                     }
                     command1.ExecuteNonQuery();
                 }
@@ -534,6 +535,7 @@ namespace Management_System.PAL
                         {
                             command1.Parameters.AddWithValue("@Orders_Id", Convert.ToInt32(txtCustomerName.Text.Trim()));
                             command1.Parameters.AddWithValue("@Product_Id", Convert.ToInt32(dgvProductList.Rows[i].Cells[0].Value.ToString()));
+                            command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
                             command1.Parameters.AddWithValue("@Orders_Quantity", Convert.ToInt32(dgvProductList.Rows[i].Cells[3].Value.ToString()));
                             command1.Parameters.AddWithValue("@Warranty", dgvProductList.Rows[i].Cells[4].Value.ToString());
                             command1.ExecuteNonQuery();
