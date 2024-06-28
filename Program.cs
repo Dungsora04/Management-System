@@ -18,10 +18,10 @@ namespace Management_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new FormStart()); //ai muon xem thi bo comment cai nay
+            Application.Run(new FormStart()); //ai muon xem thi bo comment cai nay
             
             //neu khoi dong app bang form start thi comment dong nay lai
-            Application.Run(new FormLogIn()); 
+            //Application.Run(new FormLogIn()); 
         }
     }
 }

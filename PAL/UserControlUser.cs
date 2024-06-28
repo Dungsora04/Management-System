@@ -61,8 +61,6 @@ namespace Management_System.PAL
                             item.Text = reader.GetString(0);
                             item.Id = reader.GetInt32(1);
                             cmbRole.Items.Add(item);
-                            //string RolesName = reader.GetString(0);
-                            //cmbRole.Items.Add(RolesName);
                         }
                     }
                     command1.ExecuteNonQuery();
@@ -91,8 +89,6 @@ namespace Management_System.PAL
                     {
                         while (reader.Read())
                         {
-                            //string RolesName = reader.GetString(0);
-                            //cmbRole1.Items.Add(RolesName);
                             Item item = new Item();
                             item.Text = reader.GetString(0);
                             item.Id = reader.GetInt32(1);
@@ -132,24 +128,6 @@ namespace Management_System.PAL
             }
             else
             {
-                /*
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Users;", connection))
-                    using (SqlCommand command1 = new SqlCommand("INSERT INTO Users  (Users_Name,Users_Email,Users_Password,Roles_Id) " +
-                        " OUTPUT inserted.Users_Id VALUES (@Users_Name,@Users_Email,@Users_Password,@Roles_Id);", connection))
-                    {
-                        command1.Parameters.AddWithValue("@Users_Name", txtUserName.Text.Trim());
-                        command1.Parameters.AddWithValue("@Users_Email", txtEmail.Text.Trim());
-                        command1.Parameters.AddWithValue("@Users_Password", txtPassword.Text.Trim());
-                        command1.Parameters.AddWithValue("@Roles_Id", Convert.ToInt32((cmbRole.SelectedItem as Item).Id.ToString()));
-
-                        command1.ExecuteNonQuery();
-                        EmptyBox();
-                    }
-                }
-                */
                 user.UserName = txtUserName.Text;
                 user.Email = txtEmail.Text;
                 user.Password = txtPassword.Text;
@@ -178,22 +156,6 @@ namespace Management_System.PAL
             EmptyBox1();
             txtSearchUserName.Clear();
             dgvUser.Columns[0].Visible = false;
-            /*
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT u.Users_Id, u.Users_Name, u.Users_Email, u.Users_Password, r.Roles_Name\r\nFROM Users u\r\nLeft JOIN Roles r\r\nON u.Roles_Id = r.Roles_Id", connection))
-                {
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvUser.DataSource = dataTable;
-                    }
-                    lblTotal.Text = dgvUser.Rows.Count.ToString();
-                }
-            }
-            */
             try
             {
                 dgvUser.DataSource = userBUS.GetData();
@@ -207,23 +169,6 @@ namespace Management_System.PAL
 
         private void txtSearchUserName_TextChanged(object sender, EventArgs e)
         {
-            /*
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT * FROM Users WHERE Users_Name LIKE '%" + txtSearchUserName.Text + "%';", connection))
-                {
-
-                    using (var reader = command1.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvUser.DataSource = dataTable;
-                    }
-                    lblTotal.Text = dgvUser.Rows.Count.ToString();
-                }
-            }
-            */
             try
             {
                 dgvUser.DataSource = userBUS.GetDataByName(txtSearchUserName.Text);
@@ -289,35 +234,6 @@ namespace Management_System.PAL
                 user.Password = txtPassword1.Text;     
                 user.UserId = Convert.ToInt32(id);
                 user.RoleId = Convert.ToInt32((cmbRole1.SelectedItem as Item).Id.ToString());
-                /*
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command1 = new SqlCommand("UPDATE Users SET Users_Name = @Users_Name where Users_Id = @Users_Id and not exists (select * from Users where Users_Name = @Users_Name)", connection))
-                    using (SqlCommand command2 = new SqlCommand("UPDATE Users SET Users_Email = @Users_Email where Users_Id = @Users_Id", connection))
-                    using (SqlCommand command3 = new SqlCommand("UPDATE Users SET Users_Password = @Users_Password where Users_Id = @Users_Id", connection))
-                    using (SqlCommand command4 = new SqlCommand("UPDATE Users SET Roles_Id = @Roles_Id where Users_Id = @Users_Id", connection))
-                    {
-
-                        command1.Parameters.AddWithValue("@Users_Name", txtUserName1.Text.Trim());
-                        command1.Parameters.AddWithValue("@Users_Id", id);
-                        command2.Parameters.AddWithValue("@Users_Email", txtEmail1.Text.Trim());
-                        command2.Parameters.AddWithValue("@Users_Id", id);
-                        command3.Parameters.AddWithValue("@Users_Password", txtPassword1.Text.Trim());
-                        command3.Parameters.AddWithValue("@Users_Id", id);
-                        command4.Parameters.AddWithValue("@Roles_Id", Convert.ToInt32((cmbRole1.SelectedItem as Item).Id.ToString()));
-                        command4.Parameters.AddWithValue("@Users_Id", id);
-
-
-                        command1.ExecuteNonQuery();
-                        command2.ExecuteNonQuery();
-                        command3.ExecuteNonQuery();
-                        command4.ExecuteNonQuery();
-                        EmptyBox1();
-                        tcUser.SelectedTab = tpManagerUser;
-                    }
-                }
-                */
                 try
                 {
                     userBUS.Update(user);
@@ -359,37 +275,21 @@ namespace Management_System.PAL
                 DialogResult dialogResult = MessageBox.Show("Are You want to delete this user ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    /*
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        connection.Open();
-                        using (SqlCommand command1 = new SqlCommand("DELETE FROM Users WHERE Users_Id = @Users_Id", connection))
-                        {
-
-                            command1.Parameters.AddWithValue("@Users_Id", id);
-                            int rowsAffected = command1.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                                Console.WriteLine($"Row with ID {id} deleted successfully.");
-                            else
-                                Console.WriteLine($"No rows found with ID {id}.");
-                            EmptyBox1();
-                            tcUser.SelectedTab = tpManagerUser;
-                        }
-                    }
-                    */
                     try
                     {
                         userBUS.Delete(id);
                         Console.WriteLine($"Row with ID {id} deleted successfully.");
+                        EmptyBox1();
+                        tcUser.SelectedTab = tpManagerUser;
                     }
                     catch
                     {
+                        MessageBox.Show("This User sold products in the past", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Console.WriteLine($"No rows found with ID {id}.");
                     }
-                    EmptyBox1();
+                    
                 }
-                tcUser.SelectedTab = tpManagerUser;
+                
             }
         }
 

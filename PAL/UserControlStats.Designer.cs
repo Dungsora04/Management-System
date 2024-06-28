@@ -167,11 +167,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1102, 119);
+            this.label1.Location = new System.Drawing.Point(1129, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 28);
+            this.label1.Size = new System.Drawing.Size(194, 28);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Top 10 Sold Products of";
+            this.label1.Text = "Top Sold Products of";
             // 
             // lblYearSelect1
             // 
@@ -189,7 +189,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(685, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(298, 46);
+            this.label2.Size = new System.Drawing.Size(292, 45);
             this.label2.TabIndex = 4;
             this.label2.Text = "Notable Statistics";
             // 

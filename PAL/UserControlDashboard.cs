@@ -21,33 +21,40 @@ namespace Management_System.PAL
 
         public void Count()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Product", connection))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    label2.Text = ((int)command1.ExecuteScalar() + 1).ToString();
+                    connection.Open();
+                    using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Product", connection))
+                    {
+                        label2.Text = ((int)command1.ExecuteScalar() + 1).ToString();
+                    }
+
+                    using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Orders WHERE Orders_Id is not null", connection))
+                    {
+                        label3.Text = ((int)command1.ExecuteScalar() + 1).ToString();
+                    }
+
+                    using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Product where Product_Status = 'Not Available';", connection))
+                    {
+                        label5.Text = ((int)command1.ExecuteScalar() + 1).ToString();
+                    }
+
+
+
+                    using (SqlCommand command1 = new SqlCommand("SELECT SUM(Grand_Total) FROM Orders", connection))
+                    {
+                        label7.Text = ((int)command1.ExecuteScalar() + 1).ToString("N0",
+                        System.Globalization.CultureInfo.GetCultureInfo("de"));
+                    }
+
+
+
                 }
-
-                using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Orders WHERE Orders_Id is not null", connection))
-                {
-                    label3.Text = ((int)command1.ExecuteScalar() + 1).ToString();
-                }
-
-                using (SqlCommand command1 = new SqlCommand("SELECT COUNT(*) FROM Product where Product_Status = 'Not Available';", connection))
-                {
-                    label5.Text = ((int)command1.ExecuteScalar() + 1).ToString();
-                }
-
-
-
-                using (SqlCommand command1 = new SqlCommand("SELECT SUM(Grand_Total) FROM Orders", connection))
-                {
-                    label7.Text = ((int)command1.ExecuteScalar() + 1).ToString("N0",
-                    System.Globalization.CultureInfo.GetCultureInfo("de"));
-                }
-
-
+            }
+            catch (Exception ex)
+            {
 
             }
 
